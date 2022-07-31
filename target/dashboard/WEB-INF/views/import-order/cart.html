@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Cart Of Import Order Page</title>
+    <!-- Meta -->
+    <th:block th:replace="/head/meta :: meta"/>
+
+    <!-- App favicon -->
+    <th:block th:replace="/head/app-favicon :: app-favicon"/>
+
+    <!-- Bootstrap Touch spin Css -->
+    <th:block th:replace="/head/bootstrap-touchspin-css :: bootstrap-touchspin-css"/>
+
+    <!-- DataTables -->
+    <th:block th:replace="/head/data-tables :: data-tables"/>
+
+    <!-- Responsive datatable examples -->
+    <th:block th:replace="/head/responsive-datatable-examples :: responsive-datatable-examples"/>
+
+    <!-- Main -->
+    <th:block th:replace="/head/main :: main"/>
+
+</head>
+
+<body data-sidebar="dark">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <th:block th:replace="/layout/page-topbar :: page-topbar"/>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar="" class="h-100">
+
+                <!--- Sidemenu -->
+                <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
+
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Cart Of Import Order</h4>
+
+                                <div class="page-title-right">
+                                    <button id="btnShowCreateUnitModal" type="button" class="btn btn-primary btn-rounded waves-effect waves-light mb-2 mr-2">
+                                        <i class="mdi mdi-plus mr-1"></i>
+                                        Add New Unit
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="tbCart" class="table table-centered mb-0 table-nowrap">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Product</th>
+                                                <th>Product Name</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th colspan="2">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr id="tr_1">
+                                                <td>1</td>
+                                                <td>
+                                                    <img src="/assets/images/product/img-4.png" alt="product-img" title="product-img" class="avatar-md">
+                                                </td>
+                                                <td>Áo hoodie</td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="priceCre" name="priceCre" style="width: 90px" value="0">                                        </td>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;">
+                                                        <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                                            <input type="text" value="02" name="demo_vertical" class="form-control quantity">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="totalAmount">0</td>
+                                                <td>
+                                                    <a href="#" class="action-icon text-danger delete">
+                                                        <i class="mdi mdi-trash-can font-size-18"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr id="tr_2">
+                                                <td>2</td>
+                                                <td>
+                                                    <img src="/assets/images/product/img-3.png" alt="product-img" title="product-img" class="avatar-md">
+                                                </td>
+                                                <td>Áo pull</td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="priceCre" name="priceCre" style="width: 90px" value="0">                                        </td>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;">
+                                                        <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                                            <input type="text" value="02" name="demo_vertical" class="form-control quantity">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="totalAmount">0</td>
+                                                <td>
+                                                    <a href="#" class="action-icon text-danger delete">
+                                                        <i class="mdi mdi-trash-can font-size-18"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-sm-6">
+                                            <a href="ecommerce-products.html" class="btn btn-secondary">
+                                                <i class="mdi mdi-arrow-left mr-1"></i> Continue Shopping </a>
+                                        </div> <!-- end col -->
+                                        <div class="col-sm-6">
+                                            <div class="text-sm-right mt-2 mt-sm-0">
+                                                <a href="ecommerce-checkout.html" class="btn btn-success">
+                                                    <i class="mdi mdi-cart-arrow-right mr-1"></i> Checkout </a>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4">Unit information</h5>
+                                    <div class="col-md-12">
+                                        <select class="form-select" id="role" name="role">
+                                            <option value="1" selected>Chợ Đầu Mối</option>
+                                            <option value="2">2Hand Digigtal Market</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 justify-content-between">
+                                        <table>
+                                            <tbody class="table table-hover">
+                                            <tr>
+                                                <th>Code: </th>
+                                                <td id="codeUnit" name="codeUnit">VN-DM-1023</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address: </th>
+                                                <td id="addressUnit" name="addressUnit">4/2/85 Nguyễn Huệ</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ward: </th>
+                                                <td id="wardUnit" name="wardUnit">Phường Phú Nhuận</td>
+                                            </tr>
+                                            <tr>
+                                                <th>District: </th>
+                                                <td id="districtUnit" name="districtUnit">Thành phố Huế</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Province: </th>
+                                                <td id="provinceUnit" name="provinceUnit">Huế</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Order Summary</h4>
+
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <tbody>
+                                            <tr>
+                                                <td>Grand Total :</td>
+                                                <td>1,857</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quantity Total : </td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total :</th>
+                                                <th>1744.22</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- end table-responsive -->
+                                </div>
+                            </div>
+                            <!-- end card -->
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+            <footer class="footer">
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <div id="mdCreateUnit" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Unit information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmCreateUnit" method="post">
+                        <fieldset class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Name</label>
+                                <input type="email" class="form-control" id="nameUnitCre" name="nameUnitCre">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Code</label>
+                                <input type="email" class="form-control" id="codeUnitCre" name="codeUnitCre">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Province</label>
+                                <select class="form-select" id="provinceUnitCre" name="provinceUnitCre"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">District</label>
+                                <select class="form-select" id="districtUnitCre" name="districtUnitCre"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Ward</label>
+                                <select class="form-select" id="wardUnitCre" name="wardUnitCre"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="addressUnitCre" name="addressUnitCre">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnCreateUser" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create Unit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <th:block th:replace="/script/javascript :: javascript"/>
+
+    <!-- Bootrstrap touchspin -->
+    <th:block th:replace="/script/bootrstrap-touchspin-js :: bootrstrap-touchspin-js"/>
+
+    <!-- Required datatable js -->
+    <th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
+
+    <!-- Responsive examples -->
+    <th:block th:replace="/script/responsive-examples :: responsive-examples"/>
+
+    <!-- Datatable init js -->
+    <th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
+
+    <!-- App js -->
+    <th:block th:replace="/script/app-js :: app-js"/>
+
+    <script>
+        $('#btnShowCreateUnitModal').on('click', () => {
+            $('#mdCreateUnit').modal('show')
+        })
+
+        $('#tbCart #tr_1 a.delete').on('click', () => {
+            App.SweetAleart.showSuspendedConfirmAlert()
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        alert('Suspended successful!!!')
+                    }
+                })
+        })
+
+        $('#tbCart #tr_1 td:nth-child(5)').on('change', () => {
+            let quantity = $('#tbCart #tr_1 td:nth-child(5) input.quantity').val();
+            let price = $('#tbCart #tr_1 td:nth-child(4)').text();
+            let totalAmount = 0;
+
+            totalAmount = quantity * price;
+
+            $('#tbCart #tr_1 td:nth-child(6)').text(totalAmount);
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users List</title>
+    <!-- Meta -->
+    <th:block th:replace="/head/meta :: meta"/>
+
+    <!-- App favicon -->
+    <th:block th:replace="/head/app-favicon :: app-favicon"/>
+
+    <!-- DataTables -->
+    <th:block th:replace="/head/data-tables :: data-tables"/>
+
+    <!-- Responsive datatable examples -->
+    <th:block th:replace="/head/responsive-datatable-examples :: responsive-datatable-examples"/>
+
+    <!-- Main -->
+    <th:block th:replace="/head/main :: main"/>
+
+</head>
+
+<body data-sidebar="dark">
+
+<!-- Begin page -->
+    <div id="layout-wrapper">
+        <th:block th:replace="/layout/page-topbar :: page-topbar"/>
+
+        <div class="vertical-menu">
+
+            <div data-simplebar="" class="h-100">
+
+                <!--- Sidemenu -->
+                <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
+
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!--start page title-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Users List</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">User</a></li>
+                                        <li class="breadcrumb-item active">List</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end page title-->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <div class="search-box mr-2 mb-2 d-inline-block">
+                                                <div class="position-relative">
+                                                    <form>
+                                                        <div class="row">
+
+                                                            <div class="col-sm-7">
+                                                                <input type="text" name="search" value=""
+                                                                       class="form-control mb-3" placeholder="Search...">
+                                                                <i class="bx bx-search-alt search-icon"></i>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <button type="submit"
+                                                                        class="btn btn-outline-primary mr-1 waves-effect waves-light">
+                                                                    Search
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                                <button id="btnShowCreateModal" type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-plus mr-1"></i>
+                                                    Add New User
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- end col-->
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-centered table-nowrap table-hover"
+                                               role="grid" aria-describedby="datatable_info">
+
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">Full Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr id="tr_1">
+                                                <td><span class="select-tab unselected"></span></td>
+                                                <td>
+                                                    <div class="avatar-xs">
+                                                        <img class="avatar-title rounded-circle" src="/assets/images/users/avatar-1.jpg" alt="">
+                                                    </div>
+                                                </td>
+                                                <td scope="col">Phúc Thịnh</td>
+                                                <td scope="col">phucthinh2609@gmail.com</td>
+                                                <td scope="col">012345678</td>
+                                                <td scope="col">ADMIN</td>
+                                                <td scope="col">
+                                                    <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            <tr id="tr_2">
+                                                <td><span class="select-tab unselected"></span></td>
+                                                <td>
+                                                    <div style="width: 30px" class="avatar-xs">
+                                                        <img class="avatar-title rounded-circle" src="/assets/images/users/avatar-4.jpg" alt="">
+                                                    </div>
+                                                </td>
+                                                <td scope="col">Trương Phôn</td>
+                                                <td scope="col">phon232@gmail.com</td>
+                                                <td scope="col">098765432</td>
+                                                <td scope="col">USER</td>
+                                                <td scope="col">
+                                                    <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <!-- <th:block th:replace="/layout/footer :: footer"/> -->
+
+            <footer class="footer">
+                <div id="tempFooter" class="hide">
+                    <button type="button" class="btn btn-secondary edit" title="Edit" data-toggle="tooltip">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-success detail" title="Detail" data-toggle="tooltip">
+                        <i class="fas fa-info-circle"></i>
+                        Details
+                    </button>
+                    <button type="button" class="btn btn-primary change-password" title="Detail" data-toggle="tooltip">
+                        <i class="fas fa-undo"></i>
+                        Change Password
+                    </button>
+                    <button type="button" class="btn btn-danger suspended" title="Detail" data-toggle="tooltip">
+                        <i class="fas fa-info-circle"></i>
+                        Suspended
+                    </button>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+
+    <div id="mdCreate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">User information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmCreate" method="post">
+                        <fieldset class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Role</label>
+                                <select class="form-select" id="role" name="role">
+                                    <option value="1" selected>ADMIN</option>
+                                    <option value="2">USER</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="col-md-6">
+                                <!-- <label class="form-label"type="password" data-toggle="password" >Password</label>
+                                <input type="password" class="form-control" id="password" name="password"> -->
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="input-group show_hide_password">
+                                        <input class="form-control" type="password">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </div>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Province</label>
+                                <select class="form-select" id="province" name="province"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">District</label>
+                                <select class="form-select" id="district" name="district"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Ward</label>
+                                <select class="form-select" id="ward" name="ward"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="formFileLg" class="form-label">Choose File Upload</label>
+                                <input class="form-control form-control-md" name="formFileLg" id="formFileLg" type="file">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnCreateUser" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mdUpdate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">User information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmUpdate" method="post">
+                        <fieldset class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="fullNameUp" name="fullNameUp">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phoneUp" name="phoneUp">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Role</label>
+                                <select class="form-select" id="roleUp" name="roleUp">
+                                    <option value="1" selected>ADMIN</option>
+                                    <option value="2">USER</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailUp" name="emailUp">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="formFileLg" class="form-label">Choose File Upload</label>
+                                <input class="form-control form-control-md" name="formFileLgUp" id="formFileLgUp" type="file">
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="input-group show_hide_password" >
+                                        <input class="form-control" type="password">
+                                            <div class="input-group-addon">
+                                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            </div>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-md-3">
+                                <label class="form-label">Province</label>
+                                <select class="form-select" id="provinceUp" name="provinceUp"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">District</label>
+                                <select class="form-select" id="districtUp" name="districtUp"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Ward</label>
+                                <select class="form-select" id="wardUp" name="wardUp"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="addressUp" name="addressUp">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" id="statusUp" name="statusUp">
+                                    <option value="1" selected>Active</option>
+                                    <option value="2">Block</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnUpdateUser" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">User detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmDetail">
+                        <div class="row ">
+                            <div class="col-md-6 justify-content-between">
+                                <table>
+                                    <tbody class="table table-hover">
+                                    <tr>
+                                        <th>Full Name: </th>
+                                        <td id="fullNameDet" name="fullNameDet">Phúc Thịnh</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone: </th>
+                                        <td id="phoneDet" name="phoneDet">012345678</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email: </th>
+                                        <td id="emailDet" name="emailDet">phucthinh2609@gmail.com	</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Role: </th>
+                                        <td id="roleDet" name="roleDet">ADMIN</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address: </th>
+                                        <td id="addressDet" name="addressDet">4/2/85 Nguyễn Huệ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ward: </th>
+                                        <td id="wardDet" name="wardDet">Phường Phú Nhuận</td>
+                                    </tr>
+                                    <tr>
+                                        <th>District: </th>
+                                        <td id="districtDet" name="districtDet">Thành phố Huế</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Province: </th>
+                                        <td id="provinceDet" name="provinceDet">Huế</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created At: </th>
+                                        <td id="createdAtDet" name="createdAtDet">2022-07-27</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created By: </th>
+                                        <td id="createdByDet" name="createdByDet">Systems</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Updated At: </th>
+                                        <td id="updatedAtDet" name="updatedAtDet">null</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Updated By: </th>
+                                        <td id="updatedByDet" name="updatedByDet">null</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status: </th>
+                                        <td id="statusDet" name="statusDet">
+                                            <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="border: 20px;">
+                                    <div class="row">
+                                        <img class="rounded-circle" id="urlImageDetail" name="urlImageDetail" style="width: 350px;" src="/assets/images/users/avatar-1.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mdChangePassword" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">User information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmChangePassword" method="post">
+                        <fieldset class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Email</label>
+                                <p class="form-control" id="emailChangePw" name="emailChangePw">phucthinh2609</p>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Recent Password</label>
+                                    <div class="input-group show_hide_password" >
+                                        <input class="form-control" type="password" id="recentPassword" name="recentPassword">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </div>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <div class="input-group show_hide_password" >
+                                        <input class="form-control" type="password">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-eye-slash" id="newPassword" name="newPassword" aria-hidden="true"></i></a>
+                                        </div>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Pre New Password</label>
+                                    <div class="input-group show_hide_password" >
+                                        <input class="form-control" type="password">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-eye-slash" id="newPasswordPre" name="newPasswordPre" aria-hidden="true"></i></a>
+                                        </div>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnChangePw" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- END layout-wrapper -->
+
+<!-- JAVASCRIPT -->
+<th:block th:replace="/script/javascript :: javascript"/>
+
+
+<!-- Required datatable js -->
+<th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
+
+<!-- Buttons examples -->
+<th:block th:replace="/script/buttons-examples :: buttons-examples"/>
+
+<!-- Responsive examples -->
+<th:block th:replace="/script/responsive-examples :: responsive-examples"/>
+
+<!-- Datatable init js -->
+<th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
+<!-- App js -->
+<th:block th:replace="/script/app-js :: app-js"/>
+
+<script>
+    $(document).ready(function() {
+        $(document).ready(function() {
+            $(".show_hide_password a").on('click', function(event) {
+                event.preventDefault();
+                if($('.show_hide_password input').attr("type") == "text"){
+                    $('.show_hide_password input').attr('type', 'password');
+                    $('.show_hide_password i').addClass( "fa-eye-slash" );
+                    $('.show_hide_password i').removeClass( "fa-eye" );
+                }else if($('.show_hide_password input').attr("type") == "password"){
+                    $('.show_hide_password input').attr('type', 'text');
+                    $('.show_hide_password i').removeClass( "fa-eye-slash" );
+                    $('.show_hide_password i').addClass( "fa-eye" );
+                }
+            });
+        });
+    });
+
+    $( document ).ready(function() {
+        document.querySelector(".dataTables_filter").style.display = 'none';
+    });
+
+    $('tbody tr#tr_1').on('click', () => {
+        $('#tempFooter').addClass('show')
+        $('table td span.select-tab').removeClass('selected').addClass('unselected')
+        $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
+    })
+
+    $('#btnShowCreateModal').on('click', () =>{
+        $('#mdCreate').modal('show');
+    })
+
+    $('button.edit').on('click', () => {
+        $('#mdUpdate').modal('show')
+    })
+
+    $('button.detail').on('click', () => {
+        $('#mdDetail').modal('show')
+    })
+
+    $('button.change-password').on('click', () => {
+        $('#mdChangePassword').modal('show')
+    })
+
+
+    $('.footer button.suspended').on('click', () => {
+        App.SweetAleart.showSuspendedConfirmAlert()
+            .then((result) => {
+                if (result.isConfirmed) {
+                    alert('Suspended successful!!!')
+                }
+            })
+    })
+
+</script>
+</body>
+
+</html>
+

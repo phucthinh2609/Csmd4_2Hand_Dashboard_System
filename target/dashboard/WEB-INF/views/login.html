@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="/assets/iziToast/iziToast-1.4.0.min.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <style>
+        .form-select{
+            padding-top: 1.625rem;
+            padding-bottom: 0.625rem;
+        }
+
+        .form-select {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+            -moz-padding-start: calc(0.75rem - 3px);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e);
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">Login</span>
+
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" id="usernameLogin" placeholder="Enter your username" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="passwordLogin" class="password" placeholder="Enter your password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+
+                        <a href="#" class="text">Forgot password?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" id="btn_login" value="Login">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                        <span class="text">Not a member?
+                            <a href="#" class="text signup-link">Signup Now</a>
+                        </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+
+                <form action="#">
+                    <div class="input-field">
+                        <select name="role" id="role" class="form-select">
+                            <option value="1">ADMIN</option>
+                            <option value="2">USER</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="usernameReg" name="username" placeholder="Enter your username" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="passwordReg" name="password" class="password" placeholder="Create a password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="rePasswordReg" name="rePassword" class="password" placeholder="Confirm a password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="termCon">
+                            <label for="termCon" class="text">I accepted all terms and conditions</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" id="btn_sign_up" value="Signup">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                        <span class="text">Already a member?
+                            <a href="#" class="text login-link">Login Now</a>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/login.js"></script>
+    <script type="text/javascript" src="/assets/iziToast/iziToast-1.4.0.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+
+    <script>
+        let btnRegister = $('#btn_sign_up');
+        let btnLogin = $('#btn_login');
+
+        btnRegister.on('click', () => {
+            let username = $('#usernameReg').val();
+            let password = $('#passwordReg').val();
+            let roleId = $('#role').val();
+
+            let user = {
+                username: username,
+                password: password,
+                role: {
+                    id: roleId
+                }
+            }
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": "http://localhost:8080/api/auth/register",
+                "data": JSON.stringify(user)
+            })
+            .done((data) => {
+                App.IziToast.showSuccessAlert("Signup account successful!");
+                $('.container').removeClass('active');
+                $('#usernameLogin').val(username);
+                $('#passwordLogin').val(password);
+            })
+            .fail((jqXHR) => {
+                App.IziToast.showErrorAlert(jqXHR.responseJSON.message);
+            })
+        });
+
+        btnLogin.on('click', () => {
+            let username = $('#usernameLogin').val();
+            let password = $('#passwordLogin').val();
+
+            let user = {
+                username: username,
+                password: password
+            }
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": "http://localhost:8080/api/auth/login",
+                "data": JSON.stringify(user)
+            })
+            .done((data) => {
+                App.IziToast.showSuccessAlert("Login successful!");
+                window.location.href = "/customers";
+            })
+            .fail((jqXHR) => {
+                App.IziToast.showErrorAlert(jqXHR.responseJSON.message);
+            })
+        });
+
+    </script>
+
+</body>
+</html>

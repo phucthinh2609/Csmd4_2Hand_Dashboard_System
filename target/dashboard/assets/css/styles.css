@@ -1,0 +1,41 @@
+table td span.select-tab {
+    border-left-width: 7px;
+    border-left-style: solid;
+    min-width: 0;
+    display: block;
+    height: 24px;
+    margin: 0 0 0 -4px;
+    padding: 0;
+}
+
+table td span.selected {
+    border-left-color: #556ee6;
+}
+
+table td span.unselected {
+    border-left-color: #dfdfdf;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block !important;
+}
+
+a, a:hover{
+    color:#333
+}
+
+.input-group-addon{
+    background: #d9d9d9;
+    padding: 8px;
+    border-radius: 0px 0.5px 0.5px 0px;
+}
+
+.right-bar {
+    right: -572px;
+    width: 570px;
+    transition: all 0.5s ease-out;
+}

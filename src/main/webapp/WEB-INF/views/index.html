@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="/head/meta :: meta"/>
+
+    <!-- App favicon -->
+    <th:block th:replace="/head/app-favicon :: app-favicon"/>
+    <!-- Main Css -->
+    <th:block th:replace="/head/main :: main"/>
+
+</head>
+    <body data-sidebar="dark">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <th:block th:replace="/layout/page-topbar :: page-topbar"/>
+
+        <div class="vertical-menu">
+
+            <div data-simplebar="" class="h-100">
+
+                <!--- Sidemenu -->
+                <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Dashboard</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+            <th:block th:replace="/layout/footer :: footer"/>
+        </div>
+        <!-- end main content-->
+    </div>
+    <!-- END layout-wrapper -->
+
+
+    <!-- JAVASCRIPT -->
+    <th:block th:replace="/script/javascript :: javascript"/>
+
+    <!-- apexcharts -->
+    <th:block th:replace="/script/apexcharts :: apexcharts"/>
+
+    <!-- App js -->
+    <th:block th:replace="/script/app-js :: app-js"/>
+
+    </body>
+</html>

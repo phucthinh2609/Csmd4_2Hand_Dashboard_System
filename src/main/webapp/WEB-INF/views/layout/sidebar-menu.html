@@ -1,0 +1,77 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="sidebar-menu">
+    <div id="sidebar-menu">
+        <!-- Left Menu Start -->
+        <ul class="metismenu list-unstyled" id="side-menu">
+
+            <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                    <i class="bx bx-home-circle"></i><span class="badge badge-pill badge-info float-right">03</span>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li class="menu-title">Menu</li>
+            <!-- User side-menu -->
+
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect" aria-expanded="false">
+                    <i class="bx bx-user-circle"></i>
+                    <span>User</span>
+                </a>
+                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                    <li><a href="/users/">Users List</a></li>
+                </ul>
+            </li>
+
+            <!-- Product side-menu -->
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="bx bx-list-ul"></i>
+                    <span>Product</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="/products/">Products List</a></li>
+                </ul>
+            </li>
+
+            <!-- Import Order side-menu -->
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="fas fa-file-import"></i>
+                    <span>Import Order</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="/import-orders/create">Create</a></li>
+                    <li><a href="/import-orders/cart">Cart</a></li>
+                    <li><a href="/import-orders">List</a></li>
+                </ul>
+            </li>
+
+            <!-- Purchase Order side-menu -->
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="bx bx-task"></i>
+                    <span>Purchase Order</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="/purchase-orders/create">Create</a></li>
+                    <li><a href="/purchase-orders/cart">Cart</a></li>
+                    <li><a href="/purchase-orders">List</a></li>
+                </ul>
+            </li>
+
+            <!-- Inventory side-menu -->
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="fas fa-warehouse"></i>
+                    <span>Inventory</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="/inventories">Inventory List</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</th:block>
