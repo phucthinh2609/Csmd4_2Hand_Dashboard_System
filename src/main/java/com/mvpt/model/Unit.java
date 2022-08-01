@@ -23,11 +23,9 @@ public class Unit extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String code;
 
     @OneToOne
@@ -45,6 +43,6 @@ public class Unit extends BaseEntity{
                 .setId(String.valueOf(id))
                 .setName(name)
                 .setCode(code)
-                .setLocationRegionDTO(locationRegion.toLocationRegionDTO());
+                .setLocationRegion(locationRegion.toLocationRegionDTO());
     }
 }

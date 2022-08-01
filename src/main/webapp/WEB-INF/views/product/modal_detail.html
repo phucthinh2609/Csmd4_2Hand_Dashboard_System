@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal_detail">
+  <div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Product detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-alert-danger hide"></div>
+          <form id="frmDetail">
+            <div class="row ">
+              <div class="col-md-6 justify-content-between">
+                <table>
+                  <tbody class="table table-hover">
+                  <tr>
+                    <th>Name: </th>
+                    <td id="titleDet" name="titleDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Sku: </th>
+                    <td id="skuDet" name="skuDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Category: </th>
+                    <td id="categoryDet" name="categoryDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Created At: </th>
+                    <td id="createdAtDet" name="createdAtDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Created By: </th>
+                    <td id="createdByDet" name="createdByDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Updated At: </th>
+                    <td id="updatedAtDet" name="updatedAtDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Updated By: </th>
+                    <td id="updatedByDet" name="updatedByDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Description: </th>
+                    <td id="descriptionDet" name="descriptionDet"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <div style="border: 20px;">
+                  <div class="row">
+                    <img id="urlImageDetail" name="urlImageDetail" style="width: 350px;" src="/assets/images/product/img-3.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>

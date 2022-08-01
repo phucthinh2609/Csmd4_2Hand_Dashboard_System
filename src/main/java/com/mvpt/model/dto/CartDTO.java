@@ -24,25 +24,25 @@ public class CartDTO {
     private String quantityTotal;
 
     @Valid
-    private UserDTO userDTO;
+    private UserDTO user;
 
     @Valid
-    private TypeDTO typeDTO;
+    private TypeDTO type;
 
     @Valid
-    private SituationDTO situationDTO;
+    private SituationDTO situation;
 
     @Valid
-    private UnitDTO unitDTO;
+    private UnitDTO unit;
 
     public Cart toCart() {
         return new Cart()
                 .setId(Long.valueOf(id))
                 .setGrandTotal(new BigDecimal(Long.parseLong(grandTotal)))
                 .setQuantityTotal(Integer.parseInt(quantityTotal))
-                .setUser(userDTO.toUser())
-                .setType(typeDTO.toType())
-                .setSituation(situationDTO.toSituation())
-                .setUnit(unitDTO.toUnit());
+                .setUser(user.toUser())
+                .setType(type.toType())
+                .setSituation(situation.toSituation())
+                .setUnit(unit.toUnit());
     }
 }

@@ -30,10 +30,10 @@ public class CartItemDTO {
     private String totalPrice;
 
     @Valid
-    private CartDTO cartDTO;
+    private CartDTO cart;
 
     @Valid
-    private ProductDTO productDTO;
+    private ProductDTO product;
 
     public CartItem toCartItem() {
         return new CartItem()
@@ -41,6 +41,7 @@ public class CartItemDTO {
                 .setPrice(new BigDecimal(Long.parseLong(price)))
                 .setQuantity(Integer.parseInt(quantity))
                 .setTotalPrice(new BigDecimal(Long.parseLong(totalPrice)))
-                .setCart(cartDTO.toCart());
+                .setCart(cart.toCart())
+                .setProduct(product.toProduct());
     }
 }

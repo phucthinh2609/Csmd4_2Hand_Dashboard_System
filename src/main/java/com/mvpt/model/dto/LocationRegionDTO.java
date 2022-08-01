@@ -41,7 +41,7 @@ public class LocationRegionDTO {
 
     public LocationRegion toLocationRegion() {
         return new LocationRegion()
-                .setId(Long.valueOf(id))
+                .setId(0L)
                 .setProvinceId(Long.valueOf(provinceId))
                 .setProvinceName(provinceName)
                 .setDistrictId(Long.valueOf(districtId))

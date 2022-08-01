@@ -29,7 +29,7 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
+    @Column(name = "is_active", columnDefinition = "boolean default true")
     private boolean isActive;
 
     @ManyToOne
@@ -51,7 +51,9 @@ public class User extends BaseEntity{
                 .setId(String.valueOf(id))
                 .setEmail(email)
                 .setPassword(password)
-                .setActive(isActive);
+                .setActive(isActive)
+                .setRole(role.toRoleDTO())
+                .setUserInfo(userInfo.toUserInfoDTO());
     }
 
 }

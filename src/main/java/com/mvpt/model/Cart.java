@@ -56,9 +56,9 @@ public class Cart extends BaseEntity {
                 .setId(String.valueOf(id))
                 .setGrandTotal(String.valueOf(grandTotal))
                 .setQuantityTotal(String.valueOf(quantityTotal))
-                .setUserDTO(user.toUserDTO())
-                .setTypeDTO(type.toTypeDTO())
-                .setSituationDTO(situation.toSituationDTO())
-                .setUnitDTO(unit.toUnitDTO());
+                .setUser(user.toUserDTO())
+                .setType(type.toTypeDTO())
+                .setSituation(situation.toSituationDTO())
+                .setUnit(unit.toUnitDTO());
     }
 }

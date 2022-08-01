@@ -69,6 +69,7 @@ public class Product extends BaseEntity{
                 .setQuantity(String.valueOf(quantity))
                 .setSold(String.valueOf(sold))
                 .setAvailable(String.valueOf(available))
-                .setCategoryDTO(category.toCategoryDTO());
+                .setImported(isImported)
+                .setCategory(category.toCategoryDTO());
     }
 }

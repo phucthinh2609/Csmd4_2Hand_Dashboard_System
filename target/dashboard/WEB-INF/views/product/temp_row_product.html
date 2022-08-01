@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="temp_row_product">
+
+    <textarea id="tempRowProduct" class="hide">
+        <tr id="tr_{0}">
+            <td><span class="select-tab unselected"></span></td>
+            <td>
+                <img style="width: 70px;" src="/assets/images/product/{1}" alt="">
+            </td>
+            <td>{2}</td>
+            <td>{3}</td>
+            <td>{4}</td>
+            <td>{5}</td>
+            <td>{6}</td>
+            <td>{7}</td>
+            <td>
+                <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
+            </td>
+        </tr>
+    </textarea>
+
+</th:block>
+
+<!--<td th:switch="{7}">-->
+<!--    <p th:case="false">-->
+<!--        <span class="badge badge-pill badge-soft-danger font-size-12">unImported</span>-->
+<!--    </p>-->
+<!--    <p th:case="*">-->
+<!--        <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>-->
+<!--    </p>-->
+<!--</td>-->
+

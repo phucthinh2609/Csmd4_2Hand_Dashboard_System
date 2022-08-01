@@ -24,11 +24,15 @@ public class CategoryDTO {
     @Pattern(regexp = "^[0-9]+$", message = "Category ID only digit")
     private String id;
 
-    @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Code is required")
     private String code;
+
+    public CategoryDTO(Long id, String name, String code) {
+        this.id = String.valueOf(id);
+        this.name = name;
+        this.code = code;
+    }
 
     public Category toCategory() {
         return new Category()

@@ -44,6 +44,6 @@ public class UserInfo extends BaseEntity{
                 .setFullName(fullName)
                 .setPhone(phone)
                 .setUrlImage(urlImage)
-                .setLocationRegionDTO(locationRegion.toLocationRegionDTO());
+                .setLocationRegion(locationRegion.toLocationRegionDTO());
     }
 }

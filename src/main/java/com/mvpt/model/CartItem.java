@@ -49,6 +49,7 @@ public class CartItem extends BaseEntity{
                 .setPrice(String.valueOf(price))
                 .setQuantity(String.valueOf(quantity))
                 .setTotalPrice(String.valueOf(totalPrice))
-                .setCartDTO(cart.toCartDTO());
+                .setCart(cart.toCartDTO())
+                .setProduct(product.toProductDTO());
     }
 }

@@ -25,13 +25,13 @@ public class UnitDTO {
     private String code;
 
     @Valid
-    private LocationRegionDTO locationRegionDTO;
+    private LocationRegionDTO locationRegion;
 
     public Unit toUnit() {
         return new Unit()
                 .setId(Long.valueOf(id))
                 .setName(name)
                 .setCode(code)
-                .setLocationRegion(locationRegionDTO.toLocationRegion());
+                .setLocationRegion(locationRegion.toLocationRegion());
     }
 }

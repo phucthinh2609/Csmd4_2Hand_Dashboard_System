@@ -21,399 +21,329 @@
 
 <body data-sidebar="dark">
 
-<!-- Begin page -->
-<div id="layout-wrapper">
-     <th:block th:replace="/layout/page-topbar :: page-topbar"/>
-
-    <div class="vertical-menu">
-
-        <div data-simplebar="" class="h-100">
-
-            <!--- Sidemenu -->
-             <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
-
-            <!-- Sidebar -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+         <th:block th:replace="/layout/page-topbar :: page-topbar"/>
+    
+        <div class="vertical-menu">
+    
+            <div data-simplebar="" class="h-100">
+    
+                <!--- Sidemenu -->
+                 <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
+    
+                <!-- Sidebar -->
+            </div>
         </div>
-    </div>
-    <!-- Left Sidebar End -->
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid">
-
-                <!--start page title-->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Products List</h4>
-
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
-                                    <li class="breadcrumb-item active">List</li>
-                                </ol>
+        <!-- Left Sidebar End -->
+    
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+    
+            <div class="page-content">
+                <div class="container-fluid">
+    
+                    <!--start page title-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Products List</h4>
+    
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
+                                        <li class="breadcrumb-item active">List</li>
+                                    </ol>
+                                </div>
+    
                             </div>
-
                         </div>
                     </div>
-                </div>
-                <!--end page title-->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col-sm-4">
-                                        <div class="search-box mr-2 mb-2 d-inline-block">
-                                            <div class="position-relative">
-                                                <form>
-                                                    <div class="row">
-
-                                                        <div class="col-sm-7">
-                                                            <input type="text" name="search" value=""
-                                                                   class="form-control mb-3" placeholder="Search...">
-                                                            <i class="bx bx-search-alt search-icon"></i>
+                    <!--end page title-->
+    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <div class="search-box mr-2 mb-2 d-inline-block">
+                                                <div class="position-relative">
+                                                    <form>
+                                                        <div class="row">
+    
+                                                            <div class="col-sm-7">
+                                                                <input type="text" name="search" value=""
+                                                                       class="form-control mb-3" placeholder="Search...">
+                                                                <i class="bx bx-search-alt search-icon"></i>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <button type="submit"
+                                                                        class="btn btn-outline-primary mr-1 waves-effect waves-light">
+                                                                    Search
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-2">
-                                                            <button type="submit"
-                                                                    class="btn btn-outline-primary mr-1 waves-effect waves-light">
-                                                                Search
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="text-sm-right">
-                                            <button id="btnShowCreateModal" type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
-                                                <i class="mdi mdi-plus mr-1"></i>
-                                                Add New Product
-                                            </button>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                                <button id="btnShowCreateModal" type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-plus mr-1"></i>
+                                                    Add New Product
+                                                </button>
+                                            </div>
                                         </div>
+                                        <!-- end col-->
                                     </div>
-                                    <!-- end col-->
-                                </div>
-                                <div class="table-responsive">
-                                    <table id="datatable" class="table table-centered table-nowrap table-hover text-center"
-                                           role="grid" aria-describedby="datatable_info">
-
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Sku</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Created At</th>
-                                            <th scope="col">Created By</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr id="tr_1">
-                                            <td><span class="select-tab unselected"></span></td>
-                                            <td scope="col">
-                                                <img style="width: 70px;" src="/assets/images/product/img-3.png" alt="">
-                                            </td>
-                                            <td scope="col">Áo pull</td>
-                                            <td scope="col">HQ-AP-1001</td>
-                                            <td scope="col">Áo</td>
-                                            <td scope="col">26-07-2022</td>
-                                            <td scope="col">phucthinh2609</td>
-                                            <td scope="col">Good</td>
-                                            <td scope="col">
-                                                <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_2">
-                                            <td><span class="select-tab unselected"></span></td>
-                                            <td scope="col">
-                                                <img style="width: 70px;" src="/assets/images/product/img-4.png" alt="">
-                                            </td>
-                                            <td scope="col">Hoodie</td>
-                                            <td scope="col">VN-HD-1002</td>
-                                            <td scope="col">Áo ấm</td>
-                                            <td scope="col">12-08-2022</td>
-                                            <td scope="col">phucthinh2609</td>
-                                            <td scope="col">Fine</td>
-                                            <td scope="col">
-                                                <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_3">
-                                            <td><span class="select-tab unselected"></span></td>
-                                            <td scope="col">
-                                                <img style="width: 70px;" src="/assets/images/product/img-2.png" alt="">
-                                            </td>
-                                            <td scope="col">Áo pull</td>
-                                            <td scope="col">US-AP-1022</td>
-                                            <td scope="col">Áo ấm</td>
-                                            <td scope="col">12-08-2022</td>
-                                            <td scope="col">truongphon234@gmail.com</td>
-                                            <td scope="col">Fine</td>
-                                            <td scope="col">
-                                                <span class="badge badge-pill badge-soft-danger font-size-12">Unimport</span>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    <div class="table-responsive">
+                                        <table id="tbListProducts" class="table table-centered table-nowrap table-hover text-center"
+                                               role="grid" aria-describedby="datatable_info">
+    
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Sku</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Created At</th>
+                                                <th scope="col">Created By</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- end row -->
                 </div>
-                <!-- end row -->
+                <!-- container-fluid -->
             </div>
-            <!-- container-fluid -->
-        </div>
-        <!-- End Page-content -->
+            <!-- End Page-content -->
+    
+            <!-- <th:block th:replace="/layout/footer :: footer"/> -->
 
-        <!-- <th:block th:replace="/layout/footer :: footer"/> -->
+                <div class="footer"></div>
 
-        <footer class="footer">
-            <div id="tempFooter" class="hide">
-                <button type="button" class="btn btn-secondary edit" title="Edit" data-toggle="tooltip">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Update
-                </button>
-                <button type="button" class="btn btn-success detail" title="Detail" data-toggle="tooltip">
-                    <i class="fas fa-info-circle"></i>
-                    Details
-                </button>
-            </div>
-        </footer>
-    </div>
-    <!-- end main content-->
-
-</div>
-
-<div id="mdCreate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Product information</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-alert-danger hide"></div>
-                <form id="frmCreateProduct">
-
-                    <div class="row ">
-                        <div class="col-md-11 ms-3">
-                            <div class="row mb-3 ">
-                                <label class="form-label">Tilte</label>
-                                <input type="text" class="form-control ms-2" id="title" name="title">
-                            </div>
-                            <div class="row mb-3 ">
-                                <label class="form-label">Sku</label>
-                                <input type="text" class="form-control ms-2" id="sku" name="sku">
-                            </div>
-                            <div class="row mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="ms-2"  name="description" id="description" cols="10" rows="5"></textarea>
-                            </div>
-                            <div>
-                                <label for="formFileLg" class="form-label">Choose File Upload</label>
-                                <input class="form-control form-control-md" name="formFileLg" id="formFileLg" type="file">
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <div>
-                                <label for="formFileLg" class="form-label">Choose File Upload</label>
-                                <input class="form-control form-control-md" id="formFileLg" type="file">
-                              </div>
-                        </div> -->
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="btnCreateProduct" class="btn btn-outline-primary">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    Create Product
-                </button>
             </div>
         </div>
+        <!-- end main content-->
+    
     </div>
-</div>
-
-<div id="mdUpdate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Product information</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-alert-danger hide"></div>
-                <form id="frmUpdate">
-
-                    <div class="row ">
-                        <div class="row mb-3 ">
-                            <label class="form-label">Tilte</label>
-                            <input type="text" class="form-control ms-2" id="titleUp" name="titleUp">
-                        </div>
-                        <div class="row mb-3 ">
-                            <div class="col-md-6">
-                                <label class="form-label">Sku</label>
-                                <input type="text" class="form-control" id="skuUp" name="skuUp">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Category</label>
-                                <select class="form-select" id="role" name="role">
-                                    <option value="1" selected>Áo</option>
-                                    <option value="2">Áo ấm</option>
-                                    <option value="3">Quần</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea class="ms-2"  name="descriptionUp" id="descriptionUp" cols="10" rows="5"></textarea>
-                        </div>
-                        <div>
-                            <label for="formFileLg" class="form-label">Choose File Upload</label>
-                            <input class="form-control form-control-md" id="formFileLgUp" name="formFileLgUp" type="file">
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <div>
-                                <label for="formFileLg" class="form-label">Choose File Upload</label>
-                                <input class="form-control form-control-md" id="formFileLg" type="file">
-                              </div>
-                        </div> -->
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="btnUpdate" class="btn btn-outline-primary">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Save Product
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Product detail</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-alert-danger hide"></div>
-                <form id="frmDetail">
-                    <div class="row ">
-                        <div class="col-md-6 justify-content-between">
-                            <table>
-                                <tbody class="table table-hover">
-                                <tr>
-                                    <th>Name: </th>
-                                    <td>Áo pull</td>
-                                </tr>
-                                <tr>
-                                    <th>Sku: </th>
-                                    <td>HQ-AP-1001</td>
-                                </tr>
-                                <tr>
-                                    <th>Category: </th>
-                                    <td>Áo</td>
-                                </tr>
-                                <tr>
-                                    <th>Created At: </th>
-                                    <td>26-07-2022</td>
-                                </tr>
-                                <tr>
-                                    <th>Created By: </th>
-                                    <td>phucthinh2609</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated At: </th>
-                                    <td>null</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated By: </th>
-                                    <td>null</td>
-                                </tr>
-                                <tr>
-                                    <th>Description: </th>
-                                    <td>Good</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <div style="border: 20px;">
-                                <div class="row">
-                                    <img id="urlImageDetail" name="urlImageDetail" style="width: 350px;" src="/assets/images/product/img-3.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+    
 
 
-<!-- END layout-wrapper -->
 
-<!-- JAVASCRIPT -->
-<th:block th:replace="/script/javascript :: javascript"/>
+    
+    <!-- END layout-wrapper -->
 
-<!-- Required datatable js -->
-<th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
+    <th:block th:replace="/product/temp_row_product :: temp_row_product" />
+    <th:block th:replace="/product/footer :: footer" />
+    <th:block th:replace="/product/modal_create :: modal_create" />
+    <th:block th:replace="/product/modal_update :: modal_update" />
+    <th:block th:replace="/product/modal_detail :: modal_detail" />
 
-<!-- Buttons examples -->
-<th:block th:replace="/script/buttons-examples :: buttons-examples"/>
+    <!-- JAVASCRIPT -->
+    <th:block th:replace="/script/javascript :: javascript"/>
+    
+    <!-- Required datatable js -->
+    <th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
+    
+    <!-- Buttons examples -->
+    <th:block th:replace="/script/buttons-examples :: buttons-examples"/>
+    
+    <!-- Responsive examples -->
+    <th:block th:replace="/script/responsive-examples :: responsive-examples"/>
+    
+    <!-- Datatable init js -->
+    <th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
+    
+    <!-- App js -->
+    <th:block th:replace="/script/app-js :: app-js"/>
+    
+    
+    <script>
+    
+        let page = {
+            url: {
+                getAllProducts: App.BASER_URL + "/products",
+                getProductById: App.BASER_URL + "/products/",
+                getAllCategories: App.BASER_URL + "/categories",
 
-<!-- Responsive examples -->
-<th:block th:replace="/script/responsive-examples :: responsive-examples"/>
+                saveNew: App.BASER_URL + "/products/create",
+                saveEdit: App.BASER_URL + "/products/update"
+    
+            },
+            elements: {
+                locationRegion: {}
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+            
+            initializeControlEvent: {}
+        }
 
-<!-- Datatable init js -->
-<th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
+        page.elements.footer = $(".footer");
 
-<!-- App js -->
-<th:block th:replace="/script/app-js :: app-js"/>
+        page.elements.modalCreate = $('#mdCreate');
+        page.elements.modalUpdate = $('#mdUpdate');
+        page.elements.modalDetail = $('#mdDetail');
 
+        page.elements.btnShowCreateModal = $('#btnShowCreateModal');
+        page.elements.btnShowUpdateModal = $('.footer button.update');
+        page.elements.btnShowDetailModal = $('.footer button.detail');
 
-<script>
-    $( document ).ready(function() {
-        document.querySelector(".dataTables_filter").style.display = 'none';
-    });
+        page.elements.btnCreateProduct = $('#btnCreate');
+        page.elements.btnUpdateProduct = $('#btnUpdate');
 
-    $('#btnShowCreateModal').on('click', () =>{
-        $('#mdCreate').modal('show');
-    })
+        page.elements.title = $('#title');
+        page.elements.title = $('#sku');
+        page.elements.category = $('#category');
+        page.elements.description = $('#description');
+        page.elements.urlImage = $('#urlImage');
 
-    $('tbody tr#tr_1').on('click', () => {
-        $('#tempFooter').addClass('show')
-        $('table td span.select-tab').removeClass('selected').addClass('unselected')
-        $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
-    })
+        page.elements.titleUp = $('#titleUp');
+        page.elements.skuUp = $('#skuUp');
+        page.elements.categoryUp = $('#categoryUp');
+        page.elements.descriptionUp = $('#descriptionUp');
+        page.elements.urlImageUp = $('#urlImageUp');
 
-    $('button.edit').on('click', () => {
-        $('#mdUpdate').modal('show')
-    })
+        let product = new Product();
+        let category = new Category();
+        let products = [];
+        let productId;
 
-    $('button.detail').on('click', () => {
-        $('#mdDetail').modal('show')
-    })
+        let tempRowProduct = $.validator.format($.trim($('#tempRowProduct').val().toString()));
 
-</script>
+        let isImported;
+
+        page.commands.addRowProduct = () =>{
+            let text = $(tempRowProduct(product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported));
+
+            $('#tbListProducts tbody').prepend($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+        }
+
+        page.commands.replaceRowProduct = () =>{
+            $('#tr_' + product.id).replaceWith($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+        }
+
+        page.commands.clickRowProduct = () => {
+            $("#tbListProducts tbody tr").on("click", function () {
+                productId = $(this).attr('id').replace('tr_', '');
+                console.log(productId);
+
+                $('#tbListProducts tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListProducts tbody tr#tr_${productId} td span.select-tab`).removeClass("unselected").addClass("selected");
+
+                let tempFooter = $.validator.format($.trim($('#tempFooter').val().toString()));
+
+                $('.footer').html(tempFooter);
+
+                page.commands.unbindAll();
+            });
+        }
+
+        page.loadData.loadProducts = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllProducts
+            })
+            .done((data) => {
+                console.log(data);
+                $('#tbListProducts tbody').html('');
+
+                $.each(data, (i, item) => {
+                    product = item;
+                    page.commands.addRowProduct();
+                })
+            })
+        }
+
+        page.commands.unbindAll = () => {
+            $('.update').off();
+            $('.detail').off();
+        }
+
+        page.commands.handleShowCreateModal = () => {
+            page.elements.modalCreate.modal('show');
+        }
+
+        page.commands.handleShowUpdateModal = () => {
+            page.elements.modalUpdate.modal('show');
+        }
+
+        page.commands.handleShowDetailModal = () => {
+            page.elements.modalDetail.modal('show');
+        }
+
+        page.commands.drawCategories = () => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllCategories
+            })
+            .done((data) => {
+                console.log(data)
+                $.each(data, (i, item) => {
+                    let str = `<option value="${item.id}">${item.name}</option>`;
+
+                    page.elements.category.append(str);
+                    page.elements.categoryUp.append(str);
+                })
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
+        }
+
+        page.initializeControlEvent = () => {
+            page.elements.btnShowCreateModal.on('click', () => {
+                page.commands.handleShowCreateModal();
+            })
+
+            page.elements.footer.on('click', 'button.update', () => {
+                page.commands.handleShowUpdateModal();
+            })
+
+            page.elements.footer.on('click', 'button.detail', () => {
+                page.elements.modalDetail.modal('show');
+            })
+        }
+
+        $(function () {
+            // $(".dataTables_filter").style.display = 'none';
+
+            page.loadData.loadProducts().then(function (){
+                page.commands.clickRowProduct();
+            })
+
+            page.commands.drawCategories();
+
+            page.initializeControlEvent();
+        })
+    
+    </script>
 </body>
 
 </html>

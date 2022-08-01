@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal_create">
+    <div id="mdCreate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Product information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmCreateProduct">
+                        <div class="row ">
+                            <div class="col-md-11 ms-3">
+                                <div class="row mb-3 ">
+                                    <label class="form-label">Tilte</label>
+                                    <input type="text" class="form-control ms-2" id="title" name="title">
+                                </div>
+                                <div class="row mb-3 ">
+                                    <label class="form-label">Sku</label>
+                                    <input type="text" class="form-control ms-2" id="sku" name="sku">
+                                </div>
+                                <div class="row mb-3 ">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select ms-2" id="category" name="category">
+                                    </select>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="ms-2" name="description" id="description" cols="10" rows="5"></textarea>
+                                </div>
+                                <div>
+                                    <label for="urlImage" class="form-label">Choose File Upload</label>
+                                    <input class="form-control form-control-md" name="urlImage" id="urlImage" type="file">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div>
+                                    <label for="formFileLg" class="form-label">Choose File Upload</label>
+                                    <input class="form-control form-control-md" id="formFileLg" type="file">
+                                  </div>
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnCreate" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

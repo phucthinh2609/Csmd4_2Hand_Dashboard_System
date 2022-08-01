@@ -28,16 +28,27 @@ public class UserDTO {
     private boolean isActive;
 
     @Valid
-    private RoleDTO roleDTO;
+    private RoleDTO role;
 
     @Valid
-    private UserInfoDTO userInfoDTO;
+    private UserInfoDTO userInfo;
+
+    public UserDTO(Long id, String email, String password, boolean isActive, Role role, UserInfo userInfo) {
+        this.id = String.valueOf(id);
+        this.email = email;
+        this.password = password;
+        this.isActive = isActive;
+        this.role = role.toRoleDTO();
+        this.userInfo = userInfo.toUserInfoDTO();
+    }
 
     public User toUser() {
         return new User()
                 .setId(Long.valueOf(id))
                 .setEmail(email)
                 .setPassword(password)
-                .setActive(isActive);
+                .setActive(isActive)
+                .setRole(role.toRole())
+                .setUserInfo(userInfo.toUserInfo());
     }
 }

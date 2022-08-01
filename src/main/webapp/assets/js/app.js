@@ -93,3 +93,44 @@ class App {
         $('[data-toggle="tooltip"]').tooltip();
     }
 }
+
+class Product {
+    constructor(id, title, sku, urlImage, description, price, quantity, sold, available, createdAt, createdBy, updatedAt, updatedBy, isImported, category) {
+        this.id = id;
+        this.title = title;
+        this.sku = sku;
+        this.urlImage = urlImage;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.sold = sold;
+        this.available = available;
+        this.isImported = isImported;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.category = category;
+    }
+}
+
+class Category {
+    constructor(id, name, code) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+}
+
+class LocationRegion {
+    constructor(id, provinceId, provinceName, districtId, districtName, wardId, wardName, address) {
+        this.id = id;
+        this.provinceId = provinceId;
+        this.provinceName = provinceName;
+        this.districtId = districtId;
+        this.districtName = districtName;
+        this.wardId = wardId;
+        this.wardName = wardName;
+        this.address = address;
+    }
+}

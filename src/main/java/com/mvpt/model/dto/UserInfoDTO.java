@@ -27,7 +27,7 @@ public class UserInfoDTO {
     private String urlImage;
 
     @Valid
-    private LocationRegionDTO locationRegionDTO;
+    private LocationRegionDTO locationRegion;
 
     public UserInfo toUserInfo() {
         return new UserInfo()
@@ -35,6 +35,6 @@ public class UserInfoDTO {
                 .setFullName(fullName)
                 .setPhone(phone)
                 .setUrlImage(urlImage)
-                .setLocationRegion(locationRegionDTO.toLocationRegion());
+                .setLocationRegion(locationRegion.toLocationRegion());
     }
 }
