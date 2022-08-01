@@ -57,14 +57,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDTO doCreate(ProductDTO productDTO) {
-//        CategoryDTO categoryDTO = categoryRepository.save(productDTO.getCategoryDTO().toCategory()).toCategoryDTO();
-//        productDTO.setCategoryDTO(productDTO);
-
-        Product product = productRepository.save(productDTO.toProduct());
-
-        ProductDTO newProductDTO = product.toProductDTO();
-
-        return newProductDTO;
+        return productRepository.save(productDTO.toProduct()).toProductDTO();
     }
 
     @Override

@@ -27,10 +27,10 @@ public class Type {
     @Column(unique = true)
     private String code;
 
-    @OneToMany(targetEntity = Cart.class, mappedBy = "type")
+    @OneToMany(targetEntity = Cart.class, mappedBy = "type", fetch = FetchType.EAGER)
     private Set<Cart> carts;
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "type")
+    @OneToMany(targetEntity = Order.class, mappedBy = "type", fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public TypeDTO toTypeDTO(){

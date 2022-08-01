@@ -27,10 +27,10 @@ public class Situation {
     @Column(unique = true)
     private String code;
 
-    @OneToMany(targetEntity = Cart.class, mappedBy = "situation")
+    @OneToMany(targetEntity = Cart.class, mappedBy = "situation", fetch = FetchType.EAGER)
     private Set<Cart> carts;
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "situation")
+    @OneToMany(targetEntity = Order.class, mappedBy = "situation", fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public SituationDTO toSituationDTO() {

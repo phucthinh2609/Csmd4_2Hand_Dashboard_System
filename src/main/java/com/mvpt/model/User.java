@@ -40,10 +40,10 @@ public class User extends BaseEntity{
     @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
-    @OneToMany(targetEntity = Cart.class, mappedBy = "user")
+    @OneToMany(targetEntity = Cart.class, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Cart> carts;
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "user")
+    @OneToMany(targetEntity = Order.class, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public UserDTO toUserDTO() {

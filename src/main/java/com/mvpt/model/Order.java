@@ -46,6 +46,6 @@ public class Order extends BaseEntity{
     @JoinColumn(name = "unit_id", nullable = true)
     private Unit unit;
 
-    @OneToMany(targetEntity = OrderItem.class, mappedBy = "order")
+    @OneToMany(targetEntity = OrderItem.class, mappedBy = "order", fetch = FetchType.EAGER)
     private Set<OrderItem> orderItems;
 }

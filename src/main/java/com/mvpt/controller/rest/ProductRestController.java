@@ -51,7 +51,7 @@ public class ProductRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
-        productDTO.setId(String.valueOf(0l));
+        productDTO.setId(String.valueOf(0L));
         productDTO.setPrice(String.valueOf(0));
         productDTO.setQuantity(String.valueOf(0));
         productDTO.setSold(String.valueOf(0));

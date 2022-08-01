@@ -180,11 +180,11 @@
                 getAllCategories: App.BASER_URL + "/categories",
 
                 saveNew: App.BASER_URL + "/products/create",
-                saveEdit: App.BASER_URL + "/products/update"
+                saveUpdate: App.BASER_URL + "/products/update"
     
             },
             elements: {
-                locationRegion: {}
+                category: {}
             },
             loadData: {},
             commands: {},
@@ -207,20 +207,25 @@
         page.elements.btnShowUpdateModal = $('.footer button.update');
         page.elements.btnShowDetailModal = $('.footer button.detail');
 
-        page.elements.btnCreateProduct = $('#btnCreate');
-        page.elements.btnUpdateProduct = $('#btnUpdate');
+        page.elements.btnCreate = $('#btnCreate');
+        page.elements.btnUpdate = $('#btnUpdate');
 
         page.elements.title = $('#title');
-        page.elements.title = $('#sku');
+        page.elements.sku = $('#sku');
         page.elements.category = $('#category');
+        page.elements.categorySelected = $('#category :selected');
         page.elements.description = $('#description');
         page.elements.urlImage = $('#urlImage');
 
         page.elements.titleUp = $('#titleUp');
         page.elements.skuUp = $('#skuUp');
         page.elements.categoryUp = $('#categoryUp');
+        page.elements.categoryUpSelected = $('#categoryUp :selected');
         page.elements.descriptionUp = $('#descriptionUp');
         page.elements.urlImageUp = $('#urlImageUp');
+
+        page.dialogs.alertDanger.modalCreate = $("#mdCreate .modal-alert-danger");
+        page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
 
         let product = new Product();
         let category = new Category();
@@ -232,8 +237,6 @@
         let isImported;
 
         page.commands.addRowProduct = () =>{
-            let text = $(tempRowProduct(product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported));
-
             $('#tbListProducts tbody').prepend($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
         }
 
@@ -244,7 +247,6 @@
         page.commands.clickRowProduct = () => {
             $("#tbListProducts tbody tr").on("click", function () {
                 productId = $(this).attr('id').replace('tr_', '');
-                console.log(productId);
 
                 $('#tbListProducts tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
                 $(`#tbListProducts tbody tr#tr_${productId} td span.select-tab`).removeClass("unselected").addClass("selected");
@@ -267,7 +269,6 @@
                 "url": page.url.getAllProducts
             })
             .done((data) => {
-                console.log(data);
                 $('#tbListProducts tbody').html('');
 
                 $.each(data, (i, item) => {
@@ -287,11 +288,88 @@
         }
 
         page.commands.handleShowUpdateModal = () => {
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getProductById + productId,
+            })
+            .done((data) => {
+                product =data;
+                console.log(data);
+
+                page.elements.titleUp.val(product.title);
+                page.elements.skuUp.val(product.sku);
+                page.elements.categoryUp.val(product.category.id);
+                page.elements.descriptionUp.val(product.description);
+                page.elements.urlImage.val(product.urlImage);
+            })
+
             page.elements.modalUpdate.modal('show');
         }
 
         page.commands.handleShowDetailModal = () => {
             page.elements.modalDetail.modal('show');
+        }
+
+        page.commands.doCreate = () => {
+            category.id = page.elements.category.val();
+            // category.name = page.elements.category.find(':selected').text();
+
+            product.title = page.elements.title.val();
+            product.sku = page.elements.sku.val();
+            product.category = category;
+            product.description = page.elements.description.val();
+            product.urlImage = "img-not-found.jpeg";
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveNew,
+                "data": JSON.stringify(product)
+            })
+            .done((item) => {
+                product = item;
+                console.log(product);
+
+                page.commands.addRowProduct();
+
+                page.elements.modalCreate.modal('hide');
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_CREATED);
+
+                page.commands.clickRowProduct();
+                page.commands.unbindAll();
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR)
+                // page.dialogs.alertDanger.modalCreate.html("").removeClass("hide").addClass("show");
+                //
+                // let str = "";
+                //
+                // if (jqxHR.responseJSON.message) {
+                //     let msg = jqxHR.responseJSON.message;
+                //
+                //     str = `<label id="message-error" class="error" for="message">${msg}</label>`
+                //
+                //     page.dialogs.alertDanger.modalCreate.append(str);
+                // }else if (jqxHR.responseJSON){
+                //     $.each(jqxHR.responseJSON, (key, item) => {
+                //         str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                //         page.dialogs.alertDanger.modalCreate.append(str);
+                //     })
+                // }
+            })
+
+        }
+
+        page.commands.doUpdate = () => {
+
         }
 
         page.commands.drawCategories = () => {
@@ -304,9 +382,8 @@
                 "url": page.url.getAllCategories
             })
             .done((data) => {
-                console.log(data)
                 $.each(data, (i, item) => {
-                    let str = `<option value="${item.id}">${item.name}</option>`;
+                    let str = `<option value="${item.id}">${item.name} (${item.code})</option>`;
 
                     page.elements.category.append(str);
                     page.elements.categoryUp.append(str);
@@ -328,6 +405,10 @@
 
             page.elements.footer.on('click', 'button.detail', () => {
                 page.elements.modalDetail.modal('show');
+            })
+
+            page.elements.btnCreate.on('click', () => {
+                page.commands.doCreate();
             })
         }
 

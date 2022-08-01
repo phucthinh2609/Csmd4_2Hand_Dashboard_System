@@ -55,12 +55,12 @@ public class ProductDTO {
 
     private boolean isImported;
 
-    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Aisa/Ho Chi Minh")
+    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho Chi Minh")
     private Date createdAt;
 
     private String createdBy;
 
-    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Aisa/Ho Chi Minh")
+    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho Chi Minh")
     private Date updatedAt;
 
     private String updatedBy;

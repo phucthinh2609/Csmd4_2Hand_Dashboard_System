@@ -55,7 +55,7 @@ public class Product extends BaseEntity{
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(targetEntity = CartItem.class, mappedBy = "product")
+    @OneToMany(targetEntity = CartItem.class, mappedBy = "product", fetch = FetchType.EAGER)
     private Set<CartItem> cartItems;
 
     public ProductDTO toProductDTO() {
@@ -70,6 +70,10 @@ public class Product extends BaseEntity{
                 .setSold(String.valueOf(sold))
                 .setAvailable(String.valueOf(available))
                 .setImported(isImported)
+                .setCreatedAt(getCreatedAt())
+                .setCreatedBy(getCreatedBy())
+                .setUpdatedAt(getUpdatedAt())
+                .setUpdatedBy(getUpdatedBy())
                 .setCategory(category.toCategoryDTO());
     }
 }

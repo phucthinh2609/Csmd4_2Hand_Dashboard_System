@@ -32,10 +32,10 @@ public class Unit extends BaseEntity{
     @JoinColumn(name = "location_region_id", nullable = false)
     private LocationRegion locationRegion;
 
-    @OneToMany(targetEntity = Cart.class, mappedBy = "unit")
+    @OneToMany(targetEntity = Cart.class, mappedBy = "unit", fetch = FetchType.EAGER)
     private Set<Cart> carts;
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "unit")
+    @OneToMany(targetEntity = Order.class, mappedBy = "unit", fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public UnitDTO toUnitDTO() {

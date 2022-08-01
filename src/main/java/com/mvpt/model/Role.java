@@ -26,7 +26,7 @@ public class Role {
     @Column(unique = true)
     private String code;
 
-    @OneToMany(targetEntity = User.class, mappedBy = "role")
+    @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.EAGER)
     private Set<User> users;
 
     public RoleDTO toRoleDTO() {

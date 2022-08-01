@@ -48,7 +48,7 @@ public class Cart extends BaseEntity {
     @JoinColumn(name = "unit_id", nullable = false)
     private Unit unit;
 
-    @OneToMany(targetEntity = CartItem.class, mappedBy = "cart")
+    @OneToMany(targetEntity = CartItem.class, mappedBy = "cart", fetch = FetchType.EAGER)
     private Set<CartItem> cartItems;
 
     public CartDTO toCartDTO() {
