@@ -10,41 +10,98 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e1ccf6-3caa-42d2-b901-597ddec21528" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/RoleRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/UserRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/modal_change_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/modal_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/modal_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/modal_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/app.page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/custom-validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/ProductRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Situation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Situation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/Unit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/LocationRegionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/LocationRegionDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/RoleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/RoleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/SituationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/SituationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/TypeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/TypeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UnitDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UnitDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UserInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/UserInfoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/product/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/product/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/product/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/role/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/role/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/role/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/modal_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/modal_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/modal_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/modal_create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/temp_row_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/temp_row_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script/app-js.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script/app-js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script/javascript.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script/javascript.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/ProductRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/ProductRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/BaseEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Situation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Situation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/Unit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/CategoryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/CategoryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/LocationRegionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/LocationRegionDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/ProductDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/ProductDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UnitDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UnitDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UserInfoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/UserInfoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/repository/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/repository/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/repository/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/repository/RoleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/product/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/product/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/product/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/role/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/role/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/role/RoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/ProductRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/ProductRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/BaseEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Situation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Situation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/Unit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/CategoryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/CategoryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/LocationRegionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/LocationRegionDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/ProductDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/ProductDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UnitDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UnitDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UserInfoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/UserInfoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/RoleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/product/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/product/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/product/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/role/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/role/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/role/RoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/modal_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/modal_create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/modal_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/modal_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/temp_row_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/temp_row_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/script/app-js.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/script/app-js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/script/javascript.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/script/javascript.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/user/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/user/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/dashboard/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/assets/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/controller/rest/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/controller/rest/AuthRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/model/dto/TransferHistoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/model/dto/TransferHistoryDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/webapp/WEB-INF/views/customer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/webapp/WEB-INF/views/customer/list.html" afterDir="false" />
@@ -114,7 +171,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/assets/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -126,15 +183,16 @@
       <recent name="com.mvpt.model.dto" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/assets/js" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/js/pages" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/assets/js" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/mvpt/service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/js" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/script" />
       <recent name="$PROJECT_DIR$/src/main/webapp/cp" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
     </key>
@@ -247,7 +305,7 @@
       <workItem from="1658993361858" duration="13783000" />
       <workItem from="1659084378832" duration="13715000" />
       <workItem from="1659142113250" duration="57551000" />
-      <workItem from="1659326908921" duration="23243000" />
+      <workItem from="1659326908921" duration="63647000" />
     </task>
     <servers />
   </component>
@@ -266,9 +324,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.mvpt.model.dto.UserDTO" memberName="password" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="productDTOList.get(0).categoryDTO.code" />
+        <watch expression="productDTOList.get(0).categoryDTO.code" language="JAVA" />
+        <watch expression="userDTO.password" />
       </configuration>
     </watches-manager>
   </component>

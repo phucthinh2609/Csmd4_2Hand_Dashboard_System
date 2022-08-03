@@ -16,7 +16,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 "u.id, " +
                 "u.email, " +
                 "u.password, " +
-                "u.isActive, " +
+                "u.activated, " +
+                "u.createdAt," +
+                "u.createdBy," +
+                "u.updatedAt," +
+                "u.updatedBy," +
                 "u.role, " +
                 "u.userInfo) " +
             "FROM User u " +
@@ -27,10 +31,30 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 "u.id, " +
                 "u.email, " +
                 "u.password, " +
-                "u.isActive, " +
+                "u.activated, " +
+                "u.createdAt," +
+                "u.createdBy," +
+                "u.updatedAt," +
+                "u.updatedBy," +
                 "u.role, " +
                 "u.userInfo) " +
             "FROM User u " +
-            "WHERE u.deleted = false ")
+            "WHERE u.id = ?1 ")
     Optional<UserDTO> getUserDTOById(Long id);
+
+    Boolean existsByEmail(String email);
+
+    @Query("SELECT NEW com.mvpt.model.dto.UserDTO (" +
+                "u.id, " +
+                "u.email, " +
+                "u.password, " +
+                "u.activated, " +
+                "u.createdAt," +
+                "u.createdBy," +
+                "u.updatedAt," +
+                "u.updatedBy," +
+                "u.role, " +
+                "u.userInfo) " +
+            "FROM User u WHERE u.email = ?1 AND u.id <> ?2 ")
+    Optional<UserDTO> findUserDTOByEmailAndIdIsNot(String email, Long id);
 }

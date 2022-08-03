@@ -18,10 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -36,31 +33,38 @@ public class ProductDTO {
     private String id;
 
     @NotBlank(message = "Title is required")
+    @Size(max = 50, message = "The length of tile must be between 5 and 50 characters")
     private String title;
 
     @NotBlank(message = "Sku is required")
+//    @Pattern(regexp = "^([A-Z]{2}\\-){2}\\d{4}$", message = "\"Format sku is 'US-AP-1029'. In there: 'US' is the country, 'AP' is the item name, '1029' is the item code\"")
     private String sku;
 
     private String urlImage;
 
+    @Size(max = 50, message = "Maximum description must be 50 characters")
     private String description;
 
+    @Pattern(regexp = "^[0-9]+$", message = "Price only digit")
     private String price;
 
+    @Pattern(regexp = "^[0-9]+$", message = "Quantity only digit")
     private String quantity;
 
+    @Pattern(regexp = "^[0-9]+$", message = "Sold only digit")
     private String sold;
 
+    @Pattern(regexp = "^[0-9]+$", message = "Available only digit")
     private String available;
 
-    private boolean isImported;
+    private boolean imported;
 
-    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho Chi Minh")
+    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
     private String createdBy;
 
-    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho Chi Minh")
+    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy", timezone = "Asia/Ho_Chi_Minh")
     private Date updatedAt;
 
     private String updatedBy;
@@ -68,7 +72,7 @@ public class ProductDTO {
     @Valid
     private CategoryDTO category;
 
-    public ProductDTO(Long id, String title, String sku, String urlImage, String description, BigDecimal price, int quantity, int sold, int available, boolean isImported, Date createdAt, String createdBy, Date updatedAt, String updatedBy, Category category) {
+    public ProductDTO(Long id, String title, String sku, String urlImage, String description, BigDecimal price, int quantity, int sold, int available, boolean imported, Date createdAt, String createdBy, Date updatedAt, String updatedBy, Category category) {
         this.id = String.valueOf(id);
         this.title = title;
         this.sku = sku;
@@ -78,7 +82,7 @@ public class ProductDTO {
         this.quantity = String.valueOf(quantity);
         this.sold = String.valueOf(sold);
         this.available = String.valueOf(available);
-        this.isImported = isImported;
+        this.imported = imported;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
@@ -88,7 +92,7 @@ public class ProductDTO {
     }
 
     public Product toProduct() {
-        return new Product()
+        return (Product) new Product()
                 .setId(Long.valueOf(id))
                 .setTitle(title)
                 .setSku(sku)
@@ -98,7 +102,11 @@ public class ProductDTO {
                 .setQuantity(Integer.parseInt(quantity))
                 .setSold(Integer.parseInt(sold))
                 .setAvailable(Integer.parseInt(available))
-                .setImported(isImported)
-                .setCategory(category.toCategory());
+                .setImported(imported)
+                .setCategory(category.toCategory())
+                .setCreatedAt(createdAt)
+                .setCreatedBy(createdBy)
+                .setUpdatedAt(updatedAt)
+                .setUpdatedBy(updatedBy);
     }
 }

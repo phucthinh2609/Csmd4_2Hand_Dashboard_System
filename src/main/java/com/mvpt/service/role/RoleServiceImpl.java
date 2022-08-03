@@ -1,6 +1,7 @@
 package com.mvpt.service.role;
 
 import com.mvpt.model.Role;
+import com.mvpt.model.dto.RoleDTO;
 import com.mvpt.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> findAll() {
         return roleRepository.findAll();
+    }
+
+    @Override
+    public List<RoleDTO> getAllRoleDTO() {
+        return roleRepository.getAllRoleDTO();
     }
 
     @Override

@@ -29,8 +29,8 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active", columnDefinition = "boolean default true")
-    private boolean isActive;
+    @Column(name = "activated", columnDefinition = "boolean default true")
+    private boolean activated;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
@@ -51,7 +51,11 @@ public class User extends BaseEntity{
                 .setId(String.valueOf(id))
                 .setEmail(email)
                 .setPassword(password)
-                .setActive(isActive)
+                .setActivated(activated)
+                .setCreatedAt(getCreatedAt())
+                .setCreatedBy(getCreatedBy())
+                .setUpdatedAt(getUpdatedAt())
+                .setUpdatedBy(getUpdatedBy())
                 .setRole(role.toRoleDTO())
                 .setUserInfo(userInfo.toUserInfoDTO());
     }

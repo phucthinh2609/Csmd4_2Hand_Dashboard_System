@@ -48,8 +48,8 @@ public class Product extends BaseEntity{
     @Column(columnDefinition = "integer default 0")
     private int available;
 
-    @Column(name = "is_imported", columnDefinition = "boolean default false")
-    private boolean isImported;
+    @Column(name = "imported", columnDefinition = "boolean default false")
+    private boolean imported;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -69,7 +69,7 @@ public class Product extends BaseEntity{
                 .setQuantity(String.valueOf(quantity))
                 .setSold(String.valueOf(sold))
                 .setAvailable(String.valueOf(available))
-                .setImported(isImported)
+                .setImported(imported)
                 .setCreatedAt(getCreatedAt())
                 .setCreatedBy(getCreatedBy())
                 .setUpdatedAt(getUpdatedAt())

@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="footer">
+    <textarea id="tempFooter" class="hide">
+         <button type="button" class="btn btn-secondary update" title="Edit" data-toggle="tooltip">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            Update
+         </button>
+         <button type="button" class="btn btn-success detail" title="Detail" data-toggle="tooltip">
+            <i class="fas fa-info-circle"></i>
+            Details
+         </button>
+         <button type="button" class="btn btn-primary change-password" title="Detail" data-toggle="tooltip">
+            <i class="fas fa-undo"></i>
+            Change Password
+         </button>
+         <button type="button" class="btn btn-danger suspended" title="Detail" data-toggle="tooltip">
+            <i class="fas fa-info-circle"></i>
+            Suspended
+         </button>
+    </textarea>
+</th:block>

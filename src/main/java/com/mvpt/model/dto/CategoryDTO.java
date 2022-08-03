@@ -20,7 +20,7 @@ import java.util.Set;
 @Accessors(chain = true)
 public class CategoryDTO {
 
-    @NotBlank(message = "ID is required")
+    @NotBlank(message = "Category ID is required")
     @Pattern(regexp = "^[0-9]+$", message = "Category ID only digit")
     private String id;
 

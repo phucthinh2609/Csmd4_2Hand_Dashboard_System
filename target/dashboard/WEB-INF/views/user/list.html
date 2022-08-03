@@ -101,7 +101,7 @@
                                         <!-- end col-->
                                     </div>
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-centered table-nowrap table-hover"
+                                        <table id="tbListUsers" class="table table-centered table-nowrap table-hover"
                                                role="grid" aria-describedby="datatable_info">
 
                                             <thead class="thead-light">
@@ -116,36 +116,6 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="tr_1">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td>
-                                                    <div class="avatar-xs">
-                                                        <img class="avatar-title rounded-circle" src="/assets/images/users/avatar-1.jpg" alt="">
-                                                    </div>
-                                                </td>
-                                                <td scope="col">Phúc Thịnh</td>
-                                                <td scope="col">phucthinh2609@gmail.com</td>
-                                                <td scope="col">012345678</td>
-                                                <td scope="col">ADMIN</td>
-                                                <td scope="col">
-                                                    <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_2">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td>
-                                                    <div style="width: 30px" class="avatar-xs">
-                                                        <img class="avatar-title rounded-circle" src="/assets/images/users/avatar-4.jpg" alt="">
-                                                    </div>
-                                                </td>
-                                                <td scope="col">Trương Phôn</td>
-                                                <td scope="col">phon232@gmail.com</td>
-                                                <td scope="col">098765432</td>
-                                                <td scope="col">USER</td>
-                                                <td scope="col">
-                                                    <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -161,425 +131,695 @@
 
             <!-- <th:block th:replace="/layout/footer :: footer"/> -->
 
-            <footer class="footer">
-                <div id="tempFooter" class="hide">
-                    <button type="button" class="btn btn-secondary edit" title="Edit" data-toggle="tooltip">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Update
-                    </button>
-                    <button type="button" class="btn btn-success detail" title="Detail" data-toggle="tooltip">
-                        <i class="fas fa-info-circle"></i>
-                        Details
-                    </button>
-                    <button type="button" class="btn btn-primary change-password" title="Detail" data-toggle="tooltip">
-                        <i class="fas fa-undo"></i>
-                        Change Password
-                    </button>
-                    <button type="button" class="btn btn-danger suspended" title="Detail" data-toggle="tooltip">
-                        <i class="fas fa-info-circle"></i>
-                        Suspended
-                    </button>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
 
+        <footer class="footer"></footer>
+
     </div>
 
-    <div id="mdCreate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">User information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmCreate" method="post">
-                        <fieldset class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="fullName" name="fullName">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Role</label>
-                                <select class="form-select" id="role" name="role">
-                                    <option value="1" selected>ADMIN</option>
-                                    <option value="2">USER</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-                            <div class="col-md-6">
-                                <!-- <label class="form-label"type="password" data-toggle="password" >Password</label>
-                                <input type="password" class="form-control" id="password" name="password"> -->
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <div class="input-group show_hide_password">
-                                        <input class="form-control" type="password">
-                                        <div class="input-group-addon">
-                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                        </div>
-                                        </input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Province</label>
-                                <select class="form-select" id="province" name="province"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">District</label>
-                                <select class="form-select" id="district" name="district"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Ward</label>
-                                <select class="form-select" id="ward" name="ward"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" name="address">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="formFileLg" class="form-label">Choose File Upload</label>
-                                <input class="form-control form-control-md" name="formFileLg" id="formFileLg" type="file">
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnCreateUser" class="btn btn-outline-primary">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Create User
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="mdUpdate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">User information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmUpdate" method="post">
-                        <fieldset class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="fullNameUp" name="fullNameUp">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="phoneUp" name="phoneUp">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Role</label>
-                                <select class="form-select" id="roleUp" name="roleUp">
-                                    <option value="1" selected>ADMIN</option>
-                                    <option value="2">USER</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailUp" name="emailUp">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="formFileLg" class="form-label">Choose File Upload</label>
-                                <input class="form-control form-control-md" name="formFileLgUp" id="formFileLgUp" type="file">
-                            </div>
-                            <!-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <div class="input-group show_hide_password" >
-                                        <input class="form-control" type="password">
-                                            <div class="input-group-addon">
-                                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                            </div>
-                                        </input>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="col-md-3">
-                                <label class="form-label">Province</label>
-                                <select class="form-select" id="provinceUp" name="provinceUp"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">District</label>
-                                <select class="form-select" id="districtUp" name="districtUp"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Ward</label>
-                                <select class="form-select" id="wardUp" name="wardUp"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="addressUp" name="addressUp">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Status</label>
-                                <select class="form-select" id="statusUp" name="statusUp">
-                                    <option value="1" selected>Active</option>
-                                    <option value="2">Block</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnUpdateUser" class="btn btn-outline-primary">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Save changes
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">User detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmDetail">
-                        <div class="row ">
-                            <div class="col-md-6 justify-content-between">
-                                <table>
-                                    <tbody class="table table-hover">
-                                    <tr>
-                                        <th>Full Name: </th>
-                                        <td id="fullNameDet" name="fullNameDet">Phúc Thịnh</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Phone: </th>
-                                        <td id="phoneDet" name="phoneDet">012345678</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Email: </th>
-                                        <td id="emailDet" name="emailDet">phucthinh2609@gmail.com	</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Role: </th>
-                                        <td id="roleDet" name="roleDet">ADMIN</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Address: </th>
-                                        <td id="addressDet" name="addressDet">4/2/85 Nguyễn Huệ</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Ward: </th>
-                                        <td id="wardDet" name="wardDet">Phường Phú Nhuận</td>
-                                    </tr>
-                                    <tr>
-                                        <th>District: </th>
-                                        <td id="districtDet" name="districtDet">Thành phố Huế</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Province: </th>
-                                        <td id="provinceDet" name="provinceDet">Huế</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Created At: </th>
-                                        <td id="createdAtDet" name="createdAtDet">2022-07-27</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Created By: </th>
-                                        <td id="createdByDet" name="createdByDet">Systems</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Updated At: </th>
-                                        <td id="updatedAtDet" name="updatedAtDet">null</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Updated By: </th>
-                                        <td id="updatedByDet" name="updatedByDet">null</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Status: </th>
-                                        <td id="statusDet" name="statusDet">
-                                            <span class="badge badge-soft-success font-size-11 m-1">ACTIVE</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <div style="border: 20px;">
-                                    <div class="row">
-                                        <img class="rounded-circle" id="urlImageDetail" name="urlImageDetail" style="width: 350px;" src="/assets/images/users/avatar-1.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="mdChangePassword" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">User information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmChangePassword" method="post">
-                        <fieldset class="row g-3">
-                            <div class="col-md-12">
-                                <label class="form-label">Email</label>
-                                <p class="form-control" id="emailChangePw" name="emailChangePw">phucthinh2609</p>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Recent Password</label>
-                                    <div class="input-group show_hide_password" >
-                                        <input class="form-control" type="password" id="recentPassword" name="recentPassword">
-                                        <div class="input-group-addon">
-                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                        </div>
-                                        </input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>New Password</label>
-                                    <div class="input-group show_hide_password" >
-                                        <input class="form-control" type="password">
-                                        <div class="input-group-addon">
-                                            <a href=""><i class="fa fa-eye-slash" id="newPassword" name="newPassword" aria-hidden="true"></i></a>
-                                        </div>
-                                        </input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Pre New Password</label>
-                                    <div class="input-group show_hide_password" >
-                                        <input class="form-control" type="password">
-                                        <div class="input-group-addon">
-                                            <a href=""><i class="fa fa-eye-slash" id="newPasswordPre" name="newPasswordPre" aria-hidden="true"></i></a>
-                                        </div>
-                                        </input>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnChangePw" class="btn btn-outline-primary">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Save changes
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <th:block th:replace="/user/footer :: footer" />
+    <th:block th:replace="/user/modal_create :: modal_create" />
+    <th:block th:replace="/user/modal_detail :: modal_detail" />
+    <th:block th:replace="/user/modal_update :: modal_update" />
+    <th:block th:replace="/user/modal_change_password :: modal_change_password" />
 
 
-<!-- END layout-wrapper -->
+    <!-- END layout-wrapper -->
 
-<!-- JAVASCRIPT -->
-<th:block th:replace="/script/javascript :: javascript"/>
+    <!-- JAVASCRIPT -->
+    <th:block th:replace="/script/javascript :: javascript"/>
 
 
-<!-- Required datatable js -->
-<th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
+    <!-- Required datatable js -->
+    <th:block th:replace="/script/required-datatable-js :: required-datatable-js"/>
 
-<!-- Buttons examples -->
-<th:block th:replace="/script/buttons-examples :: buttons-examples"/>
+    <!-- Buttons examples -->
+    <th:block th:replace="/script/buttons-examples :: buttons-examples"/>
 
-<!-- Responsive examples -->
-<th:block th:replace="/script/responsive-examples :: responsive-examples"/>
+    <!-- Responsive examples -->
+    <th:block th:replace="/script/responsive-examples :: responsive-examples"/>
 
-<!-- Datatable init js -->
-<th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
-<!-- App js -->
-<th:block th:replace="/script/app-js :: app-js"/>
+    <!-- Datatable init js -->
+    <th:block th:replace="/script/datatable-init-js :: datatable-init-js"/>
+    <!-- App js -->
+    <th:block th:replace="/script/app-js :: app-js"/>
 
-<script>
-    $(document).ready(function() {
+    <script>
         $(document).ready(function() {
-            $(".show_hide_password a").on('click', function(event) {
-                event.preventDefault();
-                if($('.show_hide_password input').attr("type") == "text"){
-                    $('.show_hide_password input').attr('type', 'password');
-                    $('.show_hide_password i').addClass( "fa-eye-slash" );
-                    $('.show_hide_password i').removeClass( "fa-eye" );
-                }else if($('.show_hide_password input').attr("type") == "password"){
-                    $('.show_hide_password input').attr('type', 'text');
-                    $('.show_hide_password i').removeClass( "fa-eye-slash" );
-                    $('.show_hide_password i').addClass( "fa-eye" );
-                }
+            $(document).ready(function() {
+                $(".show_hide_password a").on('click', function(event) {
+                    event.preventDefault();
+                    if($('.show_hide_password input').attr("type") == "text"){
+                        $('.show_hide_password input').attr('type', 'password');
+                        $('.show_hide_password i').addClass( "fa-eye-slash" );
+                        $('.show_hide_password i').removeClass( "fa-eye" );
+                    }else if($('.show_hide_password input').attr("type") == "password"){
+                        $('.show_hide_password input').attr('type', 'text');
+                        $('.show_hide_password i').removeClass( "fa-eye-slash" );
+                        $('.show_hide_password i').addClass( "fa-eye" );
+                    }
+                });
             });
         });
-    });
 
-    $( document ).ready(function() {
-        document.querySelector(".dataTables_filter").style.display = 'none';
-    });
+        // $( document ).ready(function() {
+        //     document.querySelector(".dataTables_filter").style.display = 'none';
+        // });
 
-    $('tbody tr#tr_1').on('click', () => {
-        $('#tempFooter').addClass('show')
-        $('table td span.select-tab').removeClass('selected').addClass('unselected')
-        $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
-    })
+        let page = {
+            url: {
+                getAllProvinces: App.GET_PROVINCES + "/",
+                getAllDistricts: App.GET_PROVINCES + "/district/",
+                getAllWards: App.GET_PROVINCES + "/ward/",
 
-    $('#btnShowCreateModal').on('click', () =>{
-        $('#mdCreate').modal('show');
-    })
+                getAllUsers: App.BASER_URL + "/users",
+                getUserById: App.BASER_URL + "/users/",
+                getAllRoles: App.BASER_URL + "/roles",
 
-    $('button.edit').on('click', () => {
-        $('#mdUpdate').modal('show')
-    })
+                saveNew: App.BASER_URL + "/users/create",
+                saveUpdate: App.BASER_URL + "/users/update"
 
-    $('button.detail').on('click', () => {
-        $('#mdDetail').modal('show')
-    })
+            },
+            elements: {
+                role: {},
+                userInfo: {
+                    locationRegion: {}
+                },
 
-    $('button.change-password').on('click', () => {
-        $('#mdChangePassword').modal('show')
-    })
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+
+            initializeControlEvent: {}
+        }
+
+        page.elements.footer = $(".footer");
+
+        page.elements.modalCreate = $('#mdCreate');
+        page.elements.modalUpdate = $('#mdUpdate');
+        page.elements.modalDetail = $('#mdDetail');
+        page.elements.modalChangePwd = $('#mdChangePwd');
 
 
-    $('.footer button.suspended').on('click', () => {
-        App.SweetAleart.showSuspendedConfirmAlert()
-            .then((result) => {
-                if (result.isConfirmed) {
-                    alert('Suspended successful!!!')
+        page.elements.btnShowCreateModal = $('#btnShowCreateModal');
+        page.elements.btnShowUpdateModal = $('.footer button.update');
+        page.elements.btnShowDetailModal = $('.footer button.detail');
+        page.elements.btnShowChangePwdModal = $('.footer button.change-password');
+        page.elements.btnShowSuspendedModal = $('.footer button.suspended');
+
+
+        page.elements.btnCreate = $('#btnCreate');
+        page.elements.btnUpdate = $('#btnUpdate');
+        page.elements.btnChangePwd = $('#btnChangePwd');
+
+        page.elements.frmCreate = $('#frmCreate');
+        page.elements.frmUpdate = $('#frmUpdate');
+        page.elements.frmChangePassword = $('#frmChangePassword');
+
+
+        page.elements.fullName = $('#fullName');
+        page.elements.email = $('#email');
+        page.elements.role = $('#role');
+        page.elements.password = $('#password');
+        page.elements.phone = $('#phone');
+        page.elements.province = $('#province');
+        page.elements.district = $('#district');
+        page.elements.ward = $('#ward');
+        page.elements.address = $('#address');
+        page.elements.urlImage = $('#urlImage');
+
+
+        page.elements.fullNameUp = $('#fullNameUp');
+        page.elements.emailUp = $('#emailUp');
+        page.elements.roleUp = $('#roleUp');
+        page.elements.phoneUp = $('#phoneUp');
+        page.elements.provinceUp = $('#provinceUp');
+        page.elements.districtUp = $('#districtUp');
+        page.elements.wardUp = $('#wardUp');
+        page.elements.addressUp = $('#addressUp');
+        page.elements.urlImageUp = $('#urlImageUp');
+        page.elements.activeUp = $('#activeUp');
+
+        page.elements.fullNameDet = $('#fullNameDet');
+        page.elements.phoneDet = $('#phoneDet');
+        page.elements.emailDet = $('#emailDet');
+        page.elements.roleDet = $('#roleDet');
+        page.elements.provinceDet = $('#provinceDet');
+        page.elements.districtDet = $('#districtDet');
+        page.elements.wardDet = $('#wardDet');
+        page.elements.addressDet = $('#addressDet');
+        page.elements.createdAtDet = $('#createdAtDet');
+        page.elements.createdByDet = $('#createdByDet');
+        page.elements.updatedAtDet = $('#updatedAtDet');
+        page.elements.updatedByDet = $('#updatedByDet');
+        page.elements.activeDet = $('#activeDet');
+        page.elements.urlImageDet = $('#urlImageDet');
+
+        page.dialogs.alertDanger.modalCreate = $("#mdCreate .modal-alert-danger");
+        page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
+        page.dialogs.alertDanger.modalUpdate = $("#mdChangePwd .modal-alert-danger");
+
+        let user = new User();
+        let userInfo = new UserInfo();
+        let locationRegion = new LocationRegion();
+        let role = new Role();
+        let users = [];
+        let userId;
+
+        page.commands.addRowUser = () =>{
+            let str = App.getTempRowUser(user);
+            $('#tbListUsers tbody').prepend(str);
+        }
+
+        page.commands.replaceRowUser = () =>{
+            let str = App.getTempRowUser(user);
+            $('#tr_' + user.id).replaceWith(str);
+        }
+
+        page.commands.clickRowUser = () => {
+            $("#tbListUsers tbody tr").on("click", function () {
+                userId = $(this).attr('id').replace('tr_', '');
+
+                $('#tbListUsers tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListUsers tbody tr#tr_${userId} td span.select-tab`).removeClass("unselected").addClass("selected");
+
+                let tempFooter = $.validator.format($.trim($('#tempFooter').val().toString()));
+
+                $('.footer').html(tempFooter);
+
+                page.commands.unbindAll();
+            });
+        }
+
+        page.loadData.loadUsers = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllUsers
+            })
+            .done((data) => {
+                $('#tbListUsers tbody').html('');
+
+                $.each(data, (i, item) => {
+                    user = item;
+                    page.commands.addRowUser();
+                })
+            })
+        }
+
+        page.commands.unbindAll = () => {
+            $('.update').off();
+            $('.detail').off();
+            $('.change-password').off();
+            $('.suspended').off();
+        }
+
+        page.commands.handleShowCreateModal = () => {
+            page.dialogs.alertDanger.modalCreate.html("").removeClass("show").addClass("hide");
+
+            page.elements.modalCreate.modal('show');
+        }
+
+        page.commands.handleShowUpdateModal = () => {
+            page.dialogs.alertDanger.modalUpdate.html("").removeClass("show").addClass("hide");
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getUserById + userId,
+            })
+            .done((data) => {
+                user = data;
+
+                page.elements.fullNameUp.val(user.userInfo.fullName);
+                page.elements.emailUp.val(user.email);
+                page.elements.roleUp.val(user.role.id);
+                page.elements.phoneUp.val(user.userInfo.phone);
+                page.elements.urlImageUp.val(user.userInfo.urlImage);
+                page.elements.activeUp.val(user.activated);
+                page.elements.addressUp.val(user.userInfo.locationRegion.address);
+                page.elements.provinceUp.val(user.userInfo.locationRegion.provinceId);
+                // page.elements.districtUp.empty();
+
+                // page.commands.drawDistricts(user.userInfo.locationRegion.provinceId).then(function () {
+                //     page.elements.districtUp.val(user.userInfo.locationRegion.districtId);
+                //     // page.elements.wardUp.empty();
+                //
+                //     page.commands.drawWards(user.userInfo.locationRegion.districtId).then(function (){
+                //         page.elements.wardUp.val(user.userInfo.locationRegion.wardId);
+                //     });
+                // });
+            })
+
+            page.elements.modalUpdate.modal('show');
+        }
+
+        page.commands.handleShowDetailModal = () => {
+            // $.ajax({
+            //     "headers": {
+            //         "accept": "application/json",
+            //         "content-type": "application/json"
+            //     },
+            //     "type": "GET",
+            //     "url": page.url.getUserById + userId,
+            // })
+            //     .done((data) => {
+            //         user =data;
+            //         console.log(data);
+            //
+            //         page.elements.fullNameDet.text(user.fullName);
+            //         page.elements.phoneDet.text(user.userInfo.phone);
+            //         page.elements.emailDet.text(user.email);
+            //         page.elements.roleDet.text(user.role.name);
+            //         page.elements.provinceDet.text(user.userInfo.locationRegion.provinceName);
+            //         page.elements.districtDet.text(user.userInfo.locationRegion.districtName);
+            //         page.elements.wardDet.text(user.userInfo.locationRegion.wardName);
+            //         page.elements.addressDet.text(user.userInfo.locationRegion.address);
+            //         page.elements.createdAtDet.text(user.createdAt);
+            //         page.elements.createdByDet.text(user.createdBy);
+            //         page.elements.updatedAtDet.text(user.updatedAt);
+            //         page.elements.updatedByDet.text(user.updatedBy);
+            //         page.elements.activeDet.text(user.activated);
+            //         page.elements.urlImageDet.val(user.userInfo.urlImage);
+            //     })
+
+            page.elements.modalDetail.modal('show');
+        }
+
+        page.commands.doCreate = () => {
+            locationRegion.provinceId = page.elements.province.val();
+            locationRegion.provinceName = page.elements.province.find(":selected").text();
+            locationRegion.districtId = page.elements.district.val();
+            locationRegion.districtName = page.elements.district.find(":selected").text();
+            locationRegion.wardId = page.elements.ward.val();
+            locationRegion.wardName = page.elements.ward.find(":selected").text();
+            locationRegion.address = page.elements.address.val();
+
+            userInfo.fullName = page.elements.fullName.val();
+            userInfo.phone = page.elements.phone.val();
+            userInfo.urlImage = "avatar-not-found.png";
+            userInfo.locationRegion = locationRegion;
+
+            role.id = page.elements.role.val();
+
+            user.email = page.elements.email.val();
+            user.password = page.elements.password.val();
+            user.userInfo = userInfo;
+            user.role = role;
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveNew,
+                "data": JSON.stringify(user)
+            })
+            .done((item) => {
+                user = item;
+
+                page.commands.addRowUser();
+
+                page.elements.modalCreate.modal('hide');
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_CREATED);
+
+                page.commands.clickRowUser();
+                page.commands.unbindAll();
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR)
+                page.dialogs.alertDanger.modalCreate.html("").removeClass("hide").addClass("show");
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.modalCreate.append(str);
+                } else {
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.modalCreate.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.modalCreate.append(str);
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.modalCreate.append(str);
+                            })
+                        }
+                    }
                 }
             })
-    })
 
-</script>
+        }
+
+        page.commands.doUpdate = () => {
+            // category.id = page.elements.categoryUp.val();
+            //
+            // User.title = page.elements.titleUp.val();
+            // User.sku = page.elements.skuUp.val();
+            // User.category = category;
+            // User.description = page.elements.descriptionUp.val();
+            // User.urlImage = "img-not-found.jpeg";
+            //
+            // $.ajax({
+            //     "headers": {
+            //         "accept": "application/json",
+            //         "content-type": "application/json"
+            //     },
+            //     "type": "POST",
+            //     "url": page.url.saveUpdate,
+            //     "data": JSON.stringify(User)
+            // })
+            //     .done((item) => {
+            //         User = item;
+            //
+            //         console.log(User)
+            //         page.commands.replaceRowUser();
+            //
+            //         page.elements.modalUpdate.modal('hide');
+            //         App.SweetAleart.showSuccessAlert(App.SUCCESS_UPDATED);
+            //
+            //         page.commands.clickRowUser();
+            //         page.commands.unbindAll();
+            //     })
+            //     .fail((jqxHR) => {
+            //         console.log(jqxHR);
+            //         page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
+            //
+            //         if (jqxHR.status === 401) {
+            //             let msg = App.ERROR_401;
+            //             str = `<label id="message-error" class="error" for="message">${msg}</label>`
+            //
+            //             page.dialogs.alertDanger.modalUpdate.append(str);
+            //         } else {
+            //             if (jqxHR.status === 403) {
+            //                 let msg = App.ERROR_403;
+            //                 str = `<label id="message-error" class="error" for="message">${msg}</label>`
+            //
+            //                 page.dialogs.alertDanger.modalUpdate.append(str);
+            //             } else {
+            //                 let str = "";
+            //
+            //                 if (jqxHR.responseJSON.message) {
+            //                     let msg = jqxHR.responseJSON.message;
+            //
+            //                     str = `<label id="message-error" class="error" for="message">${msg}</label>`
+            //
+            //                     page.dialogs.alertDanger.modalUpdate.append(str);
+            //                 }else if (jqxHR.responseJSON){
+            //                     $.each(jqxHR.responseJSON, (key, item) => {
+            //                         str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+            //                         page.dialogs.alertDanger.modalUpdate.append(str);
+            //                     })
+            //                 }
+            //             }
+            //         }
+            //     })
+        }
+
+        page.commands.drawRoles = () => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllRoles
+            })
+            .done((data) => {
+                $.each(data, (i, item) => {
+                    let str = `<option value="${item.id}">${item.name} (${item.code})</option>`;
+
+                    page.elements.role.append(str);
+                    page.elements.roleUp.append(str);
+                })
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
+        }
+
+        page.commands.drawProvinces = () => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllProvinces
+            })
+                .done((data) => {
+                    $.each(data.results, (i, item) => {
+                        let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+
+                        page.elements.province.append(str);
+                        page.elements.provinceUp.append(str);
+                    })
+                })
+                .fail((jqxHR) => {
+                    console.log(jqxHR);
+                })
+        }
+
+        page.commands.drawDistricts = (provinceId) => {
+            return $.ajax({
+                "headers": {
+                    accept: "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllDistricts + provinceId
+            })
+                .done((data) => {
+
+                    if (data.results.length === 0) {
+                        App.IziToast.showErrorAlert("Loading of districts is fail");
+                    }else {
+                        $.each(data.results, (i, item) => {
+                            let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+
+                            page.elements.district.append(str)
+                            page.elements.districtUp.append(str)
+                        })
+                    }
+                })
+        }
+
+        page.commands.drawWards = (districtId) => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllWards + districtId
+
+            })
+                .done((data) => {
+                    if (data.results.length === 0) {
+                        App.IziToast.showErrorAlert("Loading of wards is fail");
+                    }else {
+                        $.each(data.results, (i, item) => {
+                            let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+
+                            page.elements.ward.append(str)
+                            page.elements.wardUp.append(str)
+                        })
+                    }
+                })
+        }
+
+        page.dialogs.commands.provinceChange = () => {
+            return $.ajax({
+                "type": "GET",
+                "url": page.url.getAllDistricts + locationRegion.provinceId
+            }).done((data) => {
+                page.elements.district.empty();
+                page.elements.districtUp.empty();
+
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+
+                    page.elements.district.append(str);
+                    page.elements.districtUp.append(str);
+                });
+            }).fail(function () {
+                App.IziToast.showErrorAlert("Loading of districts is fail");
+            });
+        }
+
+        page.dialogs.commands.districtChange = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.getAllWards + locationRegion.districtId
+
+            }).done((data) => {
+                page.elements.ward.empty();
+                page.elements.wardUp.empty();
+
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+
+                    page.elements.ward.append(str);
+                    page.elements.wardUp.append(str);
+                });
+            }).fail(function () {
+                App.IziToast.showErrorAlert("Loading of wards is fail");
+            });
+        }
+
+        page.initializeControlEvent = () => {
+            page.elements.province.on('change', function () {
+                locationRegion.provinceId = page.elements.province.val();
+
+                page.dialogs.commands.provinceChange().done(function () {
+                    locationRegion.districtId = page.elements.district.prop("selectedIndex", 0).val();
+                    page.dialogs.commands.districtChange();
+                })
+            })
+
+            page.elements.district.on('change', function () {
+                locationRegion.districtId = page.elements.district.val();
+                page.dialogs.commands.districtChange();
+            })
+
+            page.elements.provinceUp.on('change', function () {
+                locationRegion.provinceId = page.elements.provinceUp.val();
+
+                page.dialogs.commands.provinceChange().done(function () {
+                    locationRegion.districtId = page.elements.districtUp.prop("selectedIndex", 0).val();
+                    page.dialogs.commands.districtChange();
+                })
+            })
+
+            page.elements.districtUp.on('change', function () {
+                locationRegion.districtId = page.elements.districtUp.val();
+                page.dialogs.commands.districtChange();
+            })
+
+            page.elements.btnShowCreateModal.on('click', () => {
+                page.commands.handleShowCreateModal();
+            })
+
+            page.elements.footer.on('click', 'button.update', () => {
+                page.commands.handleShowUpdateModal();
+            })
+
+            page.elements.footer.on('click', 'button.detail', () => {
+                page.elements.modalDetail.modal('show');
+            })
+
+            page.elements.footer.on('click', 'button.change-password', () => {
+                page.elements.modalChangePwd.modal('show');
+            })
+
+            page.elements.footer.on('click', 'button.suspended', () => {
+                App.SweetAleart.showSuspendedConfirmAlert()
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        alert('Suspended successful!!!')
+                    }
+                })
+            })
+
+            page.elements.btnCreate.on('click', () => {
+                // page.elements.frmCreate.submit();
+                page.commands.doCreate();
+            })
+
+            page.elements.btnUpdate.on('click', () => {
+                // page.elements.frmUpdate.submit();
+                page.commands.doUpdate();
+            })
+
+
+
+        }
+
+        $(function () {
+            // $(".dataTables_filter").style.display = 'none';
+
+            page.loadData.loadUsers().then(function (){
+                page.commands.clickRowUser();
+            })
+
+            page.commands.drawRoles();
+
+            page.commands.drawProvinces().then(function (){
+                let provinceId = page.elements.province.prop("selectedIndex", 0).val();
+
+                if (provinceId != null) {
+                    page.commands.drawDistricts(provinceId).then(function (){
+                        let districtId = page.elements.district.prop("selectedIndex", 0).val();
+
+                        if (districtId != null){
+                            page.commands.drawWards(districtId);
+                        }
+                    })
+                }
+            });
+
+            page.initializeControlEvent();
+        })
+
+    </script>
+
 </body>
 
+
 </html>
+
+
+<!--$('tbody tr#tr_1').on('click', () => {-->
+<!--$('#tempFooter').addClass('show')-->
+<!--$('table td span.select-tab').removeClass('selected').addClass('unselected')-->
+<!--$('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')-->
+<!--})-->
+
+<!--$('#btnShowCreateModal').on('click', () =>{-->
+<!--$('#mdCreate').modal('show');-->
+<!--})-->
+
+<!--$('button.edit').on('click', () => {-->
+<!--$('#mdUpdate').modal('show')-->
+<!--})-->
+
+<!--$('button.detail').on('click', () => {-->
+<!--$('#mdDetail').modal('show')-->
+<!--})-->
+
+<!--$('button.change-password').on('click', () => {-->
+<!--$('#mdChangePassword').modal('show')-->
+<!--})-->
+
+
+<!--$('.footer button.suspended').on('click', () => {-->
+
+<!--})-->
+
+
+
 

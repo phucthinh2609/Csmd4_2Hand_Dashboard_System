@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "p.quantity," +
                 "p.sold," +
                 "p.available," +
-                "p.isImported," +
+                "p.imported," +
                 "p.createdAt," +
                 "p.createdBy," +
                 "p.updatedAt," +
@@ -42,7 +42,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "p.quantity," +
                 "p.sold," +
                 "p.available," +
-                "p.isImported," +
+                "p.imported," +
                 "p.createdAt," +
                 "p.createdBy," +
                 "p.updatedAt," +
@@ -52,7 +52,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE p.id = ?1 ")
     Optional<ProductDTO> getProductDTOById(Long id);
 
-    Boolean existsBySku(String email);
+    Boolean existsBySku(String sku);
 
     @Query("SELECT NEW com.mvpt.model.dto.ProductDTO (" +
                 "p.id, " +
@@ -64,7 +64,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "p.quantity," +
                 "p.sold," +
                 "p.available," +
-                "p.isImported," +
+                "p.imported," +
                 "p.createdAt," +
                 "p.createdBy," +
                 "p.updatedAt," +

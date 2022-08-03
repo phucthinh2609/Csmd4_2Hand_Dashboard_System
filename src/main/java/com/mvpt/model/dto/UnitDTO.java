@@ -10,6 +10,8 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +20,8 @@ import javax.validation.Valid;
 @Accessors(chain = true)
 public class UnitDTO {
 
+    @NotBlank(message = "Unit ID is required")
+    @Pattern(regexp = "^[0-9]+$", message = "Unit ID only digit")
     private String id;
 
     private String name;

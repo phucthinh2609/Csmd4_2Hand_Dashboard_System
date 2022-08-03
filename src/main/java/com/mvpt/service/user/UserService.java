@@ -12,4 +12,10 @@ public interface UserService extends IGeneralService<User> {
 
     Optional<UserDTO> getUserDTOById(Long id);
 
+    Boolean existsByEmail(String email);
+
+    Optional<UserDTO> findProductDTOByEmailAndIdIsNot(String email, Long id);
+
+    UserDTO saveDTO(UserDTO userDTO);
+
 }

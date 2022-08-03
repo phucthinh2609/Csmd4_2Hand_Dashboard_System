@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +21,8 @@ import javax.persistence.Id;
 @Accessors(chain = true)
 public class TypeDTO {
 
+    @NotBlank(message = "Type ID is required")
+    @Pattern(regexp = "^[0-9]+$", message = "Type ID only digit")
     private String id;
 
     private String name;

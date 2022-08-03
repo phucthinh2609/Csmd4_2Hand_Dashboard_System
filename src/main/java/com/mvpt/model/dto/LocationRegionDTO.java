@@ -17,8 +17,6 @@ import javax.validation.constraints.Pattern;
 @Accessors(chain = true)
 public class LocationRegionDTO {
 
-    @NotBlank(message = "Location Region ID is required")
-    @Pattern(regexp = "^[0-9]+$", message = "Location Region ID only digit")
     private String id;
 
     @NotBlank(message = "Province ID is required")
@@ -41,7 +39,7 @@ public class LocationRegionDTO {
 
     public LocationRegion toLocationRegion() {
         return new LocationRegion()
-                .setId(0L)
+                .setId(Long.valueOf(id))
                 .setProvinceId(Long.valueOf(provinceId))
                 .setProvinceName(provinceName)
                 .setDistrictId(Long.valueOf(districtId))

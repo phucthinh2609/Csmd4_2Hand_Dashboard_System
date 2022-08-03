@@ -52,11 +52,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product save(Product product) {
+        Product productSave = productRepository.save(product);
         return productRepository.save(product);
     }
 
     @Override
-    public ProductDTO doCreate(ProductDTO productDTO) {
+    public ProductDTO saveDTO(ProductDTO productDTO) {
         return productRepository.save(productDTO.toProduct()).toProductDTO();
     }
 

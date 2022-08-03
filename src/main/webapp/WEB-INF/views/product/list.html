@@ -132,17 +132,12 @@
     
             <!-- <th:block th:replace="/layout/footer :: footer"/> -->
 
-                <div class="footer"></div>
-
             </div>
         </div>
         <!-- end main content-->
-    
+        <footer class="footer"></footer>
+
     </div>
-    
-
-
-
     
     <!-- END layout-wrapper -->
 
@@ -172,7 +167,7 @@
     
     
     <script>
-    
+
         let page = {
             url: {
                 getAllProducts: App.BASER_URL + "/products",
@@ -210,6 +205,9 @@
         page.elements.btnCreate = $('#btnCreate');
         page.elements.btnUpdate = $('#btnUpdate');
 
+        page.elements.frmCreate = $('#frmCreate');
+        page.elements.frmUpdate = $('#frmUpdate');
+
         page.elements.title = $('#title');
         page.elements.sku = $('#sku');
         page.elements.category = $('#category');
@@ -242,14 +240,16 @@
 
         let tempRowProduct = $.validator.format($.trim($('#tempRowProduct').val().toString()));
 
-        let isImported;
-
         page.commands.addRowProduct = () =>{
-            $('#tbListProducts tbody').prepend($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+            // $('#tbListProducts tbody').prepend($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+            let str = App.getTempRowProduct(product);
+            $('#tbListProducts tbody').prepend(str);
         }
 
         page.commands.replaceRowProduct = () =>{
-            $('#tr_' + product.id).replaceWith($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+            // $('#tr_' + product.id).replaceWith($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
+            let str = App.getTempRowProduct(product);
+            $('#tr_' + product.id).replaceWith(str);
         }
 
         page.commands.clickRowProduct = () => {
@@ -282,6 +282,7 @@
                 $.each(data, (i, item) => {
                     product = item;
                     page.commands.addRowProduct();
+
                 })
             })
         }
@@ -292,10 +293,13 @@
         }
 
         page.commands.handleShowCreateModal = () => {
+            page.dialogs.alertDanger.modalCreate.html("").removeClass("show").addClass("hide");
+
             page.elements.modalCreate.modal('show');
         }
 
         page.commands.handleShowUpdateModal = () => {
+            page.dialogs.alertDanger.modalUpdate.html("").removeClass("show").addClass("hide");
 
             $.ajax({
                 "headers": {
@@ -327,8 +331,11 @@
                 "url": page.url.getProductById + productId,
             })
             .done((data) => {
+                debugger
                 product =data;
                 console.log(data);
+
+                $('#titleDet').text(product.title)
 
                 page.elements.titleDet.text(product.title);
                 page.elements.skuDet.text(product.sku);
@@ -337,8 +344,8 @@
                 page.elements.createdByDet.text(product.createdBy);
                 page.elements.updatedAtDet.text(product.updatedAt);
                 page.elements.updatedByDet.text(product.updatedBy);
-
-
+                page.elements.descriptionDet.text(product.description);
+                page.elements.urlImageDet.val(product.urlImage);
             })
 
             page.elements.modalDetail.modal('show');
@@ -346,7 +353,6 @@
 
         page.commands.doCreate = () => {
             category.id = page.elements.category.val();
-            // category.name = page.elements.category.find(':selected').text();
 
             product.title = page.elements.title.val();
             product.sku = page.elements.sku.val();
@@ -377,28 +383,103 @@
             })
             .fail((jqxHR) => {
                 console.log(jqxHR)
-                // page.dialogs.alertDanger.modalCreate.html("").removeClass("hide").addClass("show");
-                //
-                // let str = "";
-                //
-                // if (jqxHR.responseJSON.message) {
-                //     let msg = jqxHR.responseJSON.message;
-                //
-                //     str = `<label id="message-error" class="error" for="message">${msg}</label>`
-                //
-                //     page.dialogs.alertDanger.modalCreate.append(str);
-                // }else if (jqxHR.responseJSON){
-                //     $.each(jqxHR.responseJSON, (key, item) => {
-                //         str = `<label id="message-error" class="error" for="${key}">${item}</label>`
-                //         page.dialogs.alertDanger.modalCreate.append(str);
-                //     })
-                // }
+                page.dialogs.alertDanger.modalCreate.html("").removeClass("hide").addClass("show");
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.modalCreate.append(str);
+                } else {
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.modalCreate.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.modalCreate.append(str);
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.modalCreate.append(str);
+                            })
+                        }
+                    }
+                }
             })
 
         }
 
         page.commands.doUpdate = () => {
+            category.id = page.elements.categoryUp.val();
 
+            product.title = page.elements.titleUp.val();
+            product.sku = page.elements.skuUp.val();
+            product.category = category;
+            product.description = page.elements.descriptionUp.val();
+            product.urlImage = "img-not-found.jpeg";
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveUpdate,
+                "data": JSON.stringify(product)
+            })
+            .done((item) => {
+                product = item;
+
+                console.log(product)
+                page.commands.replaceRowProduct();
+
+                page.elements.modalUpdate.modal('hide');
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_UPDATED);
+
+                page.commands.clickRowProduct();
+                page.commands.unbindAll();
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+                page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.modalUpdate.append(str);
+                } else {
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.modalUpdate.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.modalUpdate.append(str);
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.modalUpdate.append(str);
+                            })
+                        }
+                    }
+                }
+            })
         }
 
         page.commands.drawCategories = () => {
@@ -437,8 +518,15 @@
             })
 
             page.elements.btnCreate.on('click', () => {
+                // page.elements.frmCreate.submit();
                 page.commands.doCreate();
             })
+
+            page.elements.btnUpdate.on('click', () => {
+                // page.elements.frmUpdate.submit();
+                page.commands.doUpdate();
+            })
+
         }
 
         $(function () {

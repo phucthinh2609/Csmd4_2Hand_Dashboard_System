@@ -1,9 +1,11 @@
 package com.mvpt.controller.rest;
 
 import com.mvpt.exception.DataInputException;
+import com.mvpt.model.Category;
+import com.mvpt.model.Product;
 import com.mvpt.model.dto.ProductDTO;
+import com.mvpt.service.category.CategoryService;
 import com.mvpt.service.product.ProductService;
-import com.mvpt.service.product.ProductServiceImpl;
 import com.mvpt.utils.AppUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,11 +27,14 @@ public class ProductRestController {
     private ProductService productService;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private AppUtils appUtils;
 
     @GetMapping()
     public ResponseEntity<?> getAll() {
-        Iterable<ProductDTO> productList = productService.getAllProductDTOByDeletedIsFalse();
+        List<ProductDTO> productList = productService.getAllProductDTOByDeletedIsFalse();
 
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
@@ -63,7 +69,13 @@ public class ProductRestController {
           throw new DataInputException("Sku already exist!!!");
         }
 
-        ProductDTO newProductDTO =  productService.doCreate(productDTO);
+        Optional<Category> category = categoryService.findById(productDTO.toProduct().getCategory().getId());
+
+        if (!category.isPresent()) {
+            throw new DataInputException("Category ID invalid!!!");
+        }
+
+        ProductDTO newProductDTO =  productService.saveDTO(productDTO);
 
         return new ResponseEntity<>(newProductDTO, HttpStatus.CREATED);
     }
@@ -75,25 +87,28 @@ public class ProductRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
-        productDTO.setPrice(String.valueOf(0));
-        productDTO.setQuantity(String.valueOf(0));
-        productDTO.setSold(String.valueOf(0));
-        productDTO.setAvailable(String.valueOf(0));
-
         Optional<ProductDTO> optionalProductDTO = productService.findProductDTOBySkuAndIdIsNot(productDTO.getSku(), Long.valueOf(productDTO.getId()));
 
         if (optionalProductDTO.isPresent()) {
             throw new DataInputException("Sku already exist!!!");
         }
 
-        ProductDTO updateProductDTO = productService.doCreate(productDTO);
-        return new ResponseEntity<>(updateProductDTO, HttpStatus.OK);
+        Optional<Category> category = categoryService.findById(productDTO.toProduct().getCategory().getId());
 
-//        try {
-//
-//
-//        } catch (Exception ex) {
-//           throw new DataInputException("Please contact management!!!");
-//        }
+        if (!category.isPresent()) {
+            throw new DataInputException("Category ID invalid!!!");
+        }
+
+        try {
+//              ProductDTO updateProductDTO = productService.saveDTO(productDTO);
+            Product product = productDTO.toProduct();
+              Product updateProduct = productService.save(product);
+              ProductDTO productDTO1 = updateProduct.toProductDTO();
+//              return new ResponseEntity<>(updateProductDTO, HttpStatus.OK);
+            return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.OK);
+
+        } catch (Exception ex) {
+           throw new DataInputException("Please contact management!!!");
+        }
     }
 }

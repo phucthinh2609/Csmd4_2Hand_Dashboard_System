@@ -1,0 +1,91 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal_detail">
+  <div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">User detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-alert-danger hide"></div>
+          <form id="frmDetail">
+            <div class="row ">
+              <div class="col-md-6 justify-content-between">
+                <table>
+                  <tbody class="table table-hover">
+                  <tr>
+                    <th>Full Name: </th>
+                    <td id="fullNameDet" name="fullNameDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Phone: </th>
+                    <td id="phoneDet" name="phoneDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Email: </th>
+                    <td id="emailDet" name="emailDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Role: </th>
+                    <td id="roleDet" name="roleDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Address: </th>
+                    <td id="addressDet" name="addressDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Ward: </th>
+                    <td id="wardDet" name="wardDet"></td>
+                  </tr>
+                  <tr>
+                    <th>District: </th>
+                    <td id="districtDet" name="districtDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Province: </th>
+                    <td id="provinceDet" name="provinceDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Created At: </th>
+                    <td id="createdAtDet" name="createdAtDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Created By: </th>
+                    <td id="createdByDet" name="createdByDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Updated At: </th>
+                    <td id="updatedAtDet" name="updatedAtDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Updated By: </th>
+                    <td id="updatedByDet" name="updatedByDet"></td>
+                  </tr>
+                  <tr>
+                    <th>Status: </th>
+                    <td id="activeDet" name="activeDet">
+                      <span class="badge badge-soft-success font-size-11 m-1"></span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <div style="border: 20px;">
+                  <div class="row">
+                    <img class="rounded-circle" id="urlImageDet" name="urlImageDet" style="width: 350px;" src="/assets/images/users/avatar-1.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
