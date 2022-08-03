@@ -29,6 +29,12 @@ public class TypeDTO {
 
     private String code;
 
+    public TypeDTO(Long id, String name, String code) {
+        this.id = String.valueOf(id);
+        this.name = name;
+        this.code = code;
+    }
+
     public Type toType(){
         return new Type()
                 .setId(Long.valueOf(id))

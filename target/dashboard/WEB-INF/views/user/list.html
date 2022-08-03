@@ -198,7 +198,8 @@
                 getAllRoles: App.BASER_URL + "/roles",
 
                 saveNew: App.BASER_URL + "/users/create",
-                saveUpdate: App.BASER_URL + "/users/update"
+                saveUpdate: App.BASER_URL + "/users/update",
+                suspended: App.BASER_URL + "/users/suspended/"
 
             },
             elements: {
@@ -283,7 +284,7 @@
 
         page.dialogs.alertDanger.modalCreate = $("#mdCreate .modal-alert-danger");
         page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
-        page.dialogs.alertDanger.modalUpdate = $("#mdChangePwd .modal-alert-danger");
+        page.dialogs.alertDanger.mdChangePwd = $("#mdChangePwd .modal-alert-danger");
 
         let user = new User();
         let userInfo = new UserInfo();
@@ -367,55 +368,79 @@
                 page.elements.emailUp.val(user.email);
                 page.elements.roleUp.val(user.role.id);
                 page.elements.phoneUp.val(user.userInfo.phone);
-                page.elements.urlImageUp.val(user.userInfo.urlImage);
-                page.elements.activeUp.val(user.activated);
+                // page.elements.urlImageUp.val(user.userInfo.urlImage);
+                page.elements.activeUp.val(user.activated.toString());
+
                 page.elements.addressUp.val(user.userInfo.locationRegion.address);
                 page.elements.provinceUp.val(user.userInfo.locationRegion.provinceId);
-                // page.elements.districtUp.empty();
+                page.elements.districtUp.empty();
 
-                // page.commands.drawDistricts(user.userInfo.locationRegion.provinceId).then(function () {
-                //     page.elements.districtUp.val(user.userInfo.locationRegion.districtId);
-                //     // page.elements.wardUp.empty();
-                //
-                //     page.commands.drawWards(user.userInfo.locationRegion.districtId).then(function (){
-                //         page.elements.wardUp.val(user.userInfo.locationRegion.wardId);
-                //     });
-                // });
+                page.commands.drawDistricts(user.userInfo.locationRegion.provinceId).then(function () {
+                    page.elements.districtUp.val(user.userInfo.locationRegion.districtId);
+                    page.elements.wardUp.empty();
+
+                    page.commands.drawWards(user.userInfo.locationRegion.districtId).then(function (){
+                        page.elements.wardUp.val(user.userInfo.locationRegion.wardId);
+                    });
+                });
             })
 
             page.elements.modalUpdate.modal('show');
         }
 
         page.commands.handleShowDetailModal = () => {
-            // $.ajax({
-            //     "headers": {
-            //         "accept": "application/json",
-            //         "content-type": "application/json"
-            //     },
-            //     "type": "GET",
-            //     "url": page.url.getUserById + userId,
-            // })
-            //     .done((data) => {
-            //         user =data;
-            //         console.log(data);
-            //
-            //         page.elements.fullNameDet.text(user.fullName);
-            //         page.elements.phoneDet.text(user.userInfo.phone);
-            //         page.elements.emailDet.text(user.email);
-            //         page.elements.roleDet.text(user.role.name);
-            //         page.elements.provinceDet.text(user.userInfo.locationRegion.provinceName);
-            //         page.elements.districtDet.text(user.userInfo.locationRegion.districtName);
-            //         page.elements.wardDet.text(user.userInfo.locationRegion.wardName);
-            //         page.elements.addressDet.text(user.userInfo.locationRegion.address);
-            //         page.elements.createdAtDet.text(user.createdAt);
-            //         page.elements.createdByDet.text(user.createdBy);
-            //         page.elements.updatedAtDet.text(user.updatedAt);
-            //         page.elements.updatedByDet.text(user.updatedBy);
-            //         page.elements.activeDet.text(user.activated);
-            //         page.elements.urlImageDet.val(user.userInfo.urlImage);
-            //     })
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getUserById + userId,
+            })
+            .done((data) => {
+                user = data;
+                console.log(data);
+
+                page.elements.fullNameDet.text(user.userInfo.fullName);
+                page.elements.phoneDet.text(user.userInfo.phone);
+                page.elements.emailDet.text(user.email);
+                page.elements.roleDet.text(user.role.name);
+                page.elements.provinceDet.text(user.userInfo.locationRegion.provinceName);
+                page.elements.districtDet.text(user.userInfo.locationRegion.districtName);
+                page.elements.wardDet.text(user.userInfo.locationRegion.wardName);
+                page.elements.addressDet.text(user.userInfo.locationRegion.address);
+                page.elements.createdAtDet.text(user.createdAt);
+                page.elements.createdByDet.text(user.createdBy);
+                page.elements.updatedAtDet.text(user.updatedAt);
+                page.elements.updatedByDet.text(user.updatedBy);
+                page.elements.activeDet.text(user.activated === true ? "Active" : "Block");
+                // page.elements.urlImageDet.val(user.userInfo.urlImage);
+            })
 
             page.elements.modalDetail.modal('show');
+        }
+
+        page.commands.handleShowSuspendedConfirm = () => {
+            App.SweetAleart.showSuspendedConfirmAlert()
+            .then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        "type": "POST",
+                        "headers": {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        "url": page.url.suspended + userId
+
+                    }).done( () => {
+                        App.SweetAleart.showSuccessAlert(App.SUCCESS_SUSPEND);
+                        $("#tr_" + userId).remove();
+
+                    }).fail( () => {
+                        App.SweetAleart.showErrorAlert("Suspended failed");
+                    });
+                }
+            })
         }
 
         page.commands.doCreate = () => {
@@ -456,7 +481,7 @@
                 page.elements.modalCreate.modal('hide');
                 App.SweetAleart.showSuccessAlert(App.SUCCESS_CREATED);
 
-                page.commands.clickRowUser();
+                page.commands.clickRowProduct();
                 page.commands.unbindAll();
             })
             .fail((jqxHR) => {
@@ -496,68 +521,91 @@
         }
 
         page.commands.doUpdate = () => {
-            // category.id = page.elements.categoryUp.val();
-            //
-            // User.title = page.elements.titleUp.val();
-            // User.sku = page.elements.skuUp.val();
-            // User.category = category;
-            // User.description = page.elements.descriptionUp.val();
-            // User.urlImage = "img-not-found.jpeg";
-            //
-            // $.ajax({
-            //     "headers": {
-            //         "accept": "application/json",
-            //         "content-type": "application/json"
-            //     },
-            //     "type": "POST",
-            //     "url": page.url.saveUpdate,
-            //     "data": JSON.stringify(User)
-            // })
-            //     .done((item) => {
-            //         User = item;
-            //
-            //         console.log(User)
-            //         page.commands.replaceRowUser();
-            //
-            //         page.elements.modalUpdate.modal('hide');
-            //         App.SweetAleart.showSuccessAlert(App.SUCCESS_UPDATED);
-            //
-            //         page.commands.clickRowUser();
-            //         page.commands.unbindAll();
-            //     })
-            //     .fail((jqxHR) => {
-            //         console.log(jqxHR);
-            //         page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
-            //
-            //         if (jqxHR.status === 401) {
-            //             let msg = App.ERROR_401;
-            //             str = `<label id="message-error" class="error" for="message">${msg}</label>`
-            //
-            //             page.dialogs.alertDanger.modalUpdate.append(str);
-            //         } else {
-            //             if (jqxHR.status === 403) {
-            //                 let msg = App.ERROR_403;
-            //                 str = `<label id="message-error" class="error" for="message">${msg}</label>`
-            //
-            //                 page.dialogs.alertDanger.modalUpdate.append(str);
-            //             } else {
-            //                 let str = "";
-            //
-            //                 if (jqxHR.responseJSON.message) {
-            //                     let msg = jqxHR.responseJSON.message;
-            //
-            //                     str = `<label id="message-error" class="error" for="message">${msg}</label>`
-            //
-            //                     page.dialogs.alertDanger.modalUpdate.append(str);
-            //                 }else if (jqxHR.responseJSON){
-            //                     $.each(jqxHR.responseJSON, (key, item) => {
-            //                         str = `<label id="message-error" class="error" for="${key}">${item}</label>`
-            //                         page.dialogs.alertDanger.modalUpdate.append(str);
-            //                     })
-            //                 }
-            //             }
-            //         }
-            //     })
+            locationRegion.provinceId = page.elements.provinceUp.val();
+            locationRegion.provinceName = page.elements.provinceUp.find(":selected").text();
+            locationRegion.districtId = page.elements.districtUp.val();
+            locationRegion.districtName = page.elements.districtUp.find(":selected").text();
+            locationRegion.wardId = page.elements.wardUp.val();
+            locationRegion.wardName = page.elements.wardUp.find(":selected").text();
+            locationRegion.address = page.elements.addressUp.val();
+
+            userInfo.fullName = page.elements.fullNameUp.val();
+            userInfo.phone = page.elements.phoneUp.val();
+            userInfo.urlImage = "avatar-not-found.png";
+            userInfo.locationRegion = locationRegion;
+
+            role.id = page.elements.roleUp.val();
+
+            user.email = page.elements.emailUp.val();
+            user.activated = page.elements.activeUp.val();
+
+            if (user.activated !== "true" && user.activated !== "false"){
+                // page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
+                // let str = `<label id="message-error" class="error" for="message">Active is not define</label>`
+                // page.dialogs.alertDanger.modalUpdate.append(str);
+                // return;
+
+                return App.SweetAleart.showErrorAlert("Active is not define");
+            }
+
+            user.userInfo = userInfo;
+            user.role = role;
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveUpdate,
+                "data": JSON.stringify(user)
+            })
+            .done((item) => {
+                user = item;
+                console.log(user)
+
+                page.commands.replaceRowUser();
+
+                page.elements.modalUpdate.modal('hide');
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_UPDATED);
+
+                page.commands.clickRowProduct();
+                page.commands.unbindAll();
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR)
+                page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.modalUpdate.append(str);
+                } else {
+
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.modalUpdate.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.modalUpdate.append(str);
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.modalUpdate.append(str);
+                            })
+                        }
+                    }
+                }
+            })
         }
 
         page.commands.drawRoles = () => {
@@ -729,7 +777,7 @@
             })
 
             page.elements.footer.on('click', 'button.detail', () => {
-                page.elements.modalDetail.modal('show');
+                page.commands.handleShowDetailModal();
             })
 
             page.elements.footer.on('click', 'button.change-password', () => {
@@ -737,12 +785,7 @@
             })
 
             page.elements.footer.on('click', 'button.suspended', () => {
-                App.SweetAleart.showSuspendedConfirmAlert()
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        alert('Suspended successful!!!')
-                    }
-                })
+                page.commands.handleShowSuspendedConfirm();
             })
 
             page.elements.btnCreate.on('click', () => {
@@ -763,7 +806,7 @@
             // $(".dataTables_filter").style.display = 'none';
 
             page.loadData.loadUsers().then(function (){
-                page.commands.clickRowUser();
+                page.commands.clickRowProduct();
             })
 
             page.commands.drawRoles();

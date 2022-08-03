@@ -34,7 +34,7 @@ class App {
             })
         }
 
-        static showSuspendedConfirmAlert(){
+        static showSuspendedConfirmAlert() {
             return Swal.fire({
                 title: 'Are you sure?',
                 text: "Are you sure you want to delete the selected data?",
@@ -57,7 +57,7 @@ class App {
             })
         }
 
-        static showErrorAlert(title){
+        static showErrorAlert(title) {
             iziToast.error({
                 title: 'ERROR',
                 position: 'topRight',
@@ -129,7 +129,60 @@ class App {
             <td>${item.userInfo.phone}</td>
             <td>${item.role.name}</td>
             <td scope="col">
-                <span class="badge badge-soft-success font-size-11 m-1">${item.imported === true ? 'Active' : 'Block'}</span>
+                <span class="badge badge-soft-success font-size-11 m-1">${item.activated === true ? 'Active' : 'Block'}</span>
+            </td>
+        </tr>
+    `;
+        return str;
+    }
+
+    static getTempRowProductInCreateImportOrder(item) {
+        let str = '';
+        str += `
+        <tr id="tr_${item.id}">
+            <td><span class="select-tab unselected"></span></td>
+            <td scope="col">
+                <img style="width: 70px;" src="/assets/images/product/${item.urlImage}" alt="">
+            </td>
+            <td scope="col">${item.title}</td>
+            <td scope="col">${item.sku}</td>
+            <td scope="col">${item.category.name}<td scope="col">
+                <span class="badge badge-pill badge-soft-success font-size-12">${item.imported === true ? "Imported" : "unImported"}</span>
+            </td>
+            <td scope="col">
+                <button class="btn btn-outline-primary add-cart-item">
+                    <i class="fas fa-plus"></i>
+                    Add
+                </button>
+            </td>
+        </tr>
+    `;
+        return str;
+    }
+
+    static getTempRowCartItemInCart(item) {
+        let str = '';
+        str += `
+        <tr id="cart_tr_1">
+            <td>1</td>
+            <td>
+                <h5 class="font-size-14 text-truncate title">${item.product.title}</h5>
+            </td>
+            <td>
+                <input type="text" value="${item.price}" class="form-control price" style="width: 90px" value="0">                                        
+            </td>
+            <td>
+                <div style="width: 120px;">
+                    <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
+                        <input type="text" value="${item.quantity}" class="form-control quantity">
+                    </div>
+                </div>
+            </td>
+            <td class="total-cart">${item.totalPrice}</td>
+            <td>
+                <a href="#" class="action-icon text-danger delete-cart-item">
+                    <i class="mdi mdi-trash-can font-size-18"></i>
+                </a>
             </td>
         </tr>
     `;
@@ -137,19 +190,8 @@ class App {
     }
 }
 
-// <td th:switch="${item.imported}">
-//     <p th:case="false">
-//         <span className="badge badge-pill badge-soft-danger font-size-12">unImported</span>
-//     </p>
-//     <p th:case="*">
-//         <span className="badge badge-pill badge-soft-success font-size-12">Imported</span>
-//     </p>
-// </td>
-
-
-
 class Product {
-    constructor(id, title, sku, urlImage, description, price, quantity, sold, available, createdAt, createdBy, updatedAt, updatedBy, isImported, category) {
+    constructor(id, title, sku, urlImage, description, price, quantity, sold, available, createdAt, createdBy, updatedAt, updatedBy, imported, category) {
         this.id = id;
         this.title = title;
         this.sku = sku;
@@ -159,7 +201,7 @@ class Product {
         this.quantity = quantity;
         this.sold = sold;
         this.available = available;
-        this.isImported = isImported;
+        this.imported = imported;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
@@ -193,6 +235,30 @@ class UserInfo {
     }
 }
 
+class Cart {
+    constructor(id, grandTotal, quantityTotal, user, type, situation, unit) {
+        this.id = id;
+        this.grandTotal = grandTotal;
+        this.quantityTotal = quantityTotal;
+        this.user = user;
+        this.type = type;
+        this.situation = situation;
+        this.unit = unit;
+    }
+}
+
+class CarIem {
+    constructor(id, price, quantity, totalPrice, cart, product) {
+        this.id = id;
+        this.price = price;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.cart = cart;
+        this.product = product;
+    }
+}
+
+
 class Category {
     constructor(id, name, code) {
         this.id = id;
@@ -206,6 +272,31 @@ class Role {
         this.id = id;
         this.name = name;
         this.code = code;
+    }
+}
+
+class Type {
+    constructor(id, name, code) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+}
+
+class Situation {
+    constructor(id, name, code) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+}
+
+class Unit {
+    constructor(id, name, code, locationRegion) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.locationRegion = locationRegion;
     }
 }
 

@@ -12,21 +12,21 @@ public class PurchaseOrderController {
     @GetMapping()
     public ModelAndView showListPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/purchase-order/list");
+        modelAndView.setViewName("/purchase-order/list/list");
         return modelAndView;
     }
 
     @GetMapping("/create")
     public ModelAndView showCreatePage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/purchase-order/create");
+        modelAndView.setViewName("/purchase-order/create/create");
         return modelAndView;
     }
 
     @GetMapping("/cart")
     public ModelAndView showCartPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/purchase-order/cart");
+        modelAndView.setViewName("/purchase-order/cart/cart");
         return modelAndView;
     }
 }

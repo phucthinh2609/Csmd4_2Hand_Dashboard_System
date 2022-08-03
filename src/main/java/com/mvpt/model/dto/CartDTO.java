@@ -35,6 +35,16 @@ public class CartDTO {
     @Valid
     private UnitDTO unit;
 
+    public CartDTO(Long id, BigDecimal grandTotal, int quantityTotal, User user, Type type, Situation situation, Unit unit) {
+        this.id = String.valueOf(id);
+        this.grandTotal = String.valueOf(grandTotal);
+        this.quantityTotal = String.valueOf(quantityTotal);
+        this.user = user.toUserDTO();
+        this.type = type.toTypeDTO();
+        this.situation = situation.toSituationDTO();
+        this.unit = unit.toUnitDTO();
+    }
+
     public Cart toCart() {
         return new Cart()
                 .setId(Long.valueOf(id))

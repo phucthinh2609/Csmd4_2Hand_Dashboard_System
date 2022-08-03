@@ -308,12 +308,20 @@
 
     <!-- App js -->
     <th:block th:replace="/script/app-js :: app-js"/>
+<!--    <script src="/assets/js/app.js"></script>-->
+
 
     <script>
         $( document ).ready(function() {
-            document.querySelector(".dataTables_filter").style.display = 'none';
-            document.querySelector(".pagination-rounded").style.display = 'none';
+            // document.querySelector(".dataTables_filter").style.display = 'none';
+            // document.querySelector(".pagination-rounded").style.display = 'none';
+
+            $("button.right-bar-toggle").on("click", () => {
+                $("body").addClass("right-bar-enabled");
+            });
         });
+
+
 
         $('#tbCart #cart_tr_1 input.quantity').on('change', () => {
             let quantity = $('#tbCart #cart_tr_1 input.quantity').val();

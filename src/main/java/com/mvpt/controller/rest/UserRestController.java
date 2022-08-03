@@ -14,6 +14,7 @@ import com.mvpt.service.user.UserService;
 import com.mvpt.service.userInfo.UserInfoService;
 import com.mvpt.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -66,29 +67,88 @@ public class UserRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
+        Long roleId = userDTO.toUser().getRole().getId();
+        String email = userDTO.getEmail();
+
         userDTO.setId(String.valueOf(0L));
         userDTO.getUserInfo().setId(String.valueOf(0L));
         userDTO.getUserInfo().getLocationRegion().setId(String.valueOf(0L));
 
-        Boolean existEmail = userService.existsByEmail(userDTO.getEmail());
+        Boolean existEmail = userService.existsByEmail(email);
 
         if (existEmail) {
             throw new EmailExistsException("Email already exist");
         }
 
-        Optional<Role> role = roleService.findById(userDTO.toUser().getRole().getId());
+        Optional<Role> role = roleService.findById(roleId);
 
         if (!role.isPresent()) {
             throw new DataInputException("Role ID invalid!!!");
         }
 
-        UserDTO newUserDTO = userService.saveDTO(userDTO);
-        return new ResponseEntity<>(newUserDTO, HttpStatus.CREATED);
-//        try {
-//
-//
-//        } catch (Exception ex) {
-//            throw new DataInputException("Please contact management!!!");
-//        }
+
+        try {
+            UserDTO newUserDTO = userService.saveDTO(userDTO);
+            return new ResponseEntity<>(newUserDTO, HttpStatus.CREATED);
+
+        } catch (Exception ex) {
+            throw new DataInputException("Please contact management!!!");
+        }
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> doUpdate(@Validated @RequestBody UserDTO userDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasFieldErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+
+        Optional<UserDTO> currentUserDTO = userService.getUserDTOById(Long.valueOf(userDTO.getId()));
+
+        String currentUserInfoId = currentUserDTO.get().getUserInfo().getId();
+        String currentLocationRegionId = currentUserDTO.get().getUserInfo().getLocationRegion().getId();
+
+        userDTO.getUserInfo().setId(currentUserInfoId);
+        userDTO.getUserInfo().getLocationRegion().setId(currentLocationRegionId);
+
+        Optional<UserDTO> currentEmailUserDTO = userService.findProductDTOByEmailAndIdIsNot(userDTO.getEmail(), Long.valueOf(userDTO.getId()));
+
+        if (currentEmailUserDTO.isPresent()) {
+            throw new EmailExistsException("Email already exists!!!");
+        }
+
+        Optional<Role> currentRole = roleService.findById(Long.valueOf(userDTO.getRole().getId()));
+
+        if (!currentRole.isPresent()){
+            throw new DataInputException("Role not define!!!");
+        }
+
+        try {
+            UserDTO newUserDTO = userService.saveDTO(userDTO);
+            return new ResponseEntity<>(newUserDTO, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            throw new DataInputException("Please contact management!!!");
+        }
+    }
+
+    @PostMapping("/suspended/{id}")
+    public ResponseEntity<?> doSuspended(@Validated @PathVariable Long id) {
+        Optional<User> userOptional = userService.findById(id);
+
+        if (userOptional.isPresent()) {
+            try {
+                userOptional.get().setDeleted(true);
+                userService.save(userOptional.get());
+
+                return new ResponseEntity<>(HttpStatus.CREATED);
+
+            } catch (DataIntegrityViolationException ex) {
+                throw new DataInputException("Invalid suspense infomation");
+            }
+        } else {
+            throw new DataInputException("Invalid user information");
+        }
+
     }
  }

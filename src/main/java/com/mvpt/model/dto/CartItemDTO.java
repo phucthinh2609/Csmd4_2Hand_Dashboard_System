@@ -35,6 +35,15 @@ public class CartItemDTO {
     @Valid
     private ProductDTO product;
 
+    public CartItemDTO(Long id, BigDecimal price, int quantity, BigDecimal totalPrice, Cart cart, Product product) {
+        this.id = String.valueOf(id);
+        this.price = String.valueOf(price);
+        this.quantity = String.valueOf(quantity);
+        this.totalPrice = String.valueOf(totalPrice);
+        this.cart = cart.toCartDTO();
+        this.product = product.toProductDTO();
+    }
+
     public CartItem toCartItem() {
         return new CartItem()
                 .setId(Long.valueOf(id))

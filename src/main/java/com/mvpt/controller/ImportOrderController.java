@@ -12,21 +12,21 @@ public class ImportOrderController {
     @GetMapping()
     public ModelAndView showListPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/import-order/list");
+        modelAndView.setViewName("/import-order/list/list");
         return modelAndView;
     }
 
     @GetMapping("/create")
     public ModelAndView showCreatePage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/import-order/create");
+        modelAndView.setViewName("/import-order/create/create");
         return modelAndView;
     }
 
     @GetMapping("/cart")
     public ModelAndView showCartPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/import-order/cart");
+        modelAndView.setViewName("/import-order/cart/cart");
         return modelAndView;
     }
 }

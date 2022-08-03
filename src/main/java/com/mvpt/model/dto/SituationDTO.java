@@ -29,6 +29,12 @@ public class SituationDTO {
 
     private String code;
 
+    public SituationDTO(Long id, String name, String code) {
+        this.id = String.valueOf(id);
+        this.name = name;
+        this.code = code;
+    }
+
     public Situation toSituation() {
         return new Situation()
                 .setId(Long.valueOf(id))
