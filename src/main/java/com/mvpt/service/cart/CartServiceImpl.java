@@ -5,7 +5,6 @@ import com.mvpt.model.dto.CartDTO;
 import com.mvpt.model.dto.CartItemDTO;
 import com.mvpt.repository.CartItemRepository;
 import com.mvpt.repository.CartRepository;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +39,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public Optional<CartDTO> getCartDTOByTypeIdAndUserId(Long typeId, Long userId) {
+        return cartRepository.getCartDTOByTypeIdAndUserId(typeId, userId);
+    }
+
+    @Override
     public Optional<CartDTO> getCartDTOById(Long id) {
         return cartRepository.getCartDTOById(id);
     }
@@ -70,12 +74,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Optional<CartDTO> incrementGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO) {
+    public Cart incrementGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO) {
 
         BigDecimal totalPrice = new BigDecimal(cartItemDTO.getTotalPrice());
         int quantity = Integer.parseInt(cartItemDTO.getQuantity());
 
-        Optional<CartDTO> newCartDTO = cartRepository.getCartDTOById(cartItemDTO.toCartItem().getId());
+        Optional<CartDTO> newCartDTO = cartRepository.getCartDTOById(cartItemDTO.toCartItem().getCart().getId());
 
         BigDecimal grandTotal = new BigDecimal(newCartDTO.get().getGrandTotal());
         int quantityTotal = Integer.parseInt(newCartDTO.get().getQuantityTotal());
@@ -83,16 +87,16 @@ public class CartServiceImpl implements CartService {
         newCartDTO.get().setGrandTotal(String.valueOf(grandTotal.add(totalPrice)));
         newCartDTO.get().setQuantityTotal(String.valueOf(quantityTotal + quantity));
 
-        return newCartDTO;
+        return cartRepository.save(newCartDTO.get().toCart());
     }
 
     @Override
-    public Optional<CartDTO> reduceGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO) {
+    public Cart reduceGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO) {
 
         BigDecimal totalPrice = new BigDecimal(cartItemDTO.getTotalPrice());
         int quantity = Integer.parseInt(cartItemDTO.getQuantity());
 
-        Optional<CartDTO> newCartDTO = cartRepository.getCartDTOById(cartItemDTO.toCartItem().getId());
+        Optional<CartDTO> newCartDTO = cartRepository.getCartDTOById(cartItemDTO.toCartItem().getCart().getId());
 
         BigDecimal grandTotal = new BigDecimal(newCartDTO.get().getGrandTotal());
         int quantityTotal = Integer.parseInt(newCartDTO.get().getQuantityTotal());
@@ -100,6 +104,6 @@ public class CartServiceImpl implements CartService {
         newCartDTO.get().setGrandTotal(String.valueOf(grandTotal.subtract(totalPrice)));
         newCartDTO.get().setQuantityTotal(String.valueOf(quantityTotal - quantity));
 
-        return newCartDTO;
+        return cartRepository.save(newCartDTO.get().toCart());
     }
 }

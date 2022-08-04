@@ -166,7 +166,7 @@ class App {
             <td scope="col">${item.sku}</td>
             <td scope="col">${item.category.name}</td>
             <td>
-                <div class="input-group" style="width: 104px">
+                <div class="input-group" style="width: 79px">
                     <input type="number" value="${item.quantity}" class="form-control price">
                 </div>
             </td>
@@ -186,16 +186,40 @@ class App {
         return str;
     }
 
+    static getTempRowCartItemInCartImportOrder(cartItem) {
+        let str = '';
+        str += `
+        <tr id="tr_${cartItem.id}">
+            <td>
+                <span class="select-tab unselected"></span>
+            </td>
+            <td>
+                <img src="/assets/images/product/${cartItem.product.urlImage}" alt="product-img" title="product-img" class="avatar-md">
+            </td>
+            <td class="text-left">${cartItem.product.title}</td>
+            <td>${cartItem.price}</td>
+            <td>${cartItem.quantity}</td>
+            <td class="totalAmount">${cartItem.totalPrice}</td>
+            <td>
+                <a href="#" class="action-icon text-danger delete">
+                    <i class="mdi mdi-trash-can font-size-18"></i>
+                </a>
+            </td>
+        </tr>
+    `;
+        return str;
+    }
+
     static getTempRowCartItemInCart(item) {
         let str = '';
         str += `
         <tr id="cart_tr_${item.id}">
             <td>1</td>
-            <td>
+            <td class="text-left">
                 <h5 class="font-size-14 text-truncate title">${item.product.title}</h5>
             </td>
             <td>${item.price}</td>
-            <td>${item.quantity}</td>
+            <td class="text-center">${item.quantity}</td>
             <td class="total-cart">${item.totalPrice}</td>
             <td>
                 <a href="#" class="action-icon text-danger delete-cart-item">

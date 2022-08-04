@@ -25,6 +25,18 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     List<CartDTO> getAllCartDTOByDeletedIsFalse();
 
     @Query("SELECT NEW com.mvpt.model.dto.CartDTO (" +
+            "c.id, " +
+            "c.grandTotal, " +
+            "c.quantityTotal, " +
+            "c.user, " +
+            "c.type, " +
+            "c.situation," +
+            "c.unit) " +
+            "FROM Cart c " +
+            "WHERE c.type.id = ?1 AND c.user.id = ?2 ")
+    Optional<CartDTO> getCartDTOByTypeIdAndUserId(Long typeId, Long userId);
+
+    @Query("SELECT NEW com.mvpt.model.dto.CartDTO (" +
                 "c.id, " +
                 "c.grandTotal, " +
                 "c.quantityTotal, " +

@@ -13,13 +13,15 @@ public interface CartService extends IGeneralService<Cart> {
 
     Optional<CartDTO> getCartDTOById(Long id);
 
+    Optional<CartDTO> getCartDTOByTypeIdAndUserId(Long typeId, Long userId);
+
     Optional<CartDTO> getCartDTOByUserId(Long userId);
 
     Optional<CartDTO> getCartDTOByTypeId(Long typeId);
 
-    Optional<CartDTO> incrementGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO);
+    Cart incrementGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO);
 
-    Optional<CartDTO> reduceGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO);
+    Cart reduceGrandTotalAndQuantityTotal(CartItemDTO cartItemDTO);
 
 
 }

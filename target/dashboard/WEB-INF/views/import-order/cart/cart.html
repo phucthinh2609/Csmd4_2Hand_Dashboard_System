@@ -75,76 +75,35 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table id="tbCart" class="table table-centered mb-0 table-nowrap">
+                                        <table id="tbListCartItems" class="table table-hover table-centered mb-0 table-nowrap text-center">
                                             <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Product</th>
-                                                <th>Product Name</th>
+                                                <th class="text-left">Product Name</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
-                                                <th colspan="2">Total</th>
+                                                <th>Total</th>
+                                                <th></th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="tr_1">
-                                                <td>1</td>
-                                                <td>
-                                                    <img src="/assets/images/product/img-4.png" alt="product-img" title="product-img" class="avatar-md">
-                                                </td>
-                                                <td>Áo hoodie</td>
-                                                <td>
-                                                    <input type="text" class="form-control" id="priceCre" name="priceCre" style="width: 90px" value="0">                                        </td>
-                                                </td>
-                                                <td>
-                                                    <div style="width: 120px;">
-                                                        <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                                            <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="totalAmount">0</td>
-                                                <td>
-                                                    <a href="#" class="action-icon text-danger delete">
-                                                        <i class="mdi mdi-trash-can font-size-18"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_2">
-                                                <td>2</td>
-                                                <td>
-                                                    <img src="/assets/images/product/img-3.png" alt="product-img" title="product-img" class="avatar-md">
-                                                </td>
-                                                <td>Áo pull</td>
-                                                <td>
-                                                    <input type="text" class="form-control" id="priceCre" name="priceCre" style="width: 90px" value="0">                                        </td>
-                                                </td>
-                                                <td>
-                                                    <div style="width: 120px;">
-                                                        <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                                            <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="totalAmount">0</td>
-                                                <td>
-                                                    <a href="#" class="action-icon text-danger delete">
-                                                        <i class="mdi mdi-trash-can font-size-18"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-sm-6">
-                                            <a href="ecommerce-products.html" class="btn btn-secondary">
-                                                <i class="mdi mdi-arrow-left mr-1"></i> Continue Shopping </a>
+                                            <a href="/import-orders/create" class="btn btn-secondary">
+                                                <i class="mdi mdi-arrow-left mr-1"></i>
+                                                Continue Shopping
+                                            </a>
                                         </div> <!-- end col -->
                                         <div class="col-sm-6">
                                             <div class="text-sm-right mt-2 mt-sm-0">
-                                                <a href="ecommerce-checkout.html" class="btn btn-success">
-                                                    <i class="mdi mdi-cart-arrow-right mr-1"></i> Checkout </a>
+                                                <a href="#" class="btn btn-success" id="btnOrder">
+                                                    <i class="mdi mdi-cart-arrow-right mr-1"></i>
+                                                    Order
+                                                </a>
                                             </div>
                                         </div> <!-- end col -->
                                     </div> <!-- end row-->
@@ -156,34 +115,32 @@
                                 <div class="card-body">
                                     <h5 class="card-title mb-4">Unit information</h5>
                                     <div class="col-md-12">
-                                        <select class="form-select" id="role" name="role">
-                                            <option value="1" selected>Chợ Đầu Mối</option>
-                                            <option value="2">2Hand Digigtal Market</option>
+                                        <select class="form-select" id="unit" name="unit">
                                         </select>
                                     </div>
                                     <div class="col-md-12 justify-content-between">
-                                        <table>
+                                        <table id="tbUniInfo">
                                             <tbody class="table table-hover">
-                                            <tr>
-                                                <th>Code: </th>
-                                                <td id="codeUnit" name="codeUnit">VN-DM-1023</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Address: </th>
-                                                <td id="addressUnit" name="addressUnit">4/2/85 Nguyễn Huệ</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Ward: </th>
-                                                <td id="wardUnit" name="wardUnit">Phường Phú Nhuận</td>
-                                            </tr>
-                                            <tr>
-                                                <th>District: </th>
-                                                <td id="districtUnit" name="districtUnit">Thành phố Huế</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Province: </th>
-                                                <td id="provinceUnit" name="provinceUnit">Huế</td>
-                                            </tr>
+                                                <tr>
+                                                    <th>Code: </th>
+                                                    <td id="codeUnit" name="codeUnit">VN-DM-1023</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Address: </th>
+                                                    <td id="addressUnit" name="addressUnit">4/2/85 Nguyễn Huệ</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ward: </th>
+                                                    <td id="wardUnit" name="wardUnit">Phường Phú Nhuận</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>District: </th>
+                                                    <td id="districtUnit" name="districtUnit">Thành phố Huế</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Province: </th>
+                                                    <td id="provinceUnit" name="provinceUnit">Huế</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -194,20 +151,16 @@
                                     <h4 class="card-title mb-3">Order Summary</h4>
 
                                     <div class="table-responsive">
-                                        <table class="table mb-0">
+                                        <table id="tbOrderSummary" class="table mb-0">
                                             <tbody>
-                                            <tr>
-                                                <td>Grand Total :</td>
-                                                <td>1,857</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quantity Total : </td>
-                                                <td>2</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Total :</th>
-                                                <th>1744.22</th>
-                                            </tr>
+                                                <tr>
+                                                    <td>Quantity Total : </td>
+                                                    <td id="quantityTotal"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Grand Total :</th>
+                                                    <th id="grandTotal"></th>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -222,10 +175,6 @@
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
-
-            <footer class="footer">
-            </footer>
         </div>
         <!-- end main content-->
 
@@ -240,55 +189,7 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-    <div id="mdCreateUnit" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">Unit information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmCreateUnit" method="post">
-                        <fieldset class="row g-3">
-                            <div class="col-md-12">
-                                <label class="form-label">Name</label>
-                                <input type="email" class="form-control" id="nameUnitCre" name="nameUnitCre">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Code</label>
-                                <input type="email" class="form-control" id="codeUnitCre" name="codeUnitCre">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Province</label>
-                                <select class="form-select" id="provinceUnitCre" name="provinceUnitCre"></select>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">District</label>
-                                <select class="form-select" id="districtUnitCre" name="districtUnitCre"></select>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Ward</label>
-                                <select class="form-select" id="wardUnitCre" name="wardUnitCre"></select>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="addressUnitCre" name="addressUnitCre">
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnCreateUser" class="btn btn-outline-primary">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Create Unit
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <th:block th:replace="/import-order/cart/modal_create_unit :: modal_create_unit" />
 
     <!-- JAVASCRIPT -->
     <th:block th:replace="/script/javascript :: javascript"/>
@@ -308,30 +209,461 @@
     <!-- App js -->
     <th:block th:replace="/script/app-js :: app-js"/>
 
-    <script>
-        $('#btnShowCreateUnitModal').on('click', () => {
-            $('#mdCreateUnit').modal('show')
-        })
 
-        $('#tbCart #tr_1 a.delete').on('click', () => {
-            App.SweetAleart.showSuspendedConfirmAlert()
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        alert('Suspended successful!!!')
+    <script>
+
+        let product = new Product();
+        let cart = new Cart();
+        let cartItem = new CarIem();
+        let user = new User();
+        let situation = new Situation();
+        let type = new Type();
+        let cartImport = new CartImport();
+        let unit = new Unit();
+        let locationRegion = new LocationRegion();
+
+        let productId;
+        let cartItemId;
+        let unitId;
+
+        let page = {
+            url: {
+                getAllProvinces: App.GET_PROVINCES + "/",
+                getAllDistricts: App.GET_PROVINCES + "/district/",
+                getAllWards: App.GET_PROVINCES + "/ward/",
+
+                getAllUnits: App.BASER_URL + "/units",
+                getUnitById: App.BASER_URL + "/units/",
+
+                getAllCartItems: App.BASER_URL + "/carts/cart-items",
+
+                delete: App.BASER_URL + "/carts/delete/",
+
+                saveUnit: App.BASER_URL + "/units/create"
+
+            },
+            elements: {
+                role: {},
+                userInfo: {
+                    locationRegion: {}
+                },
+
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+
+            initializeControlEvent: {}
+        }
+
+        page.elements.tbListCartItems = $('#tbListCartItems');
+        page.elements.tbUniInfo = $('#tbUniInfo');
+        page.elements.tbOrderSummary = $('#tbOrderSummary');
+
+        page.elements.btnOrder = $('#btnOrder');
+        page.elements.btnShowCreateUnitModal = $('#btnShowCreateUnitModal');
+        page.elements.btnCreateUnit = $('#btnCreateUnit');
+
+        page.elements.codeUnit = $('#codeUnit');
+        page.elements.addressUnit = $('#addressUnit');
+        page.elements.wardUnit = $('#wardUnit');
+        page.elements.districtUnit = $('#districtUnit');
+        page.elements.provinceUnit = $('#provinceUnit');
+
+        page.elements.nameUnitCre = $('#nameUnitCre');
+        page.elements.codeUnitCre = $('#codeUnitCre');
+        page.elements.addressUnitCre = $('#addressUnitCre');
+        page.elements.wardUnitCre = $('#wardUnitCre');
+        page.elements.districtUnitCre = $('#districtUnitCre');
+        page.elements.provinceUnitCre = $('#provinceUnitCre');
+
+        page.elements.quantityTotal = $('#quantityTotal');
+        page.elements.grandTotal = $('#grandTotal');
+
+        page.elements.unit = $('#unit');
+
+        page.elements.mdCreateUnit = $('#mdCreateUnit');
+        page.dialogs.alertDanger.mdCreateUnit = $("#mdCreateUnit .modal-alert-danger");
+
+
+        page.commands.addRowCartItem = () =>{
+            let str = App.getTempRowCartItemInCartImportOrder(cartItem);
+            $('#tbListCartItems tbody').prepend(str);
+        }
+
+        page.commands.clickRowCartItem = () => {
+            $("#tbListCartItems tbody tr").on("click", function () {
+                cartItemId = $(this).attr('id').replace('tr_', '');
+
+                $('#tbListCartItems tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListCartItems tbody tr#tr_${productId} td span.select-tab`).removeClass("unselected").addClass("selected");
+            });
+
+            page.commands.unbindAll();
+        }
+
+        page.loadData.loadCartItems = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllCartItems
+            })
+            .done((data) => {
+                cart = data.cartDTO;
+
+                $('#tbListCartItems tbody').html('');
+                $.each(data.cartItemDTO, (i, item) => {
+                    cartItem = item;
+                    page.commands.addRowCartItem();
+                })
+
+                page.elements.quantityTotal.text(cart.quantityTotal);
+                page.elements.grandTotal.text(cart.grandTotal);
+            })
+        };
+
+        page.commands.drawUnits = () => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllUnits
+            })
+            .done((data) => {
+                $.each(data, (i, item) => {
+                    let str = `<option value="${item.id}">${item.name} (${item.code})</option>`;
+
+                    page.elements.unit.append(str);
+                })
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
+        }
+
+        page.commands.drawProvinces = () => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllProvinces
+            })
+                .done((data) => {
+                    $.each(data.results, (i, item) => {
+                        let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+
+                        page.elements.provinceUnitCre.append(str);
+                    })
+                })
+                .fail((jqxHR) => {
+                    console.log(jqxHR);
+                })
+        }
+
+        page.commands.drawDistricts = (provinceId) => {
+            return $.ajax({
+                "headers": {
+                    accept: "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllDistricts + provinceId
+            })
+                .done((data) => {
+
+                    if (data.results.length === 0) {
+                        App.IziToast.showErrorAlert("Loading of districts is fail");
+                    }else {
+                        $.each(data.results, (i, item) => {
+                            let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+
+                            page.elements.districtUnitCre.append(str)
+                        })
                     }
                 })
+        }
+
+        page.commands.drawWards = (districtId) => {
+            return $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllWards + districtId
+
+            })
+                .done((data) => {
+                    if (data.results.length === 0) {
+                        App.IziToast.showErrorAlert("Loading of wards is fail");
+                    }else {
+                        $.each(data.results, (i, item) => {
+                            let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+
+                            page.elements.wardUnitCre.append(str)
+                        })
+                    }
+                })
+        }
+
+        page.dialogs.commands.provinceChange = () => {
+            return $.ajax({
+                "type": "GET",
+                "url": page.url.getAllDistricts + locationRegion.provinceId
+            }).done((data) => {
+                page.elements.districtUnitCre.empty();
+
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+
+                    page.elements.districtUnitCre.append(str);
+                });
+            }).fail(function () {
+                App.IziToast.showErrorAlert("Loading of districts is fail");
+            });
+        }
+
+        page.dialogs.commands.districtChange = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.getAllWards + locationRegion.districtId
+
+            }).done((data) => {
+                page.elements.wardUnitCre.empty();
+
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+
+                    page.elements.wardUnitCre.append(str);
+                });
+            }).fail(function () {
+                App.IziToast.showErrorAlert("Loading of wards is fail");
+            });
+        }
+
+        page.commands.unitChange = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.getUnitById + unitId
+
+            }).done((data) => {
+
+                page.elements.codeUnit.text(data.code);
+                page.elements.addressUnit.text(data.locationRegion.address);
+                page.elements.wardUnit.text(data.locationRegion.wardName);
+                page.elements.districtUnit.text(data.locationRegion.districtName);
+                page.elements.provinceUnit.text(data.locationRegion.provinceName);
+            })
+        }
+
+        page.commands.doCreate = () => {
+
+            locationRegion.id = "0";
+            locationRegion.provinceId = page.elements.provinceUnitCre.val();
+            locationRegion.provinceName = page.elements.provinceUnitCre.find(":selected").text();
+            locationRegion.districtId = page.elements.districtUnitCre.val();
+            locationRegion.districtName = page.elements.districtUnitCre.find(":selected").text();
+            locationRegion.wardId = page.elements.wardUnitCre.val();
+            locationRegion.wardName = page.elements.wardUnitCre.find(":selected").text();
+            locationRegion.address = page.elements.addressUnitCre.val();
+
+            unit.id = "0";
+            unit.name = page.elements.nameUnitCre.val();
+            unit.code = page.elements.codeUnitCre.val();
+            unit.locationRegion = locationRegion;
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveUnit,
+                "data": JSON.stringify(unit)
+            })
+            .done((item) => {
+                unit = item;
+                console.log(unit);
+
+                // let str = `
+                //     <option value="${unit.id}">${unit.name} (${unit.code})</option>
+                // `
+                //
+                // page.elements.unit.prepend(str);
+                page.commands.drawUnits();
+
+                page.elements.mdCreateUnit.modal('hide');
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_CREATED);
+
+                page.commands.unbindAll();
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR)
+                page.dialogs.alertDanger.mdCreateUnit.html("").removeClass("hide").addClass("show");
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.mdCreateUnit.append(str);
+                } else {
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.mdCreateUnit.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.mdCreateUnit.append(str);
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.mdCreateUnit.append(str);
+                            })
+                        }
+                    }
+                }
+            })
+
+        }
+
+        page.commands.doRemoveCartItem = () => {
+            App.SweetAleart.showSuspendedConfirmAlert()
+            .then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        "type": "POST",
+                        "headers": {
+                            'accept': 'application/json',
+                            'content-Type': 'application/json'
+                        },
+                        "url": page.url.delete + cartItemId
+
+                    }).done((data) => {
+                        cart = data;
+
+                        $("#tr_" + cartItem.id).remove();
+                        page.elements.quantityTotal.text(cart.quantityTotal);
+                        page.elements.grandTotal.text(cart.grandTotal);
+
+                        App.IziToast.showSuccessAlert("Delete cart item successful");
+
+                    }).fail( () => {
+                        App.IziToast.showErrorAlert("Delete cart item failed");
+                    });
+                }
+            })
+        }
+
+        page.commands.unbindAll = () => {
+            $('.delete').off();
+        }
+
+        page.initializeControlEvent = () => {
+            page.elements.provinceUnitCre.on('change', function () {
+                locationRegion.provinceId = page.elements.provinceUnitCre.val();
+
+                page.dialogs.commands.provinceChange().done(function () {
+                    locationRegion.districtId = page.elements.districtUnitCre.prop("selectedIndex", 0).val();
+                    page.dialogs.commands.districtChange();
+                })
+            })
+
+            page.elements.districtUnitCre.on('change', function () {
+                locationRegion.districtId = page.elements.districtUnitCre.val();
+                page.dialogs.commands.districtChange();
+            })
+
+            page.elements.unit.on('change', function () {
+                unitId = page.elements.unit.val();
+
+                page.commands.unitChange();
+            })
+
+            page.elements.tbListCartItems.on('click', '.delete', () => {
+                page.commands.doRemoveCartItem();
+            })
+
+            page.elements.btnCreateUnit.on('click', () => {
+                page.commands.doCreate();
+            })
+
+            page.elements.btnShowCreateUnitModal.on('click', () => {
+                page.elements.mdCreateUnit.modal('show');
+            })
+
+        }
+
+        $(function () {
+            page.loadData.loadCartItems().then( function () {
+                page.commands.clickRowCartItem();
+            });
+
+            page.commands.drawProvinces().then(function (){
+                let provinceId = page.elements.provinceUnitCre.prop("selectedIndex", 0).val();
+
+                if (provinceId != null) {
+                    page.commands.drawDistricts(provinceId).then(function (){
+                        let districtId = page.elements.districtUnitCre.prop("selectedIndex", 0).val();
+
+                        if (districtId != null){
+                            page.commands.drawWards(districtId);
+                        }
+                    })
+                }
+            });
+
+            page.commands.drawUnits().then(function (){
+                unitId = 1;
+
+                page.commands.unitChange();
+            });
+
+            page.initializeControlEvent();
         })
 
-        $('#tbCart #tr_1 td:nth-child(5)').on('change', () => {
-            let quantity = $('#tbCart #tr_1 td:nth-child(5) input.quantity').val();
-            let price = $('#tbCart #tr_1 td:nth-child(4)').text();
-            let totalAmount = 0;
-
-            totalAmount = quantity * price;
-
-            $('#tbCart #tr_1 td:nth-child(6)').text(totalAmount);
-        })
 
     </script>
+
 </body>
 </html>
+
+<!--$('#btnShowCreateUnitModal').on('click', () => {-->
+<!--$('#mdCreateUnit').modal('show')-->
+<!--})-->
+
+<!--$('#tbCart #tr_1 a.delete').on('click', () => {-->
+<!--App.SweetAleart.showSuspendedConfirmAlert()-->
+<!--.then((result) => {-->
+<!--if (result.isConfirmed) {-->
+<!--alert('Suspended successful!!!')-->
+<!--}-->
+<!--})-->
+<!--})-->
+
+<!--$('#tbCart #tr_1 td:nth-child(5)').on('change', () => {-->
+<!--let quantity = $('#tbCart #tr_1 td:nth-child(5) input.quantity').val();-->
+<!--let price = $('#tbCart #tr_1 td:nth-child(4)').text();-->
+<!--let totalAmount = 0;-->
+
+<!--totalAmount = quantity * price;-->
+
+<!--$('#tbCart #tr_1 td:nth-child(6)').text(totalAmount);-->
+<!--})-->

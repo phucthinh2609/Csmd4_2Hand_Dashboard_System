@@ -1,6 +1,7 @@
 package com.mvpt.service.unit;
 
 import com.mvpt.model.Unit;
+import com.mvpt.model.dto.UnitDTO;
 import com.mvpt.repository.UnitRepository;
 import com.mvpt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class UnitServiceImpl implements UnitService{
     }
 
     @Override
+    public List<UnitDTO> getAllUnitDTO() {
+        return unitRepository.getAllUnitDTO();
+    }
+
+    @Override
     public Optional<Unit> findById(Long id) {
         return unitRepository.findById(id);
     }
@@ -30,6 +36,16 @@ public class UnitServiceImpl implements UnitService{
     @Override
     public Unit getById(Long id) {
         return unitRepository.getById(id);
+    }
+
+    @Override
+    public Optional<UnitDTO> getUnitDTOById(Long unitId) {
+        return unitRepository.getUnitDTOById(unitId);
+    }
+
+    @Override
+    public Optional<UnitDTO> getUnitDTOByCodeAndIdIsNot(String code, Long id) {
+        return unitRepository.getUnitDTOByCodeAndIdIsNot(code, id);
     }
 
     @Override

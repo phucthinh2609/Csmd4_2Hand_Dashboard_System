@@ -67,7 +67,7 @@ public class UserRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
-        Long roleId = userDTO.toUser().getRole().getId();
+        Long roleId = Long.valueOf(userDTO.getRole().getId());
         String email = userDTO.getEmail();
 
         userDTO.setId(String.valueOf(0L));
@@ -85,7 +85,6 @@ public class UserRestController {
         if (!role.isPresent()) {
             throw new DataInputException("Role ID invalid!!!");
         }
-
 
         try {
             UserDTO newUserDTO = userService.saveDTO(userDTO);

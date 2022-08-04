@@ -38,7 +38,7 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public Optional<CartItemDTO> getCartDTOById(Long id) {
+    public Optional<CartItemDTO> getCartItemDTOById(Long id) {
         return cartItemRepository.getCartItemDTOById(id);
     }
 

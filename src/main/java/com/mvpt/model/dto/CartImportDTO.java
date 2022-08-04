@@ -99,16 +99,16 @@ public class CartImportDTO implements Validator {
         }
 
         BigDecimal price = new BigDecimal(Long.parseLong(cartImportDTO.getPrice()));
-        BigDecimal min = new BigDecimal(10000L);
-        BigDecimal max = new BigDecimal(1000000L);
+        BigDecimal min = new BigDecimal(1L);
+        BigDecimal max = new BigDecimal(1000L);
 
         if (price.compareTo(min) < 0) {
-            errors.rejectValue("price", "price.min", "The price min is 10.000");
+            errors.rejectValue("price", "price.min", "The price min is 1$");
             return;
         }
 
         if (price.compareTo(max) > 0) {
-            errors.rejectValue("price", "price.max", "The price max is 1.000.000");
+            errors.rejectValue("price", "price.max", "The price max is 1.000$");
             return;
         }
 

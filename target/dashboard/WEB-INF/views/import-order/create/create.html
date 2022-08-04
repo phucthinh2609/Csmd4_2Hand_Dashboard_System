@@ -158,44 +158,24 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="tbListCartItems" class="table table-centered mb-0 table-nowrap">
+                            <table id="tbListCartItems" class="table table-centered mb-0 table-nowrap text-center">
                                 <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
-                                    <th>Product Name</th>
+                                    <th class="text-left">Product Name</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th colspan="2">Total</th>
+                                    <th>Total</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr id="cart_tr_1">
-                                        <td>1</td>
-                                        <td>
-                                            <h5 class="font-size-14 text-truncate" id="titlePrdCart" name="titlePrdCart">Áo pull</h5>
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="pricePrdCart" name="titlePrdCart" style="width: 90px" value="0">
-                                        <td>
-                                            <div style="width: 120px;">
-                                                <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                                    <input type="text" value="02" id="quantityPrdCart" name="quantityPrdCart" class="form-control quantity">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="totalCart"></td>
-                                        <td>
-                                            <a href="#" class="action-icon text-danger delete">
-                                                <i class="mdi mdi-trash-can font-size-18"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="6" style="text-align: right;">
-                                            <p style="font-size:medium" id="totalAmountCart">
-                                                Total amount: <strong style="font-size:larger; text-align: right;">30</strong>
+                                            <p style="font-size:medium">
+                                                Total amount: <strong id="totalAmountCart" style="font-size:larger; text-align: right;"></strong>
                                             </p>
                                         </td>
                                     </tr>
@@ -306,6 +286,8 @@
         page.elements.totalPricePrdCart = $('.total-cart');
         page.elements.btnDeleteCartItem = $('.delete-cart-item');
 
+        page.elements.totalAmountCart = $('#totalAmountCart');
+
 
         page.commands.addRowProduct = () =>{
             let str = App.getTempRowProductInCreateImportOrder(product);
@@ -359,6 +341,8 @@
                 "url": page.url.getAllProducts
             })
             .done((data) => {
+                console.log(data)
+
                 $('#tbListProducts tbody').html('');
 
                 $.each(data, (i, item) => {
@@ -378,10 +362,15 @@
                 "url": page.url.getAllCartItems
             })
             .done((data) => {
+
+                cart = data.cartDTO;
+                let grandTotal = cart.grandTotal;
+
+                page.elements.totalAmountCart.text(grandTotal);
+
                 $('#tbListCartItems tbody').html('');
-                $.each(data, (i, item) => {
+                $.each(data.cartItemDTO, (i, item) => {
                     cartItem = item;
-                    console.log(cartItem);
                     page.commands.addRowCartItem();
                 })
 
@@ -400,18 +389,19 @@
                     },
                     "url": page.url.delete + cartItemId
 
-                }).done( () => {
-                    // App.SweetAleart.showSuccessAlert(App.SUCCESS_DELETED);
-                    $("#cart_tr_" + cartItem).remove();
+                }).done((data) => {
+                    cart = data;
+
+                    $('#totalAmountCart').text(cart.grandTotal);
+                    $("#cart_tr_" + cartItem.id).remove();
+
+                    App.IziToast.showSuccessAlert("Delete cart item successful");
 
                 }).fail( () => {
-                    alert("Delete cart item failed")
-                    // App.SweetAleart.showErrorAlert("Delete cart item failed");
+                    App.IziToast.showErrorAlert("Delete cart item failed");
                 });
             }
         }
-
-
 
         page.commands.unbindAll = () => {
             $('.add-cart-item').off();
@@ -442,10 +432,23 @@
                 App.IziToast.showSuccessAlertBottom(data.success);
             })
             .fail((jqxHR) => {
-                console.log(jqxHR);
+                if (jqxHR.status === 401) {
+                    App.IziToast.showErrorAlertBottom(App.ERROR_401)
+                } else {
+                    if (jqxHR.status === 403) {
+                        App.IziToast.showErrorAlertBottom(App.ERROR_403)
+                    } else {
+                        if (jqxHR.responseJSON.message) {
+                            App.IziToast.showErrorAlertBottom(jqxHR.responseJSON.message)
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlertBottom(item)
+                            })
+                        }
+                    }
+                }
             })
         }
-
 
         page.initializeControlEvent = () => {
 

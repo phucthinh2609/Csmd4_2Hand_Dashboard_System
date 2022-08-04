@@ -11,7 +11,6 @@ import com.mvpt.service.type.TypeService;
 import com.mvpt.service.unit.UnitService;
 import com.mvpt.service.user.UserService;
 import com.mvpt.utils.AppUtils;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,37 +58,45 @@ public class CartRestController {
     }
 
     @GetMapping("/cart-items")
+
     public ResponseEntity<?> getAllCartItem() {
+
+        Map<String, Object> result = new HashMap<>();
+
         Long typeId = 1L;
 
         Optional<CartDTO> cartDTO = cartService.getCartDTOByTypeId(typeId);
-
         Long cartId = Long.parseLong(cartDTO.get().getId());
 
         List<CartItemDTO> cartItemDTO = cartItemService.getAllCartItemDTOByCartId(cartId);
 
-        return new ResponseEntity<>(cartItemDTO, HttpStatus.OK);
+        result.put("cartDTO", cartDTO.get());
+        result.put("cartItemDTO", cartItemDTO);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/delete/{id}")
     public ResponseEntity<?> removeCartItem(@Validated @PathVariable Long id) {
-        Optional<CartItemDTO> cartItemDTO = cartItemService.getCartDTOById(id);
+        Optional<CartItemDTO> cartItemDTO = cartItemService.getCartItemDTOById(id);
         Optional<CartDTO> cartDTO = cartService.getCartDTOById(Long.valueOf(cartItemDTO.get().getCart().getId()));
 
-        BigDecimal totalPrice = new BigDecimal(cartItemDTO.get().getTotalPrice());
-        int totalQuantity = Integer.parseInt(cartItemDTO.get().getQuantity());
+        Cart newCart = cartService.reduceGrandTotalAndQuantityTotal(cartItemDTO.get());
 
-        BigDecimal grandTotal = new BigDecimal(cartDTO.get().getGrandTotal());
-        int quantityTotal = Integer.parseInt(cartDTO.get().getQuantityTotal());
-
-        cartDTO.get().setGrandTotal(String.valueOf(grandTotal.subtract(totalPrice)));
-        cartDTO.get().setQuantityTotal(String.valueOf(quantityTotal - totalQuantity));
-
-        cartService.save(cartDTO.get().toCart());
+//        BigDecimal totalPrice = new BigDecimal(cartItemDTO.get().getTotalPrice());
+//        int totalQuantity = Integer.parseInt(cartItemDTO.get().getQuantity());
+//
+//        BigDecimal grandTotal = new BigDecimal(cartDTO.get().getGrandTotal());
+//        int quantityTotal = Integer.parseInt(cartDTO.get().getQuantityTotal());
+//
+//        cartDTO.get().setGrandTotal(String.valueOf(grandTotal.subtract(totalPrice)));
+//        cartDTO.get().setQuantityTotal(String.valueOf(quantityTotal - totalQuantity));
+//
+//        cartService.save(cartDTO.get().toCart());
 
         cartItemService.remove(id);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(newCart.toCartDTO(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -135,8 +142,9 @@ public class CartRestController {
 
         Long userId = userOptional.get().getId();
         Long productId = productOptional.get().getId();
+        Long typeId = typeOptional.get().getId();
 
-        Optional<CartDTO> currentCartDTO = cartService.getCartDTOByUserId(userId);
+        Optional<CartDTO> currentCartDTO = cartService.getCartDTOByTypeIdAndUserId(typeId, userId);
         Optional<CartItemDTO> currentCartItemDTO = cartItemService.getCartItemDTOByProductId(productId);
 
         BigDecimal price = new BigDecimal(cartImportDTO.getPrice());
@@ -218,41 +226,19 @@ public class CartRestController {
 
             }else {
                 //Reduce grandTotal, quantityTotal cua currentCartDTO  - currentCartItemDTO cu
-
                 cartService.reduceGrandTotalAndQuantityTotal(currentCartItemDTO.get());
 
-                //Increment grandTotal, quantityTotal cua currentCartDTO - newCartItemDTO moi
-
-                cartService.incrementGrandTotalAndQuantityTotal(newCartItemDTO);
-
-                //cap nhat lai price, quantity, total price Cart Item
-
-                BigDecimal currentCartItemPrice = new BigDecimal(Long.parseLong(currentCartItemDTO.get().getPrice()));
-                int currentCartItemQuantity = Integer.parseInt(currentCartItemDTO.get().getQuantity());
-                BigDecimal currentCartItemTotalPrice = new BigDecimal(Long.parseLong(currentCartItemDTO.get().getTotalPrice()));
-
+                //Cap nhat lai price, quantity, total price Cart Item
                 currentCartItemDTO.get().setPrice(String.valueOf(price));
-                currentCartItemDTO.get().setQuantity(String.valueOf(currentCartItemQuantity + quantity));
-                currentCartItemDTO.get().setTotalPrice(String.valueOf(currentCartItemTotalPrice.add(new BigDecimal(Long.parseLong(totalPrice)))));
+                currentCartItemDTO.get().setQuantity(String.valueOf(quantity));
+                currentCartItemDTO.get().setTotalPrice(String.valueOf(new BigDecimal(Long.parseLong(totalPrice))));
 
                 cartItemService.save(currentCartItemDTO.get().toCartItem());
                 String success = "Update cart item successful";
                 result.put("success", success);
 
-                BigDecimal grandTotalUp = new BigDecimal(Long.parseLong(currentCartDTO.get().getGrandTotal()));
-                int quantityUp = Integer.parseInt(currentCartDTO.get().getQuantityTotal());
-
-                currentCartDTO.get().setGrandTotal(String.valueOf(grandTotalUp.add(new BigDecimal(Long.parseLong(totalPrice)))));
-                currentCartDTO.get().setQuantityTotal(String.valueOf(quantityUp + quantity));
-
-                cartService.save(currentCartDTO.get().toCart());
-
-//                try {
-//
-//
-//                }catch (Exception ex) {
-//                    throw new DataInputException("Please contact to management");
-//                }
+                //Increment grandTotal, quantityTotal cua currentCartDTO - newCartItemDTO moi
+                cartService.incrementGrandTotalAndQuantityTotal(currentCartItemDTO.get());
 
                 return new ResponseEntity<>(result, HttpStatus.OK);
             }

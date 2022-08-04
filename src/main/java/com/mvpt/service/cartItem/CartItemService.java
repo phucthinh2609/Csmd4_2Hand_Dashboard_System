@@ -12,7 +12,7 @@ public interface CartItemService extends IGeneralService<CartItem> {
 
     List<CartItemDTO> getAllCartItemDTOByCartId(Long cartId);
 
-    Optional<CartItemDTO> getCartDTOById(Long id);
+    Optional<CartItemDTO> getCartItemDTOById(Long id);
 
     Optional<CartItemDTO> getCartItemDTOByProductId(Long productId);
 
