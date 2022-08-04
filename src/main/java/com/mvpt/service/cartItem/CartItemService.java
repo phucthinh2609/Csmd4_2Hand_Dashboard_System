@@ -10,8 +10,10 @@ import java.util.Optional;
 public interface CartItemService extends IGeneralService<CartItem> {
     List<CartItemDTO> getAllCartDTOByDeletedIsFalse();
 
+    List<CartItemDTO> getAllCartItemDTOByCartId(Long cartId);
+
     Optional<CartItemDTO> getCartDTOById(Long id);
 
-    Optional<CartItemDTO> getCartItemDTOByProductId(Long id);
+    Optional<CartItemDTO> getCartItemDTOByProductId(Long productId);
 
 }

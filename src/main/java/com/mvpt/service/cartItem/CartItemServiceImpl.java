@@ -28,6 +28,11 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
+    public List<CartItemDTO> getAllCartItemDTOByCartId(Long cartId) {
+        return cartItemRepository.getAllCartItemDTOByCartId(cartId);
+    }
+
+    @Override
     public Optional<CartItem> findById(Long id) {
         return cartItemRepository.findById(id);
     }
@@ -38,8 +43,8 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public Optional<CartItemDTO> getCartItemDTOByProductId(Long id) {
-        return cartItemRepository.getCartItemDTOByProductId(id);
+    public Optional<CartItemDTO> getCartItemDTOByProductId(Long productId) {
+        return cartItemRepository.getCartItemDTOByProductId(productId);
     }
 
     @Override

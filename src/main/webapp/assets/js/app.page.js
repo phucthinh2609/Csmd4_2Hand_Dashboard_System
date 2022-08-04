@@ -10,10 +10,9 @@ class App {
     static ERROR_500 = "Lưu dữ liệu không thành công, vui lòng liên hệ quản trị hệ thống.";
     static SUCCESS_CREATED = "Successful data generation !";
     static SUCCESS_UPDATED = "Data update successful !";
-    static SUCCESS_DEPOSIT = "Successful deposit transaction !";
-    static SUCCESS_WITHDRAW = "Successful withdraw transaction !";
-    static SUCCESS_TRANSFER = "Successful transfer transaction !";
     static SUCCESS_SUSPEND = "Succeeded client suspension !";
+    static SUCCESS_DELETED = "Deleted client suspension !";
+
 
     static SweetAleart = class {
         static showSuccessAlert(t) {
@@ -57,6 +56,15 @@ class App {
             })
         }
 
+        static showSuccessAlertBottom(title) {
+            iziToast.success({
+                title: 'SUCCESS',
+                position: 'bottomLeft',
+                timeout: 2500,
+                message: title
+            })
+        }
+
         static showErrorAlert(title) {
             iziToast.error({
                 title: 'ERROR',
@@ -65,6 +73,16 @@ class App {
                 message: title
             })
         }
+
+        static showErrorAlertBottom(title) {
+            iziToast.error({
+                title: 'ERROR',
+                position: 'bottomLeft',
+                timeout: 2500,
+                message: title
+            })
+        }
+
     }
 
     static formatNumber() {
@@ -146,8 +164,16 @@ class App {
             </td>
             <td scope="col">${item.title}</td>
             <td scope="col">${item.sku}</td>
-            <td scope="col">${item.category.name}<td scope="col">
-                <span class="badge badge-pill badge-soft-success font-size-12">${item.imported === true ? "Imported" : "unImported"}</span>
+            <td scope="col">${item.category.name}</td>
+            <td>
+                <div class="input-group" style="width: 104px">
+                    <input type="number" value="${item.quantity}" class="form-control price">
+                </div>
+            </td>
+            <td>
+                <div class="input-group" style="width: 79px">
+                    <input type="number" value="${item.quantity}" class="form-control quantity">
+                </div>
             </td>
             <td scope="col">
                 <button class="btn btn-outline-primary add-cart-item">
@@ -163,21 +189,13 @@ class App {
     static getTempRowCartItemInCart(item) {
         let str = '';
         str += `
-        <tr id="cart_tr_1">
+        <tr id="cart_tr_${item.id}">
             <td>1</td>
             <td>
                 <h5 class="font-size-14 text-truncate title">${item.product.title}</h5>
             </td>
-            <td>
-                <input type="text" value="${item.price}" class="form-control price" style="width: 90px" value="0">                                        
-            </td>
-            <td>
-                <div style="width: 120px;">
-                    <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                        <input type="text" value="${item.quantity}" class="form-control quantity">
-                    </div>
-                </div>
-            </td>
+            <td>${item.price}</td>
+            <td>${item.quantity}</td>
             <td class="total-cart">${item.totalPrice}</td>
             <td>
                 <a href="#" class="action-icon text-danger delete-cart-item">
@@ -248,12 +266,13 @@ class Cart {
 }
 
 class CartImport {
-    constructor(userId, productId, quantity, price, typeId) {
+    constructor(userId, productId, quantity, price, typeId, unitId) {
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
         this.typeId = typeId;
+        this.unitId = unitId;
     }
 }
 

@@ -35,6 +35,10 @@ public class CartImportDTO implements Validator {
     @Pattern(regexp = "^[0-9]+$", message = "Type ID only digit")
     private String typeId;
 
+    @NotBlank(message = "Type ID is required")
+    @Pattern(regexp = "^[0-9]+$", message = "Type ID only digit")
+    private String unitId;
+
     @Override
     public boolean supports(Class<?> clazz) {
         return CartImportDTO.class.isAssignableFrom(clazz);

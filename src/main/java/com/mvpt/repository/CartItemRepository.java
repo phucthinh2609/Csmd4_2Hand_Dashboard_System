@@ -31,6 +31,17 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
                 "ci.cart, " +
                 "ci.product) " +
             "FROM CartItem ci " +
+            "WHERE ci.cart.id = ?1 ")
+    List<CartItemDTO> getAllCartItemDTOByCartId(Long cartId);
+
+    @Query("SELECT NEW com.mvpt.model.dto.CartItemDTO (" +
+                "ci.id, " +
+                "ci.price, " +
+                "ci.quantity, " +
+                "ci.totalPrice, " +
+                "ci.cart, " +
+                "ci.product) " +
+            "FROM CartItem ci " +
             "WHERE ci.id = ?1 ")
     Optional<CartItemDTO> getCartItemDTOById(Long id);
 
@@ -43,5 +54,6 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "ci.product) " +
             "FROM CartItem ci " +
             "WHERE ci.product.id = ?1 ")
-    Optional<CartItemDTO> getCartItemDTOByProductId(Long id);
+    Optional<CartItemDTO> getCartItemDTOByProductId(Long productId);
+
 }

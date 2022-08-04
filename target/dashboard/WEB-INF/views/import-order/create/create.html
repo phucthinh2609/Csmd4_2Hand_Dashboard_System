@@ -113,7 +113,8 @@
                                                     <th scope="col">Title</th>
                                                     <th scope="col">Sku</th>
                                                     <th scope="col">Type</th>
-                                                    <th scope="col">status</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
                                                     <th scope="col">Option</th>
                                                 </tr>
                                             </thead>
@@ -247,9 +248,9 @@
             // document.querySelector(".dataTables_filter").style.display = 'none';
             // document.querySelector(".pagination-rounded").style.display = 'none';
 
-            $("button.right-bar-toggle").on("click", () => {
-                $("body").addClass("right-bar-enabled");
-            });
+            // $("button.right-bar-toggle").on("click", () => {
+            //     $("body").addClass("right-bar-enabled");
+            // });
         });
 
         let product = new Product();
@@ -261,13 +262,17 @@
         let cartImport = new CartImport();
 
         let productId;
+        let cartItemId;
 
         let page = {
             url: {
                 getAllProducts: App.BASER_URL + "/products",
                 getProductById: App.BASER_URL + "/products/",
 
-                saveNew: App.BASER_URL + "/carts/create"
+                getAllCartItems: App.BASER_URL + "/carts/cart-items",
+
+                saveNew: App.BASER_URL + "/carts/create",
+                delete: App.BASER_URL + "/carts/delete/"
 
             },
             elements: {
@@ -289,13 +294,14 @@
         }
 
         page.elements.tbListProducts = $('#tbListProducts');
+        page.elements.tbListCartItems = $('#tbListCartItems');
 
         page.elements.btnAddCartIem = $('button.add-cart-item');
         page.elements.btnShowCart = $('#btnShowCart');
         page.elements.btnCheckOut = $('#btnCheckOut');
 
-        page.elements.titlePrdCart = $('.title');
-        page.elements.pricePrdCart = $('.price');
+        page.elements.titleProduct = $('#tbListProducts .title');
+        page.elements.priceProduct = $('#tbListProducts .price');
         page.elements.quantityPrdCart = $('.quantity');
         page.elements.totalPricePrdCart = $('.total-cart');
         page.elements.btnDeleteCartItem = $('.delete-cart-item');
@@ -310,11 +316,6 @@
             let str = App.getTempRowCartItemInCart(cartItem);
             $('#tbListCartItems tbody').prepend(str);
         }
-
-        // page.commands.replaceRowUser = () =>{
-        //     let str = App.getTempRowProductInCreateImportOrder(product);
-        //     $('#tr_' + product.id).replaceWith(str);
-        // }
 
         page.commands.clickRowProduct = () => {
             $("#tbListProducts tbody tr").on("click", function () {
@@ -337,6 +338,15 @@
 
                 page.commands.unbindAll();
             });
+
+        }
+
+        page.commands.clickRowCart = () => {
+            $("#tbListCartItems tbody tr").on("click", function () {
+                cartItemId = $(this).attr('id').replace('cart_tr_', '');
+
+                // page.commands.unbindAll();
+            });
         }
 
         page.loadData.loadProducts = () => {
@@ -358,33 +368,62 @@
             })
         }
 
+        page.loadData.loadCartItems = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllCartItems
+            })
+            .done((data) => {
+                $('#tbListCartItems tbody').html('');
+                $.each(data, (i, item) => {
+                    cartItem = item;
+                    console.log(cartItem);
+                    page.commands.addRowCartItem();
+                })
+
+                page.commands.clickRowCart();
+            })
+        };
+
+        page.commands.doRemoveCartItem = () => {
+            let choice = confirm("Do you really wanna delete this cart item?");
+            if (choice === true) {
+                $.ajax({
+                    "type": "POST",
+                    "headers": {
+                        'accept': 'application/json',
+                        'content-Type': 'application/json'
+                    },
+                    "url": page.url.delete + cartItemId
+
+                }).done( () => {
+                    // App.SweetAleart.showSuccessAlert(App.SUCCESS_DELETED);
+                    $("#cart_tr_" + cartItem).remove();
+
+                }).fail( () => {
+                    alert("Delete cart item failed")
+                    // App.SweetAleart.showErrorAlert("Delete cart item failed");
+                });
+            }
+        }
+
+
+
         page.commands.unbindAll = () => {
             $('.add-cart-item').off();
         }
 
         page.commands.doAddCartItem = () => {
-            // product.id = productId;
-            // user.id = 1;
-            // type.id = 1;
-            // situation = 2;
-            //
-            // cart.user = user;
-            // cart.type = type;
-            // cart.situation = situation;
-            //
-            // cartItem.id = 0;
-            // cartItem.price = 0;
-            // cartItem.quantity = 1;
-            // cartItem.totalPrice = 0;
-            //
-            // cartItem.cart = cart;
-            // cartItem.product = product;
-
             cartImport.userId = 1;
             cartImport.productId = productId;
-            cartImport.quantity = 1;
-            cartImport.price = 10000;
+            cartImport.quantity = $(`#tr_${productId} .quantity`).val();
+            cartImport.price = $(`#tr_${productId} .price`).val();
             cartImport.typeId = 1;
+            cartImport.unitId = 1;
 
             $.ajax({
                 "headers": {
@@ -398,9 +437,9 @@
             .done((data) => {
                 console.log(data);
                 if (data.successFirst){
-                    App.IziToast.showSuccessAlert(data.successFirst);
+                    App.IziToast.showSuccessAlertBottom(data.successFirst);
                 }
-                App.IziToast.showSuccessAlert(data.success);
+                App.IziToast.showSuccessAlertBottom(data.success);
             })
             .fail((jqxHR) => {
                 console.log(jqxHR);
@@ -412,6 +451,16 @@
 
             page.elements.tbListProducts.on('click', 'button.add-cart-item',() => {
                 page.commands.doAddCartItem();
+            })
+
+            page.elements.btnShowCart.on('click', () => {
+                $("body").addClass("right-bar-enabled");
+
+                page.loadData.loadCartItems();
+            })
+
+            page.elements.tbListCartItems.on('click', '.delete-cart-item', () => {
+                page.commands.doRemoveCartItem();
             })
         }
 
