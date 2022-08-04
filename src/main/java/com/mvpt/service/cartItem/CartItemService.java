@@ -12,5 +12,6 @@ public interface CartItemService extends IGeneralService<CartItem> {
 
     Optional<CartItemDTO> getCartDTOById(Long id);
 
+    Optional<CartItemDTO> getCartItemDTOByProductId(Long id);
 
 }

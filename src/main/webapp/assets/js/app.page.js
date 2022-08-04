@@ -247,6 +247,16 @@ class Cart {
     }
 }
 
+class CartImport {
+    constructor(userId, productId, quantity, price, typeId) {
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
+        this.typeId = typeId;
+    }
+}
+
 class CarIem {
     constructor(id, price, quantity, totalPrice, cart, product) {
         this.id = id;

@@ -38,6 +38,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public Optional<CartDTO> getCartDTOByUserId(Long id) {
+        return cartRepository.getCartDTOByUserId(id);
+    }
+
+    @Override
     public Cart getById(Long id) {
         return cartRepository.getById(id);
     }

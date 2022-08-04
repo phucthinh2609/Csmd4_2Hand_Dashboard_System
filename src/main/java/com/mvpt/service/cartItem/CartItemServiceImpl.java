@@ -24,7 +24,7 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public List<CartItemDTO> getAllCartDTOByDeletedIsFalse() {
-        return cartItemRepository.getAllCartDTOByDeletedIsFalse();
+        return cartItemRepository.getAllCartItemDTOByDeletedIsFalse();
     }
 
     @Override
@@ -34,7 +34,12 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public Optional<CartItemDTO> getCartDTOById(Long id) {
-        return cartItemRepository.getCartDTOById(id);
+        return cartItemRepository.getCartItemDTOById(id);
+    }
+
+    @Override
+    public Optional<CartItemDTO> getCartItemDTOByProductId(Long id) {
+        return cartItemRepository.getCartItemDTOByProductId(id);
     }
 
     @Override

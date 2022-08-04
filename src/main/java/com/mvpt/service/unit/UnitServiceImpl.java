@@ -4,10 +4,14 @@ import com.mvpt.model.Unit;
 import com.mvpt.repository.UnitRepository;
 import com.mvpt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class UnitServiceImpl implements UnitService{
 
     @Autowired

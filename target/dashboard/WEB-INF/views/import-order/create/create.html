@@ -118,24 +118,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id="tr_1">
-                                                    <td><span class="select-tab unselected"></span></td>
-                                                    <td scope="col">
-                                                        <img style="width: 70px;" src="/assets/images/product/img-3.png" alt="">
-                                                    </td>
-                                                    <td scope="col">Áo pull</td>
-                                                    <td scope="col">HQ-AP-1001</td>
-                                                    <td scope="col">Áo</td>
-                                                    <td scope="col">
-                                                        <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <button class="btn btn-outline-primary">
-                                                            <i class="fas fa-plus"></i>
-                                                            Add
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -276,6 +258,7 @@
         let user = new User();
         let situation = new Situation();
         let type = new Type();
+        let cartImport = new CartImport();
 
         let productId;
 
@@ -380,37 +363,48 @@
         }
 
         page.commands.doAddCartItem = () => {
-            product.id = productId;
-            user.id = 1;
-            type.id = 1;
-            situation = 2;
+            // product.id = productId;
+            // user.id = 1;
+            // type.id = 1;
+            // situation = 2;
+            //
+            // cart.user = user;
+            // cart.type = type;
+            // cart.situation = situation;
+            //
+            // cartItem.id = 0;
+            // cartItem.price = 0;
+            // cartItem.quantity = 1;
+            // cartItem.totalPrice = 0;
+            //
+            // cartItem.cart = cart;
+            // cartItem.product = product;
 
-            cart.user = user;
-            cart.type = type;
-            cart.situation = situation;
-
-            cartItem.id = 0;
-            cartItem.price = 0;
-            cartItem.quantity = 1;
-            cartItem.totalPrice = 0;
-
-            cartItem.cart = cart;
-            cartItem.product = product;
+            cartImport.userId = 1;
+            cartImport.productId = productId;
+            cartImport.quantity = 1;
+            cartImport.price = 10000;
+            cartImport.typeId = 1;
 
             $.ajax({
                 "headers": {
-                    "accept" : "application/json",
+                    "accept": "application/json",
                     "content-type": "application/json"
                 },
                 "type": "POST",
-                "url": "http://localhost:8080/api/carts/create"
-                // "url": page.url.saveNew
+                "url": page.url.saveNew,
+                "data": JSON.stringify(cartImport)
             })
             .done((data) => {
                 console.log(data);
+                if (data.successFirst){
+                    App.IziToast.showSuccessAlert(data.successFirst);
+                }
+                App.IziToast.showSuccessAlert(data.success);
             })
-
-
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
         }
 
 

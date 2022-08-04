@@ -1,7 +1,6 @@
 package com.mvpt.repository;
 
 import com.mvpt.model.CartItem;
-import com.mvpt.model.dto.CartDTO;
 import com.mvpt.model.dto.CartItemDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +21,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
                 "ci.product) " +
             "FROM CartItem ci " +
             "WHERE ci.deleted = false ")
-    List<CartItemDTO> getAllCartDTOByDeletedIsFalse();
+    List<CartItemDTO> getAllCartItemDTOByDeletedIsFalse();
 
     @Query("SELECT NEW com.mvpt.model.dto.CartItemDTO (" +
                 "ci.id, " +
@@ -33,5 +32,16 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
                 "ci.product) " +
             "FROM CartItem ci " +
             "WHERE ci.id = ?1 ")
-    Optional<CartItemDTO> getCartDTOById(Long id);
+    Optional<CartItemDTO> getCartItemDTOById(Long id);
+
+    @Query("SELECT NEW com.mvpt.model.dto.CartItemDTO (" +
+            "ci.id, " +
+            "ci.price, " +
+            "ci.quantity, " +
+            "ci.totalPrice, " +
+            "ci.cart, " +
+            "ci.product) " +
+            "FROM CartItem ci " +
+            "WHERE ci.product.id = ?1 ")
+    Optional<CartItemDTO> getCartItemDTOByProductId(Long id);
 }

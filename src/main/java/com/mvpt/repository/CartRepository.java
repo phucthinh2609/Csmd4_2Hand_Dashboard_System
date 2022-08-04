@@ -36,4 +36,16 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
             "FROM Cart c " +
             "WHERE c.id = ?1 ")
     Optional<CartDTO> getCartDTOById(Long id);
+
+    @Query("SELECT NEW com.mvpt.model.dto.CartDTO (" +
+                "c.id, " +
+                "c.grandTotal, " +
+                "c.quantityTotal, " +
+                "c.user, " +
+                "c.type, " +
+                "c.situation," +
+                "c.unit) " +
+            "FROM Cart c " +
+            "WHERE c.user.id = ?1 ")
+    Optional<CartDTO> getCartDTOByUserId(Long id);
 }
