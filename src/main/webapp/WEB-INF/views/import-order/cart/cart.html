@@ -236,6 +236,7 @@
                 getUnitById: App.BASER_URL + "/units/",
 
                 getAllCartItems: App.BASER_URL + "/carts/cart-items",
+                saveOrder: App.BASER_URL + "/orders/create",
 
                 delete: App.BASER_URL + "/carts/delete/",
 
@@ -300,7 +301,7 @@
                 cartItemId = $(this).attr('id').replace('tr_', '');
 
                 $('#tbListCartItems tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
-                $(`#tbListCartItems tbody tr#tr_${productId} td span.select-tab`).removeClass("unselected").addClass("selected");
+                $(`#tbListCartItems tbody tr#tr_${cartItemId} td span.select-tab`).removeClass("unselected").addClass("selected");
             });
 
             page.commands.unbindAll();
@@ -326,6 +327,8 @@
 
                 page.elements.quantityTotal.text(cart.quantityTotal);
                 page.elements.grandTotal.text(cart.grandTotal);
+
+                page.commands.clickRowCartItem();
             })
         };
 
@@ -458,6 +461,7 @@
                 "url": page.url.getUnitById + unitId
 
             }).done((data) => {
+                unit = data;
 
                 page.elements.codeUnit.text(data.code);
                 page.elements.addressUnit.text(data.locationRegion.address);
@@ -572,6 +576,23 @@
             })
         }
 
+        page.commands.doOrder = () => {
+            cart.unit = unit;
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveOrder,
+                "data": JSON.stringify(cart)
+            })
+            .done((item) => {
+
+            })
+        }
+
         page.commands.unbindAll = () => {
             $('.delete').off();
         }
@@ -603,6 +624,10 @@
 
             page.elements.btnCreateUnit.on('click', () => {
                 page.commands.doCreate();
+            })
+
+            page.elements.btnOrder.on('click', () => {
+                page.commands.doOrder();
             })
 
             page.elements.btnShowCreateUnitModal.on('click', () => {

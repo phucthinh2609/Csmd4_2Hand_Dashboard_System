@@ -14,6 +14,7 @@ import com.mvpt.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -160,7 +161,7 @@ public class CartRestController {
             //Tao moi Cart & CartItem
             newCartDTO.setId(String.valueOf(0L));
             newCartDTO.setGrandTotal(String.valueOf(price));
-            newCartDTO.setQuantityTotal(String.valueOf(1));
+            newCartDTO.setQuantityTotal(String.valueOf(quantity));
             newCartDTO.setUser(currentUserDTO);
             newCartDTO.setType(currentTypeDTO);
             newCartDTO.setSituation(currentSituationDTO);
@@ -244,4 +245,5 @@ public class CartRestController {
             }
         }
     }
+
 }

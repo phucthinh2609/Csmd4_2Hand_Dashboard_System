@@ -6,10 +6,12 @@ import com.mvpt.model.dto.UnitDTO;
 import com.mvpt.model.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface UnitRepository extends JpaRepository<Unit, Long> {
 
     @Query("SELECT NEW com.mvpt.model.dto.UnitDTO (" +

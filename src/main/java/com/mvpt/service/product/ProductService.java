@@ -17,4 +17,6 @@ public interface ProductService  extends IGeneralService<Product>{
     Boolean existsBySku(String sku);
 
     Optional<ProductDTO> findProductDTOBySkuAndIdIsNot(String sku, Long id);
+
+    List<ProductDTO> searchProductDTOByTileAndSku(String keySearch);
 }

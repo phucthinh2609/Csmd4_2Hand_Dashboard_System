@@ -95,4 +95,26 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "FROM Product p WHERE p.sku = ?1 AND p.id <> ?2 ")
     Optional<ProductDTO> findProductDTOBySkuAndIdIsNot(String sku, Long id);
 
+    @Query("SELECT NEW com.mvpt.model.dto.ProductDTO (" +
+                "p.id, " +
+                "p.title, " +
+                "p.sku, " +
+                "p.urlImage, " +
+                "p.description, " +
+                "p.price," +
+                "p.quantity," +
+                "p.sold," +
+                "p.available," +
+                "p.imported," +
+                "p.createdAt," +
+                "p.createdBy," +
+                "p.updatedAt," +
+                "p.updatedBy," +
+                "p.category) " +
+            "FROM Product p " +
+            "WHERE p.title LIKE %?1% " +
+                "OR p.sku LIKE %?1% ")
+    List<ProductDTO> searchProductDTOByTileAndSku(String keySearch);
+
+
 }

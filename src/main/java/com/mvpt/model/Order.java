@@ -1,10 +1,13 @@
 package com.mvpt.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mvpt.model.dto.CartDTO;
+import com.mvpt.model.dto.OrderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -17,6 +20,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "orders")
+@Accessors(chain = true)
 public class Order extends BaseEntity{
 
     @Id
@@ -48,4 +52,15 @@ public class Order extends BaseEntity{
 
     @OneToMany(targetEntity = OrderItem.class, mappedBy = "order", fetch = FetchType.EAGER)
     private Set<OrderItem> orderItems;
+
+    public OrderDTO toOrderDTO() {
+        return new OrderDTO()
+                .setId(String.valueOf(id))
+                .setGrandTotal(String.valueOf(grandTotal))
+                .setQuantityTotal(String.valueOf(quantityTotal))
+                .setUser(user.toUserDTO())
+                .setType(type.toTypeDTO())
+                .setSituation(situation.toSituationDTO())
+                .setUnit(unit.toUnitDTO());
+    }
 }

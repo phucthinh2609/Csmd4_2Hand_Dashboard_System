@@ -328,14 +328,12 @@
                     "content-type": "application/json"
                 },
                 "type": "GET",
-                "url": page.url.getProductById + productId,
+                // "url": page.url.getProductById + productId,
+                "url": "http://localhost:8080/api/products/" + productId
             })
             .done((data) => {
-                debugger
-                product =data;
+                product = data;
                 console.log(data);
-
-                $('#titleDet').text(product.title)
 
                 page.elements.titleDet.text(product.title);
                 page.elements.skuDet.text(product.sku);
@@ -346,9 +344,9 @@
                 page.elements.updatedByDet.text(product.updatedBy);
                 page.elements.descriptionDet.text(product.description);
                 // page.elements.urlImageDet.val(product.urlImage);
-            })
 
-            page.elements.modalDetail.modal('show');
+                page.elements.modalDetail.modal('show');
+            })
         }
 
         page.commands.doCreate = () => {
@@ -514,7 +512,7 @@
             })
 
             page.elements.footer.on('click', 'button.detail', () => {
-                page.elements.modalDetail.modal('show');
+                page.commands.handleShowDetailModal();
             })
 
             page.elements.btnCreate.on('click', () => {

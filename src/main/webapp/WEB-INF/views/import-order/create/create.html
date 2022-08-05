@@ -79,14 +79,8 @@
                                                     <div class="row">
 
                                                         <div class="col-sm-7">
-                                                            <input type="text" name="search" value=""
+                                                            <input type="text" id="search" name="search" value=""
                                                                    class="form-control mb-3" placeholder="Search...">
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <button type="submit"
-                                                                    class="btn btn-outline-primary mr-1 waves-effect waves-light">
-                                                                Search
-                                                            </button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -175,6 +169,13 @@
                                     <tr>
                                         <td colspan="6" style="text-align: right;">
                                             <p style="font-size:medium">
+                                                Total quantity: <strong id="totalQuantityCart" style="font-size:medium; text-align: right;"></strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" style="text-align: right;">
+                                            <p style="font-size:medium">
                                                 Total amount: <strong id="totalAmountCart" style="font-size:larger; text-align: right;"></strong>
                                             </p>
                                         </td>
@@ -252,7 +253,8 @@
                 getAllCartItems: App.BASER_URL + "/carts/cart-items",
 
                 saveNew: App.BASER_URL + "/carts/create",
-                delete: App.BASER_URL + "/carts/delete/"
+                delete: App.BASER_URL + "/carts/delete/",
+                search: App.BASER_URL + "/products/search/"
 
             },
             elements: {
@@ -286,7 +288,10 @@
         page.elements.totalPricePrdCart = $('.total-cart');
         page.elements.btnDeleteCartItem = $('.delete-cart-item');
 
+        page.elements.search = $('#search');
+
         page.elements.totalAmountCart = $('#totalAmountCart');
+        page.elements.totalQuantityCart = $('#totalQuantityCart');
 
 
         page.commands.addRowProduct = () =>{
@@ -341,14 +346,14 @@
                 "url": page.url.getAllProducts
             })
             .done((data) => {
-                console.log(data)
-
                 $('#tbListProducts tbody').html('');
 
                 $.each(data, (i, item) => {
                     product = item;
                     page.commands.addRowProduct();
                 })
+
+                page.commands.clickRowProduct();
             })
         }
 
@@ -362,11 +367,10 @@
                 "url": page.url.getAllCartItems
             })
             .done((data) => {
-
                 cart = data.cartDTO;
-                let grandTotal = cart.grandTotal;
 
-                page.elements.totalAmountCart.text(grandTotal);
+                page.elements.totalAmountCart.text(cart.grandTotal);
+                page.elements.totalQuantityCart.text(cart.quantityTotal);
 
                 $('#tbListCartItems tbody').html('');
                 $.each(data.cartItemDTO, (i, item) => {
@@ -450,6 +454,35 @@
             })
         }
 
+        page.commands.doSearch = () => {
+            let keySearch = page.elements.search.val();
+
+            if (keySearch === "") {
+                page.loadData.loadProducts();
+            }
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.search + keySearch,
+            })
+            .done((data) => {
+
+                $('#tbListProducts tbody').html('');
+
+                $.each(data, (i, item) => {
+                    product = item;
+                    page.commands.addRowProduct();
+                })
+
+                page.commands.clickRowProduct();
+            })
+        };
+
+
         page.initializeControlEvent = () => {
 
             page.elements.tbListProducts.on('click', 'button.add-cart-item',() => {
@@ -464,6 +497,10 @@
 
             page.elements.tbListCartItems.on('click', '.delete-cart-item', () => {
                 page.commands.doRemoveCartItem();
+            })
+
+            page.elements.search.on('input', () => {
+                page.commands.doSearch();
             })
         }
 

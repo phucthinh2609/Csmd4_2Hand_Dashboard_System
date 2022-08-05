@@ -75,4 +75,9 @@ public class ProductServiceImpl implements ProductService{
     public void remove(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<ProductDTO> searchProductDTOByTileAndSku(String keySearch) {
+        return productRepository.searchProductDTOByTileAndSku(keySearch);
+    }
 }

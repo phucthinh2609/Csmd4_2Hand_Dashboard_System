@@ -50,6 +50,13 @@ public class ProductRestController {
         return new ResponseEntity<>(productDTO.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/search/{keySearch}")
+    public ResponseEntity<?> doSearch(@PathVariable String keySearch) {
+        List<ProductDTO> productDTOList = productService.searchProductDTOByTileAndSku(keySearch);
+
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> doCreate(@Validated @RequestBody ProductDTO productDTO, BindingResult bindingResult) {
 
