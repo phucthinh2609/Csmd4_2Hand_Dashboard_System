@@ -1,6 +1,7 @@
 package com.mvpt.model.dto;
 
 import com.mvpt.model.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

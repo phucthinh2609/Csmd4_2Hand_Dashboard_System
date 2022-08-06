@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.Subject;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -115,11 +116,17 @@ public class CartRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
+        CartDTO cartDTO = new CartDTO();
+        CartItemDTO cartItemDTO = new CartItemDTO();
+
+
         Optional<Product> productOptional = productService.findById(Long.valueOf(cartImportDTO.getProductId()));
 
         if (!productOptional.isPresent()) {
             throw new DataInputException("Product ID is not define");
         }
+
+        cartItemDTO.setProduct(productOptional.get().toProductDTO());
 
         Optional<User> userOptional = userService.findById(Long.valueOf(cartImportDTO.getUserId()));
 
@@ -127,11 +134,15 @@ public class CartRestController {
             throw new DataInputException("User ID is not define");
         }
 
+        cartDTO.setUser(userOptional.get().toUserDTO());
+
         Optional<Type> typeOptional = typeService.findById(Long.valueOf(cartImportDTO.getTypeId()));
 
         if (!typeOptional.isPresent()) {
             throw new DataInputException("Type ID is not define");
         }
+
+        cartDTO.setType(typeOptional.get().toTypeDTO());
 
         Optional<Unit> unitOptional = unitService.findById(Long.valueOf(cartImportDTO.getUnitId()));
 
@@ -139,117 +150,18 @@ public class CartRestController {
             throw new DataInputException("Unit ID is not define");
         }
 
+        cartDTO.setUnit(unitOptional.get().toUnitDTO());
+
         Optional<Situation> situationOptional = situationService.findById(1L);
 
-        ProductDTO currentProductDTO = productOptional.get().toProductDTO();
-        UserDTO currentUserDTO = userOptional.get().toUserDTO();
-        TypeDTO currentTypeDTO = typeOptional.get().toTypeDTO();
-        SituationDTO currentSituationDTO = situationOptional.get().toSituationDTO();
-        UnitDTO currentUnitDTO = unitOptional.get().toUnitDTO();
+        cartDTO.setSituation(situationOptional.get().toSituationDTO());
 
-        Long userId = userOptional.get().getId();
-        Long productId = productOptional.get().getId();
-        Long typeId = typeOptional.get().getId();
+        cartItemDTO.setQuantity(cartImportDTO.getQuantity());
+        cartItemDTO.setPrice(cartImportDTO.getPrice());
 
-        Optional<CartDTO> currentCartDTO = cartService.getCartDTOByTypeIdAndUserId(typeId, userId);
-        Optional<CartItemDTO> currentCartItemDTO = cartItemService.getCartItemDTOByProductId(productId);
+        Map<String, Object> result = cartService.saveCartImportDTO(cartDTO, cartItemDTO);
 
-        BigDecimal price = new BigDecimal(cartImportDTO.getPrice());
-        int quantity = Integer.parseInt(cartImportDTO.getQuantity());
-        String totalPrice = String.valueOf(price.multiply(BigDecimal.valueOf(quantity)));
-
-        CartDTO newCartDTO = new CartDTO();
-        CartItemDTO newCartItemDTO = new CartItemDTO();
-
-        Map<String, Object> result = new HashMap<>();
-
-        if (!currentCartDTO.isPresent()) {
-            //Tao moi Cart & CartItem
-            newCartDTO.setId(String.valueOf(0L));
-            newCartDTO.setGrandTotal(String.valueOf(totalPrice));
-            newCartDTO.setQuantityTotal(String.valueOf(quantity));
-            newCartDTO.setUser(currentUserDTO);
-            newCartDTO.setType(currentTypeDTO);
-            newCartDTO.setSituation(currentSituationDTO);
-            newCartDTO.setUnit(currentUnitDTO);
-
-            try {
-                CartDTO currentNewCartDTO = cartService.save(newCartDTO.toCart()).toCartDTO();
-
-                String successFirst = "Add a new cart successful";
-                result.put("successCartCre", successFirst);
-
-                newCartItemDTO.setId(String.valueOf(0L));
-                newCartItemDTO.setPrice(String.valueOf(price));
-                newCartItemDTO.setQuantity(String.valueOf(quantity));
-                newCartItemDTO.setTotalPrice(totalPrice);
-                newCartItemDTO.setCart(currentNewCartDTO);
-                newCartItemDTO.setProduct(currentProductDTO);
-
-                try {
-                    cartItemService.save(newCartItemDTO.toCartItem());
-
-                    String success = "Add a new cart item successful";
-                    result.put("success", success);
-
-                }catch (Exception ex) {
-                    throw new DataInputException("Please contact to management");
-                }
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-
-            }catch (Exception ex) {
-                throw new DataInputException("Please contact to management");
-            }
-
-        } else {
-            if (!currentCartItemDTO.isPresent()) {
-                //Tao moi CartItem && Cap nhat grandTotal, grandQuantity
-                newCartItemDTO.setId(String.valueOf(0L));
-                newCartItemDTO.setPrice(String.valueOf(price));
-                newCartItemDTO.setQuantity(String.valueOf(quantity));
-                newCartItemDTO.setTotalPrice(totalPrice);
-                newCartItemDTO.setCart(currentCartDTO.get());
-                newCartItemDTO.setProduct(currentProductDTO);
-
-                try {
-                    cartItemService.save(newCartItemDTO.toCartItem()).toCartItemDTO();
-                    String success = "Add a new cart item successful";
-                    result.put("success", success);
-
-                    BigDecimal grandTotalUp = new BigDecimal(Long.parseLong(currentCartDTO.get().getGrandTotal()));
-                    int quantityUp = Integer.parseInt(currentCartDTO.get().getQuantityTotal());
-
-                    currentCartDTO.get().setGrandTotal(String.valueOf(grandTotalUp.add(new BigDecimal(Long.parseLong(totalPrice)))));
-                    currentCartDTO.get().setQuantityTotal(String.valueOf(quantityUp + quantity));
-
-                    cartService.save(currentCartDTO.get().toCart());
-
-                }catch (Exception ex) {
-                    throw new DataInputException("Please contact to management");
-                }
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-
-            }else {
-                //Reduce grandTotal, quantityTotal cua currentCartDTO  - currentCartItemDTO cu
-                cartService.reduceGrandTotalAndQuantityTotal(currentCartItemDTO.get());
-
-                //Cap nhat lai price, quantity, total price Cart Item
-                currentCartItemDTO.get().setPrice(String.valueOf(price));
-                currentCartItemDTO.get().setQuantity(String.valueOf(quantity));
-                currentCartItemDTO.get().setTotalPrice(String.valueOf(new BigDecimal(Long.parseLong(totalPrice))));
-
-                cartItemService.save(currentCartItemDTO.get().toCartItem());
-                String success = "Update cart item successful";
-                result.put("success", success);
-
-                //Increment grandTotal, quantityTotal cua currentCartDTO - newCartItemDTO moi
-                cartService.incrementGrandTotalAndQuantityTotal(currentCartItemDTO.get());
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-        }
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
 
@@ -262,11 +174,17 @@ public class CartRestController {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
+        CartDTO cartDTO = new CartDTO();
+        CartItemDTO cartItemDTO = new CartItemDTO();
+
+
         Optional<Product> productOptional = productService.findById(Long.valueOf(cartPurchaseDTO.getProductId()));
 
         if (!productOptional.isPresent()) {
             throw new DataInputException("Product ID is not define");
         }
+
+        cartItemDTO.setProduct(productOptional.get().toProductDTO());
 
         Optional<User> userOptional = userService.findById(Long.valueOf(cartPurchaseDTO.getUserId()));
 
@@ -274,11 +192,15 @@ public class CartRestController {
             throw new DataInputException("User ID is not define");
         }
 
+        cartDTO.setUser(userOptional.get().toUserDTO());
+
         Optional<Type> typeOptional = typeService.findById(Long.valueOf(cartPurchaseDTO.getTypeId()));
 
         if (!typeOptional.isPresent()) {
             throw new DataInputException("Type ID is not define");
         }
+
+        cartDTO.setType(typeOptional.get().toTypeDTO());
 
         Optional<Unit> unitOptional = unitService.findById(Long.valueOf(cartPurchaseDTO.getUnitId()));
 
@@ -286,123 +208,18 @@ public class CartRestController {
             throw new DataInputException("Unit ID is not define");
         }
 
+        cartDTO.setUnit(unitOptional.get().toUnitDTO());
+
         Optional<Situation> situationOptional = situationService.findById(1L);
 
-        ProductDTO currentProductDTO = productOptional.get().toProductDTO();
-        UserDTO currentUserDTO = userOptional.get().toUserDTO();
-        TypeDTO currentTypeDTO = typeOptional.get().toTypeDTO();
-        SituationDTO currentSituationDTO = situationOptional.get().toSituationDTO();
-        UnitDTO currentUnitDTO = unitOptional.get().toUnitDTO();
+        cartDTO.setSituation(situationOptional.get().toSituationDTO());
 
-        Long userId = userOptional.get().getId();
-        Long productId = productOptional.get().getId();
-        Long typeId = typeOptional.get().getId();
+        cartItemDTO.setQuantity(cartPurchaseDTO.getQuantity());
 
-        Optional<CartDTO> currentCartDTO = cartService.getCartDTOByTypeIdAndUserId(typeId, userId);
-        Optional<CartItemDTO> currentCartItemDTO = cartItemService.getCartItemDTOByProductId(productId);
+        //Tao Cart trong service
 
-        //Tach ham sang service
+        Map<String, Object> result = cartService.saveCartPurchaseDTO(cartDTO, cartItemDTO);
 
-        BigDecimal price = new BigDecimal(currentProductDTO.getPrice());
-        int quantity = Integer.parseInt(cartPurchaseDTO.getQuantity());
-        String totalPrice = String.valueOf(price.multiply(BigDecimal.valueOf(quantity)));
-
-        //Bat Quantity
-        if (quantity > Long.parseLong(currentProductDTO.getQuantity())) {
-            throw new DataInputException("The number of items has been exceeded");
-        }
-
-        CartDTO newCartDTO = new CartDTO();
-        CartItemDTO newCartItemDTO = new CartItemDTO();
-
-        Map<String, Object> result = new HashMap<>();
-
-        if (!currentCartDTO.isPresent()) {
-            //Tao moi Cart
-            newCartDTO.setId(String.valueOf(0L));
-            newCartDTO.setGrandTotal(String.valueOf(totalPrice));
-            newCartDTO.setQuantityTotal(String.valueOf(quantity));
-            newCartDTO.setUser(currentUserDTO);
-            newCartDTO.setType(currentTypeDTO);
-            newCartDTO.setSituation(currentSituationDTO);
-            newCartDTO.setUnit(currentUnitDTO);
-
-            try {
-                CartDTO currentNewCartDTO = cartService.save(newCartDTO.toCart()).toCartDTO();
-
-                String successFirst = "Add a new cart successful";
-                result.put("successCartCre", successFirst);
-
-                //Tao moi CartItem
-                newCartItemDTO.setId(String.valueOf(0L));
-                newCartItemDTO.setPrice(String.valueOf(price));
-                newCartItemDTO.setQuantity(String.valueOf(quantity));
-                newCartItemDTO.setTotalPrice(totalPrice);
-                newCartItemDTO.setCart(currentNewCartDTO);
-                newCartItemDTO.setProduct(currentProductDTO);
-
-                try {
-                    cartItemService.save(newCartItemDTO.toCartItem());
-
-                    String success = "Add a new cart item successful";
-                    result.put("success", success);
-
-                }catch (Exception ex) {
-                    throw new DataInputException("Please contact to management");
-                }
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-
-            }catch (Exception ex) {
-                throw new DataInputException("Please contact to management");
-            }
-
-        } else {
-            if (!currentCartItemDTO.isPresent()) {
-                //Tao moi CartItem && Cap nhat grandTotal, grandQuantity
-                newCartItemDTO.setId(String.valueOf(0L));
-                newCartItemDTO.setPrice(String.valueOf(price));
-                newCartItemDTO.setQuantity(String.valueOf(quantity));
-                newCartItemDTO.setTotalPrice(totalPrice);
-                newCartItemDTO.setCart(currentCartDTO.get());
-                newCartItemDTO.setProduct(currentProductDTO);
-
-                try {
-                    cartItemService.save(newCartItemDTO.toCartItem()).toCartItemDTO();
-                    String success = "Add a new cart item successful";
-                    result.put("success", success);
-
-                    BigDecimal grandTotalUp = new BigDecimal(Long.parseLong(currentCartDTO.get().getGrandTotal()));
-                    int quantityUp = Integer.parseInt(currentCartDTO.get().getQuantityTotal());
-
-                    currentCartDTO.get().setGrandTotal(String.valueOf(grandTotalUp.add(new BigDecimal(Long.parseLong(totalPrice)))));
-                    currentCartDTO.get().setQuantityTotal(String.valueOf(quantityUp + quantity));
-
-                    cartService.save(currentCartDTO.get().toCart());
-
-                }catch (Exception ex) {
-                    throw new DataInputException("Please contact to management");
-                }
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-
-            }else {
-                //Reduce grandTotal, quantityTotal cua currentCartDTO  - currentCartItemDTO cu
-                cartService.reduceGrandTotalAndQuantityTotal(currentCartItemDTO.get());
-
-                //Cap nhat lai quantity, total price Cart Item
-                currentCartItemDTO.get().setQuantity(String.valueOf(quantity));
-                currentCartItemDTO.get().setTotalPrice(String.valueOf(new BigDecimal(Long.parseLong(totalPrice))));
-
-                cartItemService.save(currentCartItemDTO.get().toCartItem());
-                String success = "Update cart item successful";
-                result.put("success", success);
-
-                //Increment grandTotal, quantityTotal cua currentCartDTO - newCartItemDTO moi
-                cartService.incrementGrandTotalAndQuantityTotal(currentCartItemDTO.get());
-
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-        }
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 }
