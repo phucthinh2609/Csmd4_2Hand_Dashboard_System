@@ -71,14 +71,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrderDTO(CartDTO cartDTO) {
+    public void saveImportOrderDTO(CartDTO cartDTO) {
 
         Long cartId = Long.valueOf(cartDTO.getId());
 
         //Tao order
         OrderDTO newOrderDTO = cartDTO.toOrderDTO();
 
-            Order currentNewOrder = orderRepository.save(newOrderDTO.toOrder());
+        Order currentNewOrder = orderRepository.save(newOrderDTO.toOrder());
         OrderDTO currentNewOrderDTO = currentNewOrder.toOrderDTO();
 
         Long orderId = currentNewOrder.getId();
@@ -117,6 +117,54 @@ public class OrderServiceImpl implements OrderService {
         }
 
         //Xoa Cart by Id & CartItem By CartId
+        cartRepository.deleteById(cartId);
+    }
+
+    @Override
+    public void savePurchaseOrderDTO(CartDTO cartDTO) {
+        Long cartId = Long.valueOf(cartDTO.getId());
+
+        //Tao order
+        OrderDTO newOrderDTO = cartDTO.toOrderDTO();
+
+        Order currentNewOrder = orderRepository.save(newOrderDTO.toOrder());
+        OrderDTO currentNewOrderDTO = currentNewOrder.toOrderDTO();
+
+        Long orderId = currentNewOrder.getId();
+
+        //Lay list CartItem
+        List<CartItemDTO> cartItemDTOList = cartItemRepository.getAllCartItemDTOByCartId(cartId);
+
+        //Add vao OrderItem
+
+        for (CartItemDTO cartItemDTO : cartItemDTOList){
+            //Phai set rieng Order tu currentNewOrder
+            OrderItemDTO newOrderItemDTO = cartItemDTO.toOrderItemDTO();
+            newOrderItemDTO.setOrder(currentNewOrderDTO);
+
+            orderItemRepository.save(newOrderItemDTO.toOrderItem());
+
+            //Product: giam available - tang sold
+
+            Optional<ProductDTO> currentProductDTO = productRepository.getProductDTOById(Long.valueOf(newOrderItemDTO.getProduct().getId()));
+
+            int quantityPrd = Integer.parseInt(currentProductDTO.get().getQuantity());
+            int availablePrd = Integer.parseInt(currentProductDTO.get().getAvailable());
+            int soldPrd = Integer.parseInt(currentProductDTO.get().getSold());
+
+            BigDecimal priceOrderItem = new BigDecimal(newOrderItemDTO.getPrice());
+            int quantityOrderItem = Integer.parseInt(newOrderItemDTO.getQuantity());
+
+            currentProductDTO.get().setAvailable(String.valueOf(availablePrd - quantityOrderItem));
+            currentProductDTO.get().setSold(String.valueOf(soldPrd + quantityOrderItem));
+
+            productRepository.save(currentProductDTO.get().toProduct());
+
+            //Xoa CartItem By CartId
+            cartItemRepository.deleteById(Long.valueOf(cartItemDTO.getId()));
+        }
+
+        //Xoa Cart by CartId
         cartRepository.deleteById(cartId);
     }
 

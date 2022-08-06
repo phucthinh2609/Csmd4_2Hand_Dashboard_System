@@ -125,9 +125,6 @@
             </div>
             <!-- End Page-content -->
 
-
-            <footer class="footer">
-            </footer>
         </div>
         <!-- end main content-->
 
@@ -157,6 +154,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th class="text-left">Product Name</th>
+                                    <th>Sku</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
@@ -167,14 +165,14 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6" style="text-align: right;">
+                                        <td colspan="7" style="text-align: right;">
                                             <p style="font-size:medium">
                                                 Total quantity: <strong id="totalQuantityCart" style="font-size:medium; text-align: right;"></strong>
                                             </p>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" style="text-align: right;">
+                                        <td colspan="7" style="text-align: right;">
                                             <p style="font-size:medium">
                                                 Total amount: <strong id="totalAmountCart" style="font-size:larger; text-align: right;"></strong>
                                             </p>
@@ -250,9 +248,9 @@
                 getAllProducts: App.BASER_URL + "/products",
                 getProductById: App.BASER_URL + "/products/",
 
-                getAllCartItems: App.BASER_URL + "/carts/cart-items",
+                getAllCartItems: App.BASER_URL + "/carts/cart-items/import",
 
-                saveNew: App.BASER_URL + "/carts/create",
+                saveNew: App.BASER_URL + "/carts/create/import",
                 delete: App.BASER_URL + "/carts/delete/",
                 search: App.BASER_URL + "/products/search/"
 
@@ -369,7 +367,7 @@
             .done((data) => {
                 cart = data.cartDTO;
 
-                page.elements.totalAmountCart.text(cart.grandTotal);
+                page.elements.totalAmountCart.text('$'+cart.grandTotal);
                 page.elements.totalQuantityCart.text(cart.quantityTotal);
 
                 $('#tbListCartItems tbody').html('');
@@ -518,32 +516,3 @@
     </script>
 </body>
 </html>
-
-<!--$('#tbCart #cart_tr_1 input.quantity').on('change', () => {-->
-<!--let quantity = $('#tbCart #cart_tr_1 input.quantity').val();-->
-<!--let price = $('#tbCart #cart_tr_1 td:nth-child(3) input').val();-->
-<!--let totalAmount = 0;-->
-
-<!--totalAmount = quantity * price;-->
-
-<!--$('#tbCart #cart_tr_1 td:nth-child(5)').text(totalAmount);-->
-<!--})-->
-
-<!--$('#tbCart #tr_1 a.delete').on('click', () => {-->
-<!--alert('Suspended successful!!!')-->
-
-<!--// App.SweetAleart.showSuspendedConfirmAlert()-->
-<!--// .then((result) => {-->
-<!--//     if (result.isConfirmed) {-->
-<!--//         alert('Suspended successful!!!')-->
-<!--//     }-->
-<!--// })-->
-<!--})-->
-
-
-<!--$('tbody tr#tr_1').on('click', () => {-->
-<!--$('#tempFooter').addClass('show')-->
-<!--$('table td span.select-tab').removeClass('selected').addClass('unselected')-->
-<!--$('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')-->
-<!--})-->
-

@@ -12,6 +12,12 @@ public interface ProductService  extends IGeneralService<Product>{
 
     List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrue();
 
+    List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrueAndAvailableMoreThanZero();
+
+    List<ProductDTO> searchProductDTOByTileAndSkuAndCategory(String keySearch);
+
+    List<ProductDTO> searchInventoryOfProductDTOByTileAndSkuAndCategory(String keySearch);
+
     Optional<ProductDTO> getProductDTOById(Long id);
 
     ProductDTO saveDTO(ProductDTO productDTO);
@@ -20,7 +26,5 @@ public interface ProductService  extends IGeneralService<Product>{
 
     Optional<ProductDTO> findProductDTOBySkuAndIdIsNot(String sku, Long id);
 
-    List<ProductDTO> searchProductDTOByTileAndSkuAndCategory(String keySearch);
 
-    List<ProductDTO> searchInventoryOfProductDTOByTileAndSkuAndCategory(String keySearch);
 }

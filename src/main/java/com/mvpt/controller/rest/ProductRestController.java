@@ -47,6 +47,13 @@ public class ProductRestController {
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
 
+    @GetMapping("/purchase")
+    public ResponseEntity<?> getAllProductCanPurchase() {
+        List<ProductDTO> productDTOList = productService.getAllProductDTOByDeletedIsFalseAndImportedIsTrueAndAvailableMoreThanZero();
+
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable long id) {
         Optional<ProductDTO> productDTO = productService.getProductDTOById(id);

@@ -235,8 +235,8 @@
                 getAllUnits: App.BASER_URL + "/units",
                 getUnitById: App.BASER_URL + "/units/",
 
-                getAllCartItems: App.BASER_URL + "/carts/cart-items",
-                saveOrder: App.BASER_URL + "/orders/create",
+                getAllCartItems: App.BASER_URL + "/carts/cart-items/import",
+                saveOrder: App.BASER_URL + "/orders/create/import",
 
                 delete: App.BASER_URL + "/carts/delete/",
 
@@ -328,7 +328,7 @@
                 })
 
                 page.elements.quantityTotal.text(cart.quantityTotal);
-                page.elements.grandTotal.text(cart.grandTotal);
+                page.elements.grandTotal.text('$'+cart.grandTotal);
 
                 page.commands.clickRowCartItem();
             })
@@ -580,6 +580,10 @@
 
         page.commands.doOrder = () => {
             cart.unit = unit;
+
+            if (cart.id === undefined) {
+                App.IziToast.showErrorAlertBottom("Cart is empty")
+            }
 
             $.ajax({
                 "headers": {

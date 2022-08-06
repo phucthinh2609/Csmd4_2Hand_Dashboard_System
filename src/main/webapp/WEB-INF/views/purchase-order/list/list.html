@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <title>List Of Purchase Order Page</title>
-
+    <title>List Of Import Order</title>
     <!-- Meta -->
     <th:block th:replace="/head/meta :: meta"/>
 
@@ -22,19 +20,22 @@
     <!-- Main -->
     <th:block th:replace="/head/main :: main"/>
 
-
 </head>
+
 <body data-sidebar="dark">
+
     <!-- Begin page -->
     <div id="layout-wrapper">
-         <th:block th:replace="/layout/page-topbar :: page-topbar"/>
 
+        <th:block th:replace="/layout/page-topbar :: page-topbar"/>
+
+        <!-- ========== Left Sidebar Start ========== -->
         <div class="vertical-menu">
 
             <div data-simplebar="" class="h-100">
 
                 <!--- Sidemenu -->
-                 <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
+                <th:block th:replace="/layout/sidebar-menu :: sidebar-menu"/>
 
                 <!-- Sidebar -->
             </div>
@@ -49,15 +50,15 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                    <!--start page title-->
+                    <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">Purchases List</h4>
+                                <h4 class="mb-0 font-size-18">Import Orders</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Purchase</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Import Orders</a></li>
                                         <li class="breadcrumb-item active">List</li>
                                     </ol>
                                 </div>
@@ -65,49 +66,40 @@
                             </div>
                         </div>
                     </div>
-                    <!--end page title-->
+                    <!-- end page title -->
 
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-2">
                                         <div class="col-sm-4">
-                                            <div class="search-box mr-2 mb-2 d-inline-block">
-                                                <div class="position-relative">
-                                                    <form>
-                                                        <div class="row">
+                                            <div class="position-relative">
+                                                <form>
+                                                    <div class="row">
 
-                                                            <div class="col-sm-7">
-                                                                <input type="text" name="search" value=""
-                                                                       class="form-control mb-3" placeholder="Search...">
-                                                                <i class="bx bx-search-alt search-icon"></i>
-                                                            </div>
-                                                            <div class="col-sm-2">
-                                                                <button type="submit"
-                                                                        class="btn btn-outline-primary mr-1 waves-effect waves-light">
-                                                                    Search
-                                                                </button>
-                                                            </div>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" name="search" id="search" value=""
+                                                                   class="form-control mb-3" placeholder="Search...">
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="text-sm-right">
                                                 <a href="/purchase-orders/create">
-                                                    <button id="btnShowCreateModal" type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
-                                                        <i class="mdi mdi-plus mr-1"></i>
-                                                        Add New A Purchase Order
+                                                    <button type="button" class="btn btn-primary btn-rounded right-bar-toggle waves-effect waves-light mb-2 mr-2">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        Add a new order
                                                     </button>
                                                 </a>
                                             </div>
-                                        </div>
-                                        <!-- end col-->
+                                        </div><!-- end col-->
                                     </div>
+
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-centered table-nowrap table-hover text-center"
+                                        <table id="tbListOrders" class="table table-centered table-nowrap table-hover text-center"
                                                role="grid" aria-describedby="datatable_info">
 
                                             <thead class="thead-light">
@@ -119,37 +111,11 @@
                                                 <th>Quantity Total</th>
                                                 <th>Grand Total</th>
                                                 <th>Created At</th>
-                                                <th>Updated At</th>
+                                                <th>View details</th>
                                                 <th>Situation</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="tr_1">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2540</a> </td>
-                                                <td>phucthinh2609</td>
-                                                <td>Chợ đầu mối</td>
-                                                <td>120</td>
-                                                <td>3000</td>
-                                                <td>2022-01-22</td>
-                                                <td>2022-01-23</td>
-                                                <td>
-                                                    <span class="badge badge-pill badge-soft-success font-size-12">Paid</span>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_2">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2540</a> </td>
-                                                <td>phon232@gmail.com</td>
-                                                <td>2Hand Digital Market</td>
-                                                <td>120</td>
-                                                <td>3000</td>
-                                                <td>2022-01-22</td>
-                                                <td>null</td>
-                                                <td>
-                                                    <span class="badge badge-pill badge-soft-warning font-size-12">Refund</span>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -158,167 +124,17 @@
                         </div>
                     </div>
                     <!-- end row -->
-                </div>
-                <!-- container-fluid -->
+                </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
-            <!-- <th:block th:replace="/layout/footer :: footer"/> -->
-
-            <footer class="footer">
-                <div id="tempFooter" class="hide">
-                    <button type="button" class="btn btn-secondary edit" title="Edit" data-toggle="tooltip">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Update
-                    </button>
-                    <button type="button" class="btn btn-primary detail" title="Detail" data-toggle="tooltip">
-                        <i class="fas fa-info-circle"></i>
-                        Details
-                    </button>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
 
     </div>
+    <!-- END layout-wrapper -->
 
-    <div id="mdUpdate" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">Purchase information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body align-items-center">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmUpdate">
-                        <div class="table-responsive">
-                            <table class="table table-centered table-nowrap">
-                                <tbody>
-                                <tr>
-                                    <th>Order ID: </th>
-                                    <td>#SK2540</td>
-                                </tr>
-                                <tr>
-                                    <th>Quantity Total: </th>
-                                    <td>120</td>
-                                </tr>
-                                <tr>
-                                    <th>Grand Total: </th>
-                                    <td>3000</td>
-                                </tr>
-                                <tr>
-                                    <th>Created By: </th>
-                                    <td>phucthinh2609</td>
-                                </tr>
-                                <tr>
-                                    <th>Created At: </th>
-                                    <td>26-07-2022</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated By: </th>
-                                    <td>null</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated At: </th>
-                                    <td>null</td>
-                                </tr>
-                                <tr>
-                                    <th>Situation: </th>
-                                    <td style="height: 10px;">
-                                        <select class="form-select" id="situation" name="situation">
-                                            <option value="1" selected>Paid</option>
-                                            <option value="2">Refund</option>
-                                            <option value="3">Changeback</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnUpdate" class="btn btn-outline-primary">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Save Purchase
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="mdDetail" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title">Product detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-alert-danger hide"></div>
-                    <form id="frmDetail">
-                        <div class="table-responsive">
-                            <table class="table table-centered table-nowrap text-center">
-                                <thead >
-                                <tr>
-                                    <th>#</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td scope="row">
-                                        <div>
-                                            <img src="/assets/images/product/ao-pull-den.png" alt="" class="avatar-sm">
-                                        </div>
-                                    </td>
-                                    <td>Áo pull</td>
-                                    <td>10</td>
-                                    <td>150</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td scope="row">
-                                        <div>
-                                            <img src="/assets/images/product/hoodie.png" alt="" class="avatar-sm">
-                                        </div>
-                                    </td>
-                                    <td>Áo hoodie</td>
-                                    <td>30</td>
-                                    <td>50</td>
-                                </tr>
-                                <tfoot class="text-right">
-                                <tr>
-                                    <td colspan="4">
-                                        <h6 class="m-0">Grand Total:</h6>
-                                    </td>
-                                    <td>40</td>
-                                </tr>
-                                <tr class="font-size-18">
-                                    <td colspan="4">
-                                        <h6 class="m-0">Total:</h6>
-                                    </td>
-                                    <td><strong>3000</strong></td>
-                                </tr>
-                                </tfoot>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <th:block th:replace="/import-order/list/modal_detail_order_item :: modal_detail_order_item" />
+    <th:block th:replace="/import-order/list/modal_situation :: modal_situation" />
 
     <!-- JAVASCRIPT -->
     <th:block th:replace="/script/javascript :: javascript"/>
@@ -338,26 +154,142 @@
     <!-- App js -->
     <th:block th:replace="/script/app-js :: app-js"/>
 
-
     <script>
-        $( document ).ready(function() {
-            document.querySelector(".dataTables_filter").style.display = 'none';
-        });
 
-        $('tbody tr#tr_1').on('click', () => {
-            $('#tempFooter').addClass('show')
-            $('table td span.select-tab').removeClass('selected').addClass('unselected')
-            $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
+        let order = new Order();
+        let orderItem = new OrderItem();
+
+        let orderId;
+
+        let page = {
+            url: {
+                getAllImportOrders: App.BASER_URL + "/orders/purchases",
+                getOrderAndAllOrderItemsByOrderId: App.BASER_URL + "/order-items/",
+                updateOrder: App.BASER_URL + "/orders/imports/update",
+
+            },
+            elements: {
+                role: {},
+                userInfo: {
+                    locationRegion: {}
+                },
+
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+
+            initializeControlEvent: {}
+        }
+
+        page.elements.search = $('#search');
+
+        page.elements.btnShowDetailModal = $('button .detail');
+
+        page.elements.tbListOrders = $('#tbListOrders');
+        page.elements.modalDetail = $('#mdDetail');
+        page.elements.tbListDetails = $('#tbListDetails');
+
+        page.elements.quantityTotalDet = $('#quantityTotalDet');
+        page.elements.grandTotalDet = $('#grandTotalDet');
+
+
+        page.commands.addRowOrder = () =>{
+            let str = App.getTempRowOrderInImportOrderPage(order);
+            $('#tbListOrders tbody').prepend(str);
+        }
+
+        page.commands.addRowOrderItem = () =>{
+            let str = App.getTempRowOrderItemInImportOrderPage(orderItem);
+            $('#tbListDetails tbody').prepend(str);
+        }
+
+        page.commands.clickRowOrder = () => {
+            $("#tbListOrders tbody tr").on("click", function () {
+                orderId = $(this).attr('id').replace('tr_', '');
+
+                $('#tbListOrders tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListOrders tbody tr#tr_${orderId} td span.select-tab`).removeClass("unselected").addClass("selected");
+            });
+
+            page.commands.unbindAll();
+        }
+
+        page.loadData.loadOrders = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllImportOrders
+            })
+            .done((data) => {
+
+                $('#tbListOrders tbody').html('');
+                $.each(data, (i, item) => {
+                    order = item;
+                    page.commands.addRowOrder();
+                })
+
+                page.commands.clickRowOrder();
+            })
+        };
+
+        page.commands.unbindAll = () => {
+            $('.detail').off();
+        }
+
+        page.commands.handleShowDetailModal = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getOrderAndAllOrderItemsByOrderId + orderId
+            })
+            .done((data) => {
+                order = data.order;
+
+                console.log(data)
+
+                page.elements.quantityTotalDet.text(order.quantityTotal);
+                page.elements.grandTotalDet.text("$"+order.grandTotal);
+
+                $('#tbListDetails tbody').html('');
+                $.each(data.orderItemList, (i, item) => {
+                    orderItem = item;
+                    page.commands.addRowOrderItem();
+                })
+
+                page.elements.modalDetail.modal('show');
+            })
+        }
+
+        page.initializeControlEvent = () => {
+            page.elements.tbListOrders.on('click', '.detail', () => {
+                page.commands.handleShowDetailModal();
+            })
+        }
+
+        $(function () {
+            page.loadData.loadOrders().then( function () {
+                page.commands.clickRowOrder();
+            });
+
+
+            page.initializeControlEvent();
         })
 
-        $('button.edit').on('click', () => {
-            $('#mdUpdate').modal('show')
-        })
-
-        $('button.detail').on('click', () => {
-            $('#mdDetail').modal('show')
-        })
 
     </script>
 </body>
+
 </html>
+
+

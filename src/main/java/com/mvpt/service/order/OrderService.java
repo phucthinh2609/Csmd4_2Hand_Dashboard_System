@@ -3,7 +3,6 @@ package com.mvpt.service.order;
 import com.mvpt.model.Order;
 import com.mvpt.model.dto.CartDTO;
 import com.mvpt.model.dto.OrderDTO;
-import com.mvpt.model.dto.OrderItemDTO;
 import com.mvpt.service.IGeneralService;
 
 import java.util.List;
@@ -15,6 +14,8 @@ public interface OrderService extends IGeneralService<Order> {
 
     Optional<OrderDTO> getOrderDTOById(Long orderId);
 
-    void saveOrderDTO (CartDTO cartDTO);
+    void saveImportOrderDTO(CartDTO cartDTO);
+
+    void savePurchaseOrderDTO(CartDTO cartDTO);
 
 }

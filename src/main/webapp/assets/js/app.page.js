@@ -167,12 +167,41 @@ class App {
             <td scope="col">${item.category.name}</td>
             <td>
                 <div class="input-group" style="width: 79px">
-                    <input type="number" value="${item.quantity}" class="form-control price">
+                    <input type="number" class="form-control price">
                 </div>
             </td>
             <td>
                 <div class="input-group" style="width: 79px">
-                    <input type="number" value="${item.quantity}" class="form-control quantity">
+                    <input type="number" class="form-control quantity">
+                </div>
+            </td>
+            <td scope="col">
+                <button class="btn btn-outline-primary add-cart-item">
+                    <i class="fas fa-plus"></i>
+                    Add
+                </button>
+            </td>
+        </tr>
+    `;
+        return str;
+    }
+
+    static getTempRowProductInCreatePurchaseOrder(item) {
+        let str = '';
+        str += `
+        <tr id="tr_${item.id}">
+            <td><span class="select-tab unselected"></span></td>
+            <td scope="col">
+                <img style="width: 70px;" src="/assets/images/product/${item.urlImage}" alt="">
+            </td>
+            <td scope="col">${item.title}</td>
+            <td scope="col">${item.sku}</td>
+            <td scope="col">${item.category.name}</td>
+            <td scope="col">$${item.price}</td>
+            <td scope="col">${item.available}</td>
+            <td>
+                <div class="input-group" style="width: 79px">
+                    <input type="number" class="form-control quantity">
                 </div>
             </td>
             <td scope="col">
@@ -197,9 +226,9 @@ class App {
                 <img src="/assets/images/product/${cartItem.product.urlImage}" alt="product-img" title="product-img" class="avatar-md">
             </td>
             <td class="text-left">${cartItem.product.title}</td>
-            <td>${cartItem.price}</td>
+            <td>$${cartItem.price}</td>
             <td>${cartItem.quantity}</td>
-            <td class="totalAmount">${cartItem.totalPrice}</td>
+            <td class="totalAmount">$${cartItem.totalPrice}</td>
             <td>
                 <a href="#" class="action-icon text-danger delete">
                     <i class="mdi mdi-trash-can font-size-18"></i>
@@ -218,9 +247,10 @@ class App {
             <td class="text-left">
                 <h5 class="font-size-14 text-truncate title">${item.product.title}</h5>
             </td>
-            <td>${item.price}</td>
+            <td>${item.product.sku}</td>
+            <td>$${item.price}</td>
             <td class="text-center">${item.quantity}</td>
-            <td class="total-cart">${item.totalPrice}</td>
+            <td class="total-cart">$${item.totalPrice}</td>
             <td>
                 <a href="#" class="action-icon text-danger delete-cart-item">
                     <i class="mdi mdi-trash-can font-size-18"></i>
@@ -240,7 +270,7 @@ class App {
             <td>${order.user.email}</td>
             <td>${order.unit.code}</td>
             <td>${order.quantityTotal}</td>
-            <td>${order.grandTotal}</td>
+            <td>${order.totalPrice}</td>
             <td>${order.createdAt}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-sm btn-rounded detail" data-toggle="modal" data-target=".exampleModal">
@@ -267,7 +297,8 @@ class App {
             </td>
             <td>${orderItem.product.title}</td>
             <td>${orderItem.quantity}</td>
-            <td>${orderItem.price}</td>
+            <td>$${orderItem.price}</td>
+            <th>$${orderItem.totalPrice}</th>
         </tr>
     `;
         return str;
@@ -284,7 +315,7 @@ class App {
                 <td>${product.title}</td>
                 <td>${product.sku}</td>
                 <td>${product.category.code}</td>
-                <td>${product.price}</td>
+                <td>$${product.price}</td>
                 <td>${product.quantity}</td>
                 <th>${product.sold}</th>
                 <th>${product.available}</th>
@@ -357,6 +388,16 @@ class CartImport {
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
+        this.typeId = typeId;
+        this.unitId = unitId;
+    }
+}
+
+class CartPurchase {
+    constructor(userId, productId, quantity, typeId, unitId) {
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
         this.typeId = typeId;
         this.unitId = unitId;
     }

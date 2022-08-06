@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create Purchase Order Page</title>
+    <title>Create A New Purchase Order Page</title>
     <!-- Meta -->
     <th:block th:replace="/head/meta :: meta"/>
 
@@ -54,11 +54,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">Import Orders</h4>
+                                <h4 class="mb-0 font-size-18">Purchase Orders</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Import Orders</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Purchase Orders</a></li>
                                         <li class="breadcrumb-item active">List</li>
                                     </ol>
                                 </div>
@@ -79,14 +79,8 @@
                                                     <div class="row">
 
                                                         <div class="col-sm-7">
-                                                            <input type="text" name="search" value=""
+                                                            <input type="text" id="search" name="search" value=""
                                                                    class="form-control mb-3" placeholder="Search...">
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <button type="submit"
-                                                                    class="btn btn-outline-primary mr-1 waves-effect waves-light">
-                                                                Search
-                                                            </button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -94,7 +88,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="text-sm-right">
-                                                <button type="button" class="btn btn-primary btn-rounded right-bar-toggle waves-effect waves-light mb-2 mr-2">
+                                                <button type="button" id="btnShowCart" class="btn btn-primary btn-rounded right-bar-toggle waves-effect waves-light mb-2 mr-2">
                                                     <i class="fas fa-shopping-cart"></i>
                                                     Cart
                                                 </button>
@@ -103,76 +97,26 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-centered table-nowrap table-hover text-center"
+                                        <table id="tbListProducts" class="table table-centered table-nowrap table-hover text-center"
                                                role="grid" aria-describedby="datatable_info">
 
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th>#</th>
-                                                <th scope="col">Image</th>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Sku</th>
-                                                <th scope="col">Type</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Available</th>
-                                                <th scope="col">Choose</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Sku</th>
+                                                    <th scope="col">Type</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Available</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Option</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="tr_1">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td scope="col">
-                                                    <img style="width: 70px;" src="/assets/images/product/ao-pull-den.png" alt="">
-                                                </td>
-                                                <td scope="col">Áo pull</td>
-                                                <td scope="col">HQ-AP-1001</td>
-                                                <td scope="col">Áo</td>
-                                                <td scope="col">200 </td>
-                                                <td scope="col">200</td>
-                                                <td scope="col">
-                                                    <button class="btn btn-outline-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                        Add
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_2">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td scope="col">
-                                                    <img style="width: 70px;" src="/assets/images/product/hoodie.png" alt="">
-                                                </td>
-                                                <td scope="col">Hoodie</td>
-                                                <td scope="col">VN-HD-1002</td>
-                                                <td scope="col">Áo lạnh</td>
-                                                <td scope="col">150 </td>
-                                                <td scope="col" id="quantity">150</td>
-                                                <td scope="col">
-                                                    <button class="btn btn-outline-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                        Add
-                                                    </button>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <ul class="pagination pagination-rounded justify-content-end mb-2">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                                <i class="mdi mdi-chevron-left"></i>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                                <i class="mdi mdi-chevron-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -182,9 +126,6 @@
             </div>
             <!-- End Page-content -->
 
-
-            <footer class="footer">
-            </footer>
         </div>
         <!-- end main content-->
 
@@ -209,68 +150,41 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="tbCart" class="table table-centered mb-0 table-nowrap">
+                            <table id="tbListCartItems" class="table table-centered mb-0 table-nowrap text-center">
                                 <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
-                                    <th>Product Name</th>
+                                    <th class="text-left">Product Name</th>
+                                    <th>Sku</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th colspan="2">Total</th>
+                                    <th>Total</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="cart_tr_1">
-                                    <td>1</td>
-                                    <td>
-                                        <h5 class="font-size-14 text-truncate">Áo pull</h5>
-                                    </td>
-                                    <td>200 </td>
-                                    <td>
-                                        <div style="width: 120px;">
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                                <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="totalAmount">12</td>
-                                    <td>
-                                        <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can font-size-18"></i></a>
-                                    </td>
-                                </tr>
-                                <tr id="cart_tr_2">
-                                    <td>2</td>
-                                    <td>
-                                        <h5 class="font-size-14 text-truncate">Áo hoodie</h5>
-                                    </td>
-                                    <td class="price">150 </td>
-                                    <td>
-                                        <div style="width: 120px;">
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                                <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="totalAmount">12</td>
-                                    <td>
-                                        <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can font-size-18"></i></a>
-                                    </td>
-                                </tr>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <td colspan="6" style="text-align: right;">
-                                        <p style="font-size:medium">
-                                            Total amount: <strong style="font-size:larger; text-align: right;">30</strong>
-                                        </p>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="7" style="text-align: right;">
+                                            <p style="font-size:medium">
+                                                Total quantity: <strong id="totalQuantityCart" style="font-size:medium; text-align: right;"></strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" style="text-align: right;">
+                                            <p style="font-size:medium">
+                                                Total amount: <strong id="totalAmountCart" style="font-size:larger; text-align: right;"></strong>
+                                            </p>
+                                        </td>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 px-4">
-                                <a href="#" class="btn btn-success">
+                                <a id="btnCheckOut" href="/purchase-orders/cart" class="btn btn-success">
                                     <i class="mdi mdi-cart-arrow-right mr-1"></i>
                                     Checkout
                                 </a>
@@ -308,43 +222,296 @@
 
     <!-- App js -->
     <th:block th:replace="/script/app-js :: app-js"/>
-<!--    <script src="/assets/js/app.js"></script>-->
-
 
     <script>
         $( document ).ready(function() {
             // document.querySelector(".dataTables_filter").style.display = 'none';
             // document.querySelector(".pagination-rounded").style.display = 'none';
 
-            $("button.right-bar-toggle").on("click", () => {
-                $("body").addClass("right-bar-enabled");
-            });
+            // $("button.right-bar-toggle").on("click", () => {
+            //     $("body").addClass("right-bar-enabled");
+            // });
         });
 
+        let product = new Product();
+        let cart = new Cart();
+        let cartItem = new CarIem();
+        let user = new User();
+        let situation = new Situation();
+        let type = new Type();
+        let cartPurchase = new CartPurchase();
+
+        let productId;
+        let cartItemId;
+
+        let page = {
+            url: {
+                getAllProductsCanPurchase: App.BASER_URL + "/products/purchase",
+                getProductById: App.BASER_URL + "/products/",
+
+                getAllCartItems: App.BASER_URL + "/carts/cart-items/purchase",
+
+                saveNew: App.BASER_URL + "/carts/create/purchase",
+                delete: App.BASER_URL + "/carts/delete/",
+                search: App.BASER_URL + "/products/search/"
+
+            },
+            elements: {
+                role: {},
+                userInfo: {
+                    locationRegion: {}
+                },
+
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+
+            initializeControlEvent: {}
+        }
+
+        page.elements.tbListProducts = $('#tbListProducts');
+        page.elements.tbListCartItems = $('#tbListCartItems');
+
+        page.elements.btnAddCartIem = $('button.add-cart-item');
+        page.elements.btnShowCart = $('#btnShowCart');
+        page.elements.btnCheckOut = $('#btnCheckOut');
+
+        page.elements.titleProduct = $('#tbListProducts .title');
+        page.elements.priceProduct = $('#tbListProducts .price');
+        page.elements.quantityPrdCart = $('.quantity');
+        page.elements.totalPricePrdCart = $('.total-cart');
+        page.elements.btnDeleteCartItem = $('.delete-cart-item');
+
+        page.elements.search = $('#search');
+
+        page.elements.totalAmountCart = $('#totalAmountCart');
+        page.elements.totalQuantityCart = $('#totalQuantityCart');
 
 
-        $('#tbCart #cart_tr_1 input.quantity').on('change', () => {
-            let quantity = $('#tbCart #cart_tr_1 input.quantity').val();
-            let price = $('#tbCart #cart_tr_1 td:nth-child(3)').text();
-            let totalAmount = 0;
+        page.commands.addRowProduct = () =>{
+            let str = App.getTempRowProductInCreatePurchaseOrder(product);
+            $('#tbListProducts tbody').prepend(str);
+        }
 
-            totalAmount = quantity * price;
+        page.commands.addRowCartItem = () =>{
+            let str = App.getTempRowCartItemInCart(cartItem);
+            $('#tbListCartItems tbody').prepend(str);
+        }
 
-            $('#tbCart #cart_tr_1 td:nth-child(5)').text(totalAmount);
+        page.commands.clickRowProduct = () => {
+            $("#tbListProducts tbody tr").on("click", function () {
+                productId = $(this).attr('id').replace('tr_', '');
 
-            console.log("price: "+price);
-            console.log("quantity: "+quantity);
-            console.log("totalAmount: "+totalAmount);
+                $.ajax({
+                    "headers": {
+                        "accept" : "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "GET",
+                    "url": page.url.getProductById + productId
+                })
+                .done((item) => {
+                    product = item
+                })
+
+                $('#tbListProducts tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListProducts tbody tr#tr_${productId} td span.select-tab`).removeClass("unselected").addClass("selected");
+
+                page.commands.unbindAll();
+            });
+
+        }
+
+        page.commands.clickRowCart = () => {
+            $("#tbListCartItems tbody tr").on("click", function () {
+                cartItemId = $(this).attr('id').replace('cart_tr_', '');
+
+                // page.commands.unbindAll();
+            });
+        }
+
+        page.loadData.loadProducts = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllProductsCanPurchase
+            })
+            .done((data) => {
+                $('#tbListProducts tbody').html('');
+
+                $.each(data, (i, item) => {
+                    product = item;
+                    page.commands.addRowProduct();
+                })
+
+                page.commands.clickRowProduct();
+            })
+        }
+
+        page.loadData.loadCartItems = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllCartItems
+            })
+            .done((data) => {
+                cart = data.cartDTO;
+
+                page.elements.totalAmountCart.text('$'+cart.grandTotal);
+                page.elements.totalQuantityCart.text(cart.quantityTotal);
+
+                $('#tbListCartItems tbody').html('');
+                $.each(data.cartItemDTO, (i, item) => {
+                    cartItem = item;
+                    page.commands.addRowCartItem();
+                })
+
+                page.commands.clickRowCart();
+            })
+        };
+
+        page.commands.doRemoveCartItem = () => {
+            let choice = confirm("Do you really wanna delete this cart item?");
+            if (choice === true) {
+                $.ajax({
+                    "type": "POST",
+                    "headers": {
+                        'accept': 'application/json',
+                        'content-Type': 'application/json'
+                    },
+                    "url": page.url.delete + cartItemId
+
+                }).done((data) => {
+                    cart = data;
+
+                    $('#totalAmountCart').text(cart.grandTotal);
+                    $("#cart_tr_" + cartItem.id).remove();
+
+                    App.IziToast.showSuccessAlert("Delete cart item successful");
+
+                }).fail( () => {
+                    App.IziToast.showErrorAlert("Delete cart item failed");
+                });
+            }
+        }
+
+        page.commands.unbindAll = () => {
+            $('.add-cart-item').off();
+        }
+
+        page.commands.doAddCartItem = () => {
+            cartPurchase.userId = 1;
+            cartPurchase.productId = productId;
+            cartPurchase.quantity = $(`#tr_${productId} .quantity`).val();
+            cartPurchase.typeId = 2;
+            cartPurchase.unitId = 1;
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.saveNew,
+                "data": JSON.stringify(cartPurchase)
+            })
+            .done((data) => {
+                if (data.successFirst){
+                    App.IziToast.showSuccessAlertBottom(data.successFirst);
+                }
+                App.IziToast.showSuccessAlertBottom(data.success);
+            })
+            .fail((jqxHR) => {
+                if (jqxHR.status === 401) {
+                    App.IziToast.showErrorAlertBottom(App.ERROR_401)
+                } else {
+                    if (jqxHR.status === 403) {
+                        App.IziToast.showErrorAlertBottom(App.ERROR_403)
+                    } else {
+                        if (jqxHR.responseJSON.message) {
+                            App.IziToast.showErrorAlertBottom(jqxHR.responseJSON.message)
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlertBottom(item)
+                            })
+                        }
+                    }
+                }
+            })
+        }
+
+        page.commands.doSearch = () => {
+            let keySearch = page.elements.search.val();
+
+            if (keySearch === "") {
+                page.loadData.loadProducts();
+            }
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.search + keySearch,
+            })
+            .done((data) => {
+
+                $('#tbListProducts tbody').html('');
+
+                $.each(data, (i, item) => {
+                    product = item;
+                    page.commands.addRowProduct();
+                })
+
+                page.commands.clickRowProduct();
+            })
+        };
+
+
+        page.initializeControlEvent = () => {
+
+            page.elements.tbListProducts.on('click', 'button.add-cart-item',() => {
+                page.commands.doAddCartItem();
+            })
+
+            page.elements.btnShowCart.on('click', () => {
+                $("body").addClass("right-bar-enabled");
+
+                page.loadData.loadCartItems();
+            })
+
+            page.elements.tbListCartItems.on('click', '.delete-cart-item', () => {
+                page.commands.doRemoveCartItem();
+            })
+
+            page.elements.search.on('input', () => {
+                page.commands.doSearch();
+            })
+        }
+
+        $(function () {
+            // $(".dataTables_filter").style.display = 'none';
+
+            page.loadData.loadProducts().then(function (){
+                page.commands.clickRowProduct();
+            })
+
+            page.initializeControlEvent();
         })
 
 
-        $('tbody tr#tr_1').on('click', () => {
-            $('#tempFooter').addClass('show')
-            $('table td span.select-tab').removeClass('selected').addClass('unselected')
-            $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
-        })
     </script>
 </body>
-
 </html>
-

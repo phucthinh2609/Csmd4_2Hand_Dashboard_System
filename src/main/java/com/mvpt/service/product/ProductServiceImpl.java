@@ -38,6 +38,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrueAndAvailableMoreThanZero() {
+        return productRepository.getAllProductDTOByDeletedIsFalseAndImportedIsTrueAndAvailableMoreThanZero();
+    }
+
+    @Override
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }

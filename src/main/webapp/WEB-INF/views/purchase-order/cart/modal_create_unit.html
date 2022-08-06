@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal_create_unit">
+    <div id="mdCreateUnit" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Unit information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <fieldset class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Name</label>
+                            <input type="email" class="form-control" id="nameUnitCre" name="nameUnitCre">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Code</label>
+                            <input type="email" class="form-control" id="codeUnitCre" name="codeUnitCre">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Province</label>
+                            <select class="form-select" id="provinceUnitCre" name="provinceUnitCre"></select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">District</label>
+                            <select class="form-select" id="districtUnitCre" name="districtUnitCre"></select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Ward</label>
+                            <select class="form-select" id="wardUnitCre" name="wardUnitCre"></select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" id="addressUnitCre" name="addressUnitCre">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnCreateUnit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create Unit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

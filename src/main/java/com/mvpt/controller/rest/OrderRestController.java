@@ -4,7 +4,6 @@ import com.mvpt.exception.DataInputException;
 import com.mvpt.model.dto.CartDTO;
 import com.mvpt.model.dto.CartItemDTO;
 import com.mvpt.model.dto.OrderDTO;
-import com.mvpt.model.dto.UnitDTO;
 import com.mvpt.service.cart.CartService;
 import com.mvpt.service.cartItem.CartItemService;
 import com.mvpt.service.order.OrderService;
@@ -51,8 +50,8 @@ public class OrderRestController {
         return new ResponseEntity<>(orderDTOList, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> doOrder(@Validated @RequestBody CartDTO cartDTO, BindingResult bindingResult) {
+    @PostMapping("/create/import")
+    public ResponseEntity<?> doImportOrder(@Validated @RequestBody CartDTO cartDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
@@ -70,10 +69,31 @@ public class OrderRestController {
             throw new DataInputException("Cart is empty");
         }
 
-        orderService.saveOrderDTO(cartDTO);
+        orderService.saveImportOrderDTO(cartDTO);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @PostMapping("/create/purchase")
+    public ResponseEntity<?> doPurchaseOrder(@Validated @RequestBody CartDTO cartDTO, BindingResult bindingResult) {
 
+        if (bindingResult.hasFieldErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+
+        Optional<CartDTO> currentCartDTO = cartService.getCartDTOById(Long.valueOf(cartDTO.getId()));
+
+        if (!currentCartDTO.isPresent()) {
+            throw new DataInputException("Cart info is not define!!!");
+        }
+
+        List<CartItemDTO> cartItemDTOList = cartItemService.getAllCartItemDTOByCartId(cartDTO.toCart().getId());
+
+        if (cartItemDTOList.isEmpty()) {
+            throw new DataInputException("Cart is empty");
+        }
+
+        orderService.savePurchaseOrderDTO(cartDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

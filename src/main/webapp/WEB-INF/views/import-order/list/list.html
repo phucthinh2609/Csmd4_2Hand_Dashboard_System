@@ -259,7 +259,7 @@
                 console.log(data)
 
                 page.elements.quantityTotalDet.text(order.quantityTotal);
-                page.elements.grandTotalDet.text(order.grandTotal);
+                page.elements.grandTotalDet.text("$"+order.grandTotal);
 
                 $('#tbListDetails tbody').html('');
                 $.each(data.orderItemList, (i, item) => {
@@ -292,36 +292,4 @@
 
 </html>
 
-<!--$( document ).ready(function() {-->
-<!--document.querySelector(".dataTables_filter").style.display = 'none';-->
-<!--document.querySelector(".pagination-rounded").style.display = 'none';-->
-<!--});-->
-
-<!--$('#tbCart #cart_tr_1 input.quantity').on('change', () => {-->
-<!--let quantity = $('#tbCart #cart_tr_1 input.quantity').val();-->
-<!--let price = $('#tbCart #cart_tr_1 td:nth-child(3) input').val();-->
-<!--let totalAmount = 0;-->
-
-<!--totalAmount = quantity * price;-->
-
-<!--$('#tbCart #cart_tr_1 td:nth-child(5)').text(totalAmount);-->
-<!--})-->
-
-<!--$('#tbCart #tr_1 a.delete').on('click', () => {-->
-<!--alert('Suspended successful!!!')-->
-
-<!--// App.SweetAleart.showSuspendedConfirmAlert()-->
-<!--// .then((result) => {-->
-<!--//     if (result.isConfirmed) {-->
-<!--//         alert('Suspended successful!!!')-->
-<!--//     }-->
-<!--// })-->
-<!--})-->
-
-
-<!--$('tbody tr#tr_1').on('click', () => {-->
-<!--$('#tempFooter').addClass('show')-->
-<!--$('table td span.select-tab').removeClass('selected').addClass('unselected')-->
-<!--$('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')-->
-<!--})-->
 
