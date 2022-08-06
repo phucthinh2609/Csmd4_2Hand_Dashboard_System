@@ -55,4 +55,15 @@ public class CartDTO {
                 .setSituation(situation.toSituation())
                 .setUnit(unit.toUnit());
     }
+
+    public OrderDTO toOrderDTO() {
+        return new OrderDTO()
+                .setId(String.valueOf(0L))
+                .setGrandTotal(grandTotal)
+                .setQuantityTotal(quantityTotal)
+                .setUser(user)
+                .setType(type)
+                .setSituation(situation)
+                .setUnit(unit);
+    }
 }

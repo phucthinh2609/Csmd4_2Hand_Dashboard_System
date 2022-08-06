@@ -240,7 +240,9 @@
 
                 delete: App.BASER_URL + "/carts/delete/",
 
-                saveUnit: App.BASER_URL + "/units/create"
+                saveUnit: App.BASER_URL + "/units/create",
+
+                redirectToOrderList: App.DOMAIN + "/import-orders"
 
             },
             elements: {
@@ -589,7 +591,26 @@
                 "data": JSON.stringify(cart)
             })
             .done((item) => {
+                App.SweetAleart.showSuccessAlert("Successful");
 
+                window.location.href = page.url.redirectToOrderList;
+            })
+            .fail((jqxHR) => {
+                if (jqxHR.status === 401) {
+                    App.IziToast.showErrorAlertBottom(App.ERROR_401)
+                } else {
+                    if (jqxHR.status === 403) {
+                        App.IziToast.showErrorAlertBottom(App.ERROR_403)
+                    } else {
+                        if (jqxHR.responseJSON.message) {
+                            App.IziToast.showErrorAlertBottom(jqxHR.responseJSON.message)
+                        }else if (jqxHR.responseJSON){
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlertBottom(item)
+                            })
+                        }
+                    }
+                }
             })
         }
 

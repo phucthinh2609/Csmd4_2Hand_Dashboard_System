@@ -79,14 +79,8 @@
                                                     <div class="row">
 
                                                         <div class="col-sm-7">
-                                                            <input type="text" name="search" value=""
+                                                            <input type="text" name="search" id="search" value=""
                                                                    class="form-control mb-3" placeholder="Search...">
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <button type="submit"
-                                                                    class="btn btn-outline-primary mr-1 waves-effect waves-light">
-                                                                Search
-                                                            </button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -94,103 +88,37 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="text-sm-right">
-                                                <button type="button" class="btn btn-primary btn-rounded right-bar-toggle waves-effect waves-light mb-2 mr-2">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    Cart
-                                                </button>
+                                                <a href="/import-orders/create">
+                                                    <button type="button" class="btn btn-primary btn-rounded right-bar-toggle waves-effect waves-light mb-2 mr-2">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        Add a new order
+                                                    </button>
+                                                </a>
                                             </div>
                                         </div><!-- end col-->
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-centered table-nowrap table-hover text-center"
+                                        <table id="tbListOrders" class="table table-centered table-nowrap table-hover text-center"
                                                role="grid" aria-describedby="datatable_info">
 
                                             <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
-                                                <th scope="col">Image</th>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Sku</th>
-                                                <th scope="col">Type</th>
-                                                <th scope="col">status</th>
-                                                <th scope="col">Option</th>
+                                                <th>Order ID</th>
+                                                <th>Created By</th>
+                                                <th>Unit</th>
+                                                <th>Quantity Total</th>
+                                                <th>Grand Total</th>
+                                                <th>Created At</th>
+                                                <th>View details</th>
+                                                <th>Situation</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="tr_1">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td scope="col">
-                                                    <img style="width: 70px;" src="/assets/images/product/ao-pull-den.png" alt="">
-                                                </td>
-                                                <td scope="col">Áo pull</td>
-                                                <td scope="col">HQ-AP-1001</td>
-                                                <td scope="col">Áo</td>
-                                                <td scope="col">
-                                                    <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
-                                                </td>
-                                                <td scope="col">
-                                                    <button class="btn btn-outline-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                        Add
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_2">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td scope="col">
-                                                    <img style="width: 70px;" src="/assets/images/product/hoodie.png" alt="">
-                                                </td>
-                                                <td scope="col">Hoodie</td>
-                                                <td scope="col">VN-HD-1002</td>
-                                                <td scope="col">Áo lạnh</td>
-                                                <td scope="col">
-                                                    <span class="badge badge-pill badge-soft-success font-size-12">Imported</span>
-                                                </td>
-                                                <td scope="col">
-                                                    <button class="btn btn-outline-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                        Add
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr_3">
-                                                <td><span class="select-tab unselected"></span></td>
-                                                <td scope="col">
-                                                    <img style="width: 70px;" src="/assets/images/product/img-2.png" alt="">
-                                                </td>
-                                                <td scope="col">Áo pull</td>
-                                                <td scope="col">US-AP-1022</td>
-                                                <td scope="col">Áo</td>
-                                                <td scope="col">
-                                                    <span class="badge badge-pill badge-soft-danger font-size-12">Unimport</span>
-                                                </td>
-                                                <td scope="col">
-                                                    <button class="btn btn-outline-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                        Add
-                                                    </button>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
-                                    </div>                                <ul class="pagination pagination-rounded justify-content-end mb-2">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                                <i class="mdi mdi-chevron-left"></i>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                                <i class="mdi mdi-chevron-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -199,121 +127,14 @@
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
-
-            <footer class="footer">
-            </footer>
         </div>
         <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
 
-    <!-- Right Sidebar -->
-    <div class="right-bar" >
-        <div data-simplebar="" class="h-100">
-            <div class="rightbar-title px-3 py-4">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close noti-icon"></i>
-                </a>
-                <h4 class="m-0">
-                    <i class="fas fa-shopping-cart"></i>
-                    Cart
-                </h4>
-            </div>
-
-            <!-- Right Sidebar Content Start -->
-            <div class="row">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="tbCart" class="table table-centered mb-0 table-nowrap">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th colspan="2">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr id="cart_tr_1">
-                                    <td>1</td>
-                                    <td>
-                                        <h5 class="font-size-14 text-truncate">Áo pull</h5>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="priceCartCre" name="priceCartCre" style="width: 90px" value="0">                                        </td>
-                                    <td>
-                                        <div style="width: 120px;">
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                                <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="totalAmount">12</td>
-                                    <td>
-                                        <a href="#" class="action-icon text-danger delete">
-                                            <i class="mdi mdi-trash-can font-size-18"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="cart_tr_2">
-                                    <td>2</td>
-                                    <td>
-                                        <h5 class="font-size-14 text-truncate">Áo hoodie</h5>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="priceCre" name="priceCre" style="width: 90px" value="0">                                        </td>
-                                    <td>
-                                        <div style="width: 120px;">
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                                <input type="text" value="02" name="demo_vertical" class="form-control quantity">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="totalAmount">12</td>
-                                    <td>
-                                        <a href="#" class="action-icon text-danger delete">
-                                            <i class="mdi mdi-trash-can font-size-18"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="6" style="text-align: right;">
-                                        <p style="font-size:medium">
-                                            Total amount: <strong style="font-size:larger; text-align: right;">30</strong>
-                                        </p>
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 px-4">
-                                <a href="#" class="btn btn-success">
-                                    <i class="mdi mdi-cart-arrow-right mr-1"></i>
-                                    Checkout
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Sidebar Content End -->
-
-        </div> <!-- end slimscroll-menu-->
-    </div>
-    <!-- /Right-bar -->
-
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
-
-    <!-- END layout-wrapper -->
+    <th:block th:replace="/import-order/list/modal_detail_order_item :: modal_detail_order_item" />
+    <th:block th:replace="/import-order/list/modal_situation :: modal_situation" />
 
     <!-- JAVASCRIPT -->
     <th:block th:replace="/script/javascript :: javascript"/>
@@ -334,40 +155,173 @@
     <th:block th:replace="/script/app-js :: app-js"/>
 
     <script>
-        $( document ).ready(function() {
-            document.querySelector(".dataTables_filter").style.display = 'none';
-            document.querySelector(".pagination-rounded").style.display = 'none';
-        });
 
-        $('#tbCart #cart_tr_1 input.quantity').on('change', () => {
-            let quantity = $('#tbCart #cart_tr_1 input.quantity').val();
-            let price = $('#tbCart #cart_tr_1 td:nth-child(3) input').val();
-            let totalAmount = 0;
+        let order = new Order();
+        let orderItem = new OrderItem();
 
-            totalAmount = quantity * price;
+        let orderId;
 
-            $('#tbCart #cart_tr_1 td:nth-child(5)').text(totalAmount);
+        let page = {
+            url: {
+                getAllImportOrders: App.BASER_URL + "/orders/imports",
+                getOrderAndAllOrderItemsByOrderId: App.BASER_URL + "/order-items/",
+                updateOrder: App.BASER_URL + "/orders/imports/update",
+
+            },
+            elements: {
+                role: {},
+                userInfo: {
+                    locationRegion: {}
+                },
+
+            },
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                commands: {},
+                alertDanger: {}
+            },
+
+            initializeControlEvent: {}
+        }
+
+        page.elements.search = $('#search');
+
+        page.elements.btnShowDetailModal = $('button .detail');
+
+        page.elements.tbListOrders = $('#tbListOrders');
+        page.elements.modalDetail = $('#mdDetail');
+        page.elements.tbListDetails = $('#tbListDetails');
+
+        page.elements.quantityTotalDet = $('#quantityTotalDet');
+        page.elements.grandTotalDet = $('#grandTotalDet');
+
+
+        page.commands.addRowOrder = () =>{
+            let str = App.getTempRowOrderInImportOrderPage(order);
+            $('#tbListOrders tbody').prepend(str);
+        }
+
+        page.commands.addRowOrderItem = () =>{
+            let str = App.getTempRowOrderItemInImportOrderPage(orderItem);
+            $('#tbListDetails tbody').prepend(str);
+        }
+
+        page.commands.clickRowOrder = () => {
+            $("#tbListOrders tbody tr").on("click", function () {
+                orderId = $(this).attr('id').replace('tr_', '');
+
+                $('#tbListOrders tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+                $(`#tbListOrders tbody tr#tr_${orderId} td span.select-tab`).removeClass("unselected").addClass("selected");
+            });
+
+            page.commands.unbindAll();
+        }
+
+        page.loadData.loadOrders = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getAllImportOrders
+            })
+            .done((data) => {
+
+                $('#tbListOrders tbody').html('');
+                $.each(data, (i, item) => {
+                    order = item;
+                    page.commands.addRowOrder();
+                })
+
+                page.commands.clickRowOrder();
+            })
+        };
+
+        page.commands.unbindAll = () => {
+            $('.detail').off();
+        }
+
+        page.commands.handleShowDetailModal = () => {
+            return $.ajax({
+                "headers": {
+                    "accept" : "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url": page.url.getOrderAndAllOrderItemsByOrderId + orderId
+            })
+            .done((data) => {
+                order = data.order;
+
+                console.log(data)
+
+                page.elements.quantityTotalDet.text(order.quantityTotal);
+                page.elements.grandTotalDet.text(order.grandTotal);
+
+                $('#tbListDetails tbody').html('');
+                $.each(data.orderItemList, (i, item) => {
+                    orderItem = item;
+                    page.commands.addRowOrderItem();
+                })
+
+                page.elements.modalDetail.modal('show');
+            })
+        }
+
+        page.initializeControlEvent = () => {
+            page.elements.tbListOrders.on('click', '.detail', () => {
+                page.commands.handleShowDetailModal();
+            })
+        }
+
+        $(function () {
+            page.loadData.loadOrders().then( function () {
+                page.commands.clickRowOrder();
+            });
+
+
+            page.initializeControlEvent();
         })
 
-        $('#tbCart #tr_1 a.delete').on('click', () => {
-            alert('Suspended successful!!!')
 
-            // App.SweetAleart.showSuspendedConfirmAlert()
-            // .then((result) => {
-            //     if (result.isConfirmed) {
-            //         alert('Suspended successful!!!')
-            //     }
-            // })
-        })
-
-
-        $('tbody tr#tr_1').on('click', () => {
-            $('#tempFooter').addClass('show')
-            $('table td span.select-tab').removeClass('selected').addClass('unselected')
-            $('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')
-        })
     </script>
 </body>
 
 </html>
+
+<!--$( document ).ready(function() {-->
+<!--document.querySelector(".dataTables_filter").style.display = 'none';-->
+<!--document.querySelector(".pagination-rounded").style.display = 'none';-->
+<!--});-->
+
+<!--$('#tbCart #cart_tr_1 input.quantity').on('change', () => {-->
+<!--let quantity = $('#tbCart #cart_tr_1 input.quantity').val();-->
+<!--let price = $('#tbCart #cart_tr_1 td:nth-child(3) input').val();-->
+<!--let totalAmount = 0;-->
+
+<!--totalAmount = quantity * price;-->
+
+<!--$('#tbCart #cart_tr_1 td:nth-child(5)').text(totalAmount);-->
+<!--})-->
+
+<!--$('#tbCart #tr_1 a.delete').on('click', () => {-->
+<!--alert('Suspended successful!!!')-->
+
+<!--// App.SweetAleart.showSuspendedConfirmAlert()-->
+<!--// .then((result) => {-->
+<!--//     if (result.isConfirmed) {-->
+<!--//         alert('Suspended successful!!!')-->
+<!--//     }-->
+<!--// })-->
+<!--})-->
+
+
+<!--$('tbody tr#tr_1').on('click', () => {-->
+<!--$('#tempFooter').addClass('show')-->
+<!--$('table td span.select-tab').removeClass('selected').addClass('unselected')-->
+<!--$('table tr#tr_1 td span.select-tab').removeClass('unselected').addClass('selected')-->
+<!--})-->
 

@@ -197,9 +197,9 @@ class App {
                 <img src="/assets/images/product/${cartItem.product.urlImage}" alt="product-img" title="product-img" class="avatar-md">
             </td>
             <td class="text-left">${cartItem.product.title}</td>
-            <td>${cartItem.price}</td>
+            <td>${cartItem.price}$</td>
             <td>${cartItem.quantity}</td>
-            <td class="totalAmount">${cartItem.totalPrice}</td>
+            <td class="totalAmount">${cartItem.totalPrice}$</td>
             <td>
                 <a href="#" class="action-icon text-danger delete">
                     <i class="mdi mdi-trash-can font-size-18"></i>
@@ -218,9 +218,9 @@ class App {
             <td class="text-left">
                 <h5 class="font-size-14 text-truncate title">${item.product.title}</h5>
             </td>
-            <td>${item.price}</td>
+            <td>${item.price}$</td>
             <td class="text-center">${item.quantity}</td>
-            <td class="total-cart">${item.totalPrice}</td>
+            <td class="total-cart">${item.totalPrice}$</td>
             <td>
                 <a href="#" class="action-icon text-danger delete-cart-item">
                     <i class="mdi mdi-trash-can font-size-18"></i>
@@ -228,6 +228,68 @@ class App {
             </td>
         </tr>
     `;
+        return str;
+    }
+
+    static getTempRowOrderInImportOrderPage(order) {
+        let str = '';
+        str += `
+        <tr id="tr_${order.id}">
+            <td><span class="select-tab unselected"></span></td>
+            <td><a href="javascript: void(0);" class="text-body font-weight-bold">#${order.id}</a> </td>
+            <td>${order.user.email}</td>
+            <td>${order.unit.code}</td>
+            <td>${order.quantityTotal}</td>
+            <td>${order.grandTotal}$</td>
+            <td>${order.createdAt}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm btn-rounded detail" data-toggle="modal" data-target=".exampleModal">
+                    View Details
+                </button>
+            </td>
+            <td>
+                <span class="badge badge-pill badge-soft-success font-size-12 situation">${order.id === 1 ? "Paid" : "Owe"}</span>
+            </td>
+        </tr>
+    `;
+        return str;
+    }
+
+    static getTempRowOrderItemInImportOrderPage(orderItem) {
+        let str = '';
+        str += `
+        <tr>
+            <td>1</td>
+            <td scope="row">
+                <div>
+                    <img src="/assets/images/product/${orderItem.product.urlImage}" alt="" class="avatar-sm">
+                </div>
+            </td>
+            <td>${orderItem.product.title}</td>
+            <td>${orderItem.quantity}</td>
+            <td>${orderItem.price}$</td>
+        </tr>
+    `;
+        return str;
+    }
+
+    static getTempRowInventoryInImportOrderPage(product) {
+        let str = '';
+        str += `
+            <tr id="tr_${product.id}">
+                <td>${product.id}</td>
+                <td>
+                    <img style="width: 70px;" src="/assets/images/product/${product.urlImage}" alt="">
+                </td>
+                <td>${product.title}</td>
+                <td>${product.sku}</td>
+                <td>${product.category.code}</td>
+                <td>${product.price}$</td>
+                <td>${product.quantity}</td>
+                <th style="font-size: 18px;">${product.sold}</th>
+                <th style="font-size: 18px;">${product.available}</th>
+            </tr>
+        `;
         return str;
     }
 }
@@ -307,6 +369,29 @@ class CarIem {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.cart = cart;
+        this.product = product;
+    }
+}
+
+class Order {
+    constructor(id, grandTotal, quantityTotal, user, type, situation, unit) {
+        this.id = id;
+        this.grandTotal = grandTotal;
+        this.quantityTotal = quantityTotal;
+        this.user = user;
+        this.type = type;
+        this.situation = situation;
+        this.unit = unit;
+    }
+}
+
+class OrderItem {
+    constructor(id, price, quantity, totalPrice, order, product) {
+        this.id = id;
+        this.price = price;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.order = order;
         this.product = product;
     }
 }

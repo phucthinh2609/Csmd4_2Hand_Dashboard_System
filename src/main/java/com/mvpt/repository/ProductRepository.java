@@ -50,6 +50,27 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "p.category) " +
             "FROM Product p " +
             "WHERE p.deleted = false " +
+                "AND p.imported = true")
+    List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrue();
+
+    @Query("SELECT NEW com.mvpt.model.dto.ProductDTO (" +
+                "p.id, " +
+                "p.title, " +
+                "p.sku, " +
+                "p.urlImage, " +
+                "p.description, " +
+                "p.price," +
+                "p.quantity," +
+                "p.sold," +
+                "p.available," +
+                "p.imported," +
+                "p.createdAt," +
+                "p.createdBy," +
+                "p.updatedAt," +
+                "p.updatedBy," +
+                "p.category) " +
+            "FROM Product p " +
+            "WHERE p.deleted = false " +
                 "AND p.imported = true " +
                 "AND p.available > 0")
     List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrueAndAvailableMoreThanZero();
@@ -113,8 +134,35 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "p.category) " +
             "FROM Product p " +
             "WHERE p.title LIKE %?1% " +
-                "OR p.sku LIKE %?1% ")
-    List<ProductDTO> searchProductDTOByTileAndSku(String keySearch);
+                "OR p.sku LIKE %?1% " +
+                "OR p.category.name LIKE %?1%" +
+                "OR p.category.code LIKE %?1%")
+    List<ProductDTO> searchProductDTOByTileAndSkuAndCategory(String keySearch);
+
+    @Query("SELECT NEW com.mvpt.model.dto.ProductDTO (" +
+                "p.id, " +
+                "p.title, " +
+                "p.sku, " +
+                "p.urlImage, " +
+                "p.description, " +
+                "p.price," +
+                "p.quantity," +
+                "p.sold," +
+                "p.available," +
+                "p.imported," +
+                "p.createdAt," +
+                "p.createdBy," +
+                "p.updatedAt," +
+                "p.updatedBy," +
+                "p.category) " +
+            "FROM Product p " +
+            "WHERE (p.deleted = false " +
+                "AND p.imported = true)" +
+                "OR p.title LIKE %?1% " +
+                "OR p.sku LIKE %?1% " +
+                "OR p.category.name LIKE %?1%" +
+                "OR p.category.code LIKE %?1%")
+    List<ProductDTO> searchInventoryOfProductDTOByTileAndSkuAndCategory(String keySearch);
 
 
 }

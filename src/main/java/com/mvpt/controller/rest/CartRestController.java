@@ -160,7 +160,7 @@ public class CartRestController {
         if (!currentCartDTO.isPresent()) {
             //Tao moi Cart & CartItem
             newCartDTO.setId(String.valueOf(0L));
-            newCartDTO.setGrandTotal(String.valueOf(price));
+            newCartDTO.setGrandTotal(String.valueOf(totalPrice));
             newCartDTO.setQuantityTotal(String.valueOf(quantity));
             newCartDTO.setUser(currentUserDTO);
             newCartDTO.setType(currentTypeDTO);
@@ -207,7 +207,7 @@ public class CartRestController {
                 newCartItemDTO.setProduct(currentProductDTO);
 
                 try {
-                    CartItemDTO currentNewCartItemDTO = cartItemService.save(newCartItemDTO.toCartItem()).toCartItemDTO();
+                    cartItemService.save(newCartItemDTO.toCartItem()).toCartItemDTO();
                     String success = "Add a new cart item successful";
                     result.put("success", success);
 

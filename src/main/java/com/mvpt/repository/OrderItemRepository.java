@@ -25,6 +25,17 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
             "WHERE ci.deleted = false ")
     List<OrderItemDTO> getAllOrderItemDTOByDeletedIsFalse();
 
+    @Query("SELECT NEW com.mvpt.model.dto.OrderItemDTO (" +
+                "ci.id, " +
+                "ci.price, " +
+                "ci.quantity, " +
+                "ci.totalPrice, " +
+                "ci.order, " +
+                "ci.product) " +
+            "FROM OrderItem ci " +
+            "WHERE ci.order.id = ?1 ")
+    List<OrderItemDTO> getAllOrderItemDTOByOrderId(Long orderId);
+
 
     @Query("SELECT NEW com.mvpt.model.dto.OrderItemDTO (" +
                 "ci.id, " +
@@ -36,5 +47,4 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
             "FROM OrderItem ci " +
             "WHERE ci.id = ?1 ")
     Optional<OrderItemDTO> getOrderItemDTOById(Long id);
-
 }

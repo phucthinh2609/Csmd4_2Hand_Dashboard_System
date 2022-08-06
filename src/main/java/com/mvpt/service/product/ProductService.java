@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface ProductService  extends IGeneralService<Product>{
     List<ProductDTO> getAllProductDTOByDeletedIsFalse();
 
+    List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrue();
+
     Optional<ProductDTO> getProductDTOById(Long id);
 
     ProductDTO saveDTO(ProductDTO productDTO);
@@ -18,5 +20,7 @@ public interface ProductService  extends IGeneralService<Product>{
 
     Optional<ProductDTO> findProductDTOBySkuAndIdIsNot(String sku, Long id);
 
-    List<ProductDTO> searchProductDTOByTileAndSku(String keySearch);
+    List<ProductDTO> searchProductDTOByTileAndSkuAndCategory(String keySearch);
+
+    List<ProductDTO> searchInventoryOfProductDTOByTileAndSkuAndCategory(String keySearch);
 }

@@ -2,6 +2,7 @@ package com.mvpt.model.dto;
 
 import com.mvpt.model.Cart;
 import com.mvpt.model.CartItem;
+import com.mvpt.model.OrderItem;
 import com.mvpt.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -53,4 +54,15 @@ public class CartItemDTO {
                 .setCart(cart.toCart())
                 .setProduct(product.toProduct());
     }
+
+    public OrderItemDTO toOrderItemDTO() {
+        return new OrderItemDTO()
+                .setId(String.valueOf(0L))
+                .setPrice(price)
+                .setQuantity(quantity)
+                .setTotalPrice(price)
+                .setProduct(product);
+
+    }
+
 }

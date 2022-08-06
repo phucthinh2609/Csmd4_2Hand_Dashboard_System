@@ -17,7 +17,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                 "o.user, " +
                 "o.type, " +
                 "o.situation," +
-                "o.unit) " +
+                "o.unit, " +
+                "o.createdAt," +
+                "o.createdBy," +
+                "o.updatedAt," +
+                "o.updatedBy)" +
             "FROM Order o " +
             "WHERE o.type.id = ?1")
     List<OrderDTO> getAllOrderDTOByTypeId(Long typeId);
@@ -29,7 +33,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                 "o.user, " +
                 "o.type, " +
                 "o.situation," +
-                "o.unit) " +
+                "o.unit, " +
+                "o.createdAt," +
+                "o.createdBy," +
+                "o.updatedAt," +
+                "o.updatedBy)" +
             "FROM Order o " +
             "WHERE o.id = ?1 ")
     Optional<OrderDTO> getOrderDTOById(Long orderId);

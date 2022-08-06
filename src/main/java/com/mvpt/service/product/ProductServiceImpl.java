@@ -1,8 +1,6 @@
 package com.mvpt.service.product;
 
-import com.mvpt.model.Category;
 import com.mvpt.model.Product;
-import com.mvpt.model.dto.CategoryDTO;
 import com.mvpt.model.dto.ProductDTO;
 import com.mvpt.repository.CategoryRepository;
 import com.mvpt.repository.ProductRepository;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +30,11 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductDTO> getAllProductDTOByDeletedIsFalse() {
 
         return productRepository.getAllProductDTOByDeletedIsFalse();
+    }
+
+    @Override
+    public List<ProductDTO> getAllProductDTOByDeletedIsFalseAndImportedIsTrue() {
+        return productRepository.getAllProductDTOByDeletedIsFalseAndImportedIsTrue();
     }
 
     @Override
@@ -77,7 +79,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<ProductDTO> searchProductDTOByTileAndSku(String keySearch) {
-        return productRepository.searchProductDTOByTileAndSku(keySearch);
+    public List<ProductDTO> searchProductDTOByTileAndSkuAndCategory(String keySearch) {
+        return productRepository.searchProductDTOByTileAndSkuAndCategory(keySearch);
+    }
+
+    @Override
+    public List<ProductDTO> searchInventoryOfProductDTOByTileAndSkuAndCategory(String keySearch) {
+        return productRepository.searchInventoryOfProductDTOByTileAndSkuAndCategory(keySearch);
     }
 }

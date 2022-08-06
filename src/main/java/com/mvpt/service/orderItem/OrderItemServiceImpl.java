@@ -28,6 +28,11 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    public List<OrderItemDTO> getAllOrderItemDTOByOrderId(Long orderId) {
+        return orderItemRepository.getAllOrderItemDTOByOrderId(orderId);
+    }
+
+    @Override
     public Optional<OrderItem> findById(Long id) {
         return orderItemRepository.findById(id);
     }

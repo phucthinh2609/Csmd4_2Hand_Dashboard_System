@@ -13,4 +13,6 @@ public interface OrderItemService extends IGeneralService<OrderItem> {
 
     Optional<OrderItemDTO> getOrderItemDTOById(Long id);
 
+    List<OrderItemDTO> getAllOrderItemDTOByOrderId(Long orderId);
+
 }

@@ -56,4 +56,5 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "WHERE ci.product.id = ?1 ")
     Optional<CartItemDTO> getCartItemDTOByProductId(Long productId);
 
+
 }

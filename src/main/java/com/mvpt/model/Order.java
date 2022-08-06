@@ -61,6 +61,10 @@ public class Order extends BaseEntity{
                 .setUser(user.toUserDTO())
                 .setType(type.toTypeDTO())
                 .setSituation(situation.toSituationDTO())
-                .setUnit(unit.toUnitDTO());
+                .setUnit(unit.toUnitDTO())
+                .setCreatedAt(getCreatedAt())
+                .setCreatedBy(getCreatedBy())
+                .setUpdatedAt(getUpdatedAt())
+                .setUpdatedBy(getUpdatedBy());
     }
 }

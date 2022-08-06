@@ -39,6 +39,14 @@ public class ProductRestController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    @GetMapping("/inventory")
+    public ResponseEntity<?> getInventory(){
+
+        List<ProductDTO> productDTOList = productService.getAllProductDTOByDeletedIsFalseAndImportedIsTrue();
+
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable long id) {
         Optional<ProductDTO> productDTO = productService.getProductDTOById(id);
@@ -50,9 +58,17 @@ public class ProductRestController {
         return new ResponseEntity<>(productDTO.get(), HttpStatus.OK);
     }
 
+
     @GetMapping("/search/{keySearch}")
     public ResponseEntity<?> doSearch(@PathVariable String keySearch) {
-        List<ProductDTO> productDTOList = productService.searchProductDTOByTileAndSku(keySearch);
+        List<ProductDTO> productDTOList = productService.searchProductDTOByTileAndSkuAndCategory(keySearch);
+
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping("/inventory/search/{keySearch}")
+    public ResponseEntity<?> doSearchInventory(@PathVariable String keySearch) {
+        List<ProductDTO> productDTOList = productService.searchInventoryOfProductDTOByTileAndSkuAndCategory(keySearch);
 
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
