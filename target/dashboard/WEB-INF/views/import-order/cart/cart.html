@@ -211,6 +211,7 @@
 
 
     <script>
+        let userDTOId = $('.userDTO span').attr('id');
 
         let product = new Product();
         let cart = new Cart();
@@ -315,8 +316,9 @@
                     "accept" : "application/json",
                     "content-type": "application/json"
                 },
-                "type": "GET",
-                "url": page.url.getAllCartItems
+                "type": "POST",
+                "url": page.url.getAllCartItems,
+                "data": userDTOId
             })
             .done((data) => {
                 cart = data.cartDTO;
@@ -580,6 +582,8 @@
 
         page.commands.doOrder = () => {
             cart.unit = unit;
+            cart.user.id = userDTOId;
+
 
             if (cart.id === undefined) {
                 App.IziToast.showErrorAlertBottom("Cart is empty")

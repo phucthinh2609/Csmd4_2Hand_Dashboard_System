@@ -1,5 +1,6 @@
 package com.mvpt.security;
 
+import com.mvpt.exception.EmailExistsException;
 import com.mvpt.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,86 +25,78 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-//    @Bean
-//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-//        return new JwtAuthenticationFilter();
-//    }
-//
-//    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-//    @Override
-//    public AuthenticationManager authenticationManager() throws Exception {
-//        return super.authenticationManager();
-//    }
-//
-//    @Bean
-//    public RestAuthenticationEntryPoint restServicesEntryPoint() {
-//        return new RestAuthenticationEntryPoint();
-//    }
-//
-//    @Bean
-//    public CustomAccessDeniedHandler customAccessDeniedHandler() {
-//        return new CustomAccessDeniedHandler();
-//    }
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
+    }
+
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+
+    @Bean
+    public RestAuthenticationEntryPoint restServicesEntryPoint() {
+        return new RestAuthenticationEntryPoint();
+    }
+
+    @Bean
+    public CustomAccessDeniedHandler customAccessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 
-//    @Autowired
-//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().ignoringAntMatchers("/**");
-//        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
-//
-//        http.authorizeRequests()
-//                .antMatchers("/", "/api/auth/login", "/api/auth/register", "/login").permitAll()
-//                .antMatchers("/transfers").hasAnyAuthority("ADMIN")
-//                .antMatchers("/assets/**").permitAll()
-//                .antMatchers(
-//                        "/v2/api-docs",
-//                        "/swagger-resources/configuration/ui",
-//                        "/configuration/ui",
-//                        "/swagger-resources",
-//                        "/swagger-resources/configuration/security",
-//                        "/configuration/security",
-//                        "/swagger-ui.html",
-//                        "/webjars/**"
-//                  ).permitAll()
-//                .antMatchers(
-//                        "/v3/api-docs",
-//                        "/swagger-resources/configuration/ui",
-//                        "/configuration/ui",
-//                        "/swagger-resources",
-//                        "/swagger-resources/configuration/security",
-//                        "/configuration/security",
-//                        "/swagger-ui/**"
-//                ).permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/login")
-//                .loginPage("/login")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .defaultSuccessUrl("/")
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login")
-//                .deleteCookies("JWT")
-//                .invalidateHttpSession(true)
-//                .and()
-//                .csrf().disable();
-//
-//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
-//
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.cors();
-//    }
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().ignoringAntMatchers("/**");
+        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
+
+        http.authorizeRequests()
+                .antMatchers("/", "/api/auth/login", "/api/auth/signup", "/login").permitAll()
+                .antMatchers("/users", "/inventories", "/api/products/update", "/api/users/update").hasAnyAuthority("ROLE-ADMIN")
+                .antMatchers("/assets/**").permitAll()
+                .antMatchers(
+                        "/v2/api-docs",
+                        "/swagger-resources/configuration/ui",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/swagger-resources/configuration/security",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JWT")
+                .invalidateHttpSession(true)
+                .and()
+                .csrf().disable();
+
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.cors();
+    }
 }

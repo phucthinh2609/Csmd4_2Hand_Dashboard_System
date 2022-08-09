@@ -358,10 +358,10 @@
                     </div>
                 </div>
 
-                <div class="dropdown d-inline-block">
+                <div class="dropdown d-inline-block userDTO" th:object="${userDTO}">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="/assets/images/users/avatar-thinh.jpeg" alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ml-1">Thinh</span>
+                        <img class="rounded-circle header-profile-user" th:src="'/assets/images/users/avatar-thinh.jpeg'" alt="Header Avatar">
+                        <span data-th-id="${userDTO.id}" class="d-none d-xl-inline-block ml-1" th:text="${userDTO.userInfo.fullName}"></span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">

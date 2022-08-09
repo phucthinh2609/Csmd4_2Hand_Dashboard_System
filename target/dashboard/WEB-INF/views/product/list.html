@@ -191,7 +191,6 @@
             
             initializeControlEvent: {}
         }
-
         page.elements.footer = $(".footer");
 
         page.elements.modalCreate = $('#mdCreate');
@@ -233,12 +232,16 @@
         page.dialogs.alertDanger.modalCreate = $("#mdCreate .modal-alert-danger");
         page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
 
+
+        let userDTOId = $('.userDTO span').attr('id');
         let product = new Product();
         let category = new Category();
         let products = [];
         let productId;
 
         let tempRowProduct = $.validator.format($.trim($('#tempRowProduct').val().toString()));
+
+
 
         page.commands.addRowProduct = () =>{
             // $('#tbListProducts tbody').prepend($(tempRowProduct(product.id, product.urlImage, product.title, product.sku, product.category.name, product.createdAt, product.createdBy, product.description, product.isImported)));
@@ -357,6 +360,7 @@
             product.category = category;
             product.description = page.elements.description.val();
             product.urlImage = "img-not-found.jpeg";
+            product.createdBy = userDTOId;
 
             $.ajax({
                 "headers": {
@@ -423,6 +427,7 @@
             product.category = category;
             product.description = page.elements.descriptionUp.val();
             product.urlImage = "img-not-found.jpeg";
+            product.updatedBy = userDTOId
 
             $.ajax({
                 "headers": {

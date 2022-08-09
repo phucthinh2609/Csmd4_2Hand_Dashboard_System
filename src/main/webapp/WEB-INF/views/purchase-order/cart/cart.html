@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Cart Of Import Order Page</title>
+    <title>Cart Of Purchase Order Page</title>
     <!-- Meta -->
     <th:block th:replace="/head/meta :: meta"/>
 
@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">Cart Of Import Order</h4>
+                                <h4 class="mb-0 font-size-18">Cart Of Purchase Order</h4>
 
                                 <div class="page-title-right">
                                     <button id="btnShowCreateUnitModal" type="button" class="btn btn-primary btn-rounded waves-effect waves-light mb-2 mr-2">
@@ -211,6 +211,7 @@
 
 
     <script>
+        let userDTOId = $('.userDTO span').attr('id');
 
         let product = new Product();
         let cart = new Cart();
@@ -315,8 +316,9 @@
                     "accept" : "application/json",
                     "content-type": "application/json"
                 },
-                "type": "GET",
-                "url": page.url.getAllCartItems
+                "type": "POST",
+                "url": page.url.getAllCartItems,
+                "data": userDTOId
             })
             .done((data) => {
                 cart = data.cartDTO;
@@ -580,6 +582,7 @@
 
         page.commands.doOrder = () => {
             cart.unit = unit;
+            cart.user.id = userDTOId;
 
             if (cart.id === undefined) {
                 App.IziToast.showErrorAlertBottom("Cart is empty")

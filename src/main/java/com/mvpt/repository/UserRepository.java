@@ -57,4 +57,22 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 "u.userInfo) " +
             "FROM User u WHERE u.email = ?1 AND u.id <> ?2 ")
     Optional<UserDTO> findUserDTOByEmailAndIdIsNot(String email, Long id);
+
+    @Query("SELECT NEW com.mvpt.model.dto.UserDTO (" +
+                "u.id, " +
+                "u.email, " +
+                "u.password, " +
+                "u.activated, " +
+                "u.createdAt," +
+                "u.createdBy," +
+                "u.updatedAt," +
+                "u.updatedBy," +
+                "u.role, " +
+                "u.userInfo) " +
+            "FROM User u " +
+            "WHERE u.email = ?1")
+    Optional<UserDTO> findUserDTOByEmail(String email);
+
+    Optional<User> findByEmail(String email);
+
 }

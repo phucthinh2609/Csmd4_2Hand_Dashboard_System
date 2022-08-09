@@ -233,6 +233,8 @@
             // });
         });
 
+        let userDTOId = $('.userDTO span').attr('id');
+
         let product = new Product();
         let cart = new Cart();
         let cartItem = new CarIem();
@@ -362,8 +364,9 @@
                     "accept" : "application/json",
                     "content-type": "application/json"
                 },
-                "type": "GET",
-                "url": page.url.getAllCartItems
+                "type": "POST",
+                "url": page.url.getAllCartItems,
+                "data": userDTOId
             })
             .done((data) => {
                 cart = data.cartDTO;
@@ -411,7 +414,7 @@
         }
 
         page.commands.doAddCartItem = () => {
-            cartPurchase.userId = 1;
+            cartPurchase.userId = userDTOId;
             cartPurchase.productId = productId;
             cartPurchase.quantity = $(`#tr_${productId} .quantity`).val();
             cartPurchase.typeId = 2;

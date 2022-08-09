@@ -6,8 +6,6 @@ import com.mvpt.model.dto.*;
 import com.mvpt.repository.CartItemRepository;
 import com.mvpt.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import static javax.swing.text.html.HTML.Tag.OL;
 
 @Service
 @Transactional
@@ -87,7 +83,6 @@ public class CartServiceImpl implements CartService {
         Long typeId = Long.valueOf(typeDTO.getId());
 
         Optional<CartDTO> currentCartDTO = cartRepository.getCartDTOByTypeIdAndUserId(typeId, userId);
-        Optional<CartItemDTO> currentCartItemDTO = cartItemRepository.getCartItemDTOByProductId(productId);
 
 
         BigDecimal price = new BigDecimal(cartItemDTO.getPrice());
@@ -128,6 +123,10 @@ public class CartServiceImpl implements CartService {
             }
 
         } else {
+            Long cartDTOId = Long.valueOf(currentCartDTO.get().getId());
+
+            Optional<CartItemDTO> currentCartItemDTO = cartItemRepository.getCartItemDTOByCartIdAndProductId(productId, cartDTOId);
+
             if (!currentCartItemDTO.isPresent()) {
                 //Tao moi CartItem
                 newCartItemDTO = new CartItemDTO("0", String.valueOf(price), String.valueOf(quantity), totalPrice, currentCartDTO.get(), productDTO);
@@ -188,7 +187,6 @@ public class CartServiceImpl implements CartService {
         Long typeId = Long.valueOf(typeDTO.getId());
 
         Optional<CartDTO> currentCartDTO = cartRepository.getCartDTOByTypeIdAndUserId(typeId, userId);
-        Optional<CartItemDTO> currentCartItemDTO = cartItemRepository.getCartItemDTOByProductId(productId);
 
 
         BigDecimal price = new BigDecimal(productDTO.getPrice());
@@ -234,6 +232,10 @@ public class CartServiceImpl implements CartService {
             }
 
         } else {
+            Long cartDTOId = Long.valueOf(currentCartDTO.get().getId());
+
+            Optional<CartItemDTO> currentCartItemDTO = cartItemRepository.getCartItemDTOByCartIdAndProductId(productId, cartDTOId);
+
             if (!currentCartItemDTO.isPresent()) {
                 //Tao moi CartItem && Cap nhat grandTotal, grandQuantity
                 newCartItemDTO = new CartItemDTO("0", String.valueOf(price), String.valueOf(quantity), totalPrice, currentCartDTO.get(), productDTO);

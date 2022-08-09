@@ -60,7 +60,7 @@ public class CartItemDTO {
                 .setId(String.valueOf(0L))
                 .setPrice(price)
                 .setQuantity(quantity)
-                .setTotalPrice(price)
+                .setTotalPrice(totalPrice)
                 .setProduct(product);
 
     }

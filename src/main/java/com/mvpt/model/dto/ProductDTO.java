@@ -37,7 +37,7 @@ public class ProductDTO {
     private String title;
 
     @NotBlank(message = "Sku is required")
-//    @Pattern(regexp = "^([A-Z]{2}\\-){2}\\d{4}$", message = "\"Format sku is 'US-AP-1029'. In there: 'US' is the country, 'AP' is the item name, '1029' is the item code\"")
+    @Pattern(regexp = "^([A-Z]{2}\\-){2}\\d{4}$", message = "\"Format sku is 'US-AP-1029'. In there: 'US' is the country, 'AP' is the item name, '1029' is the item code\"")
     private String sku;
 
     private String urlImage;

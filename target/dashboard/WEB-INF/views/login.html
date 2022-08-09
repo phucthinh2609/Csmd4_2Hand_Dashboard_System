@@ -68,11 +68,11 @@
                     </div>
                 </form>
 
-                <div class="login-signup">
-                        <span class="text">Not a member?
-                            <a href="#" class="text signup-link">Signup Now</a>
-                        </span>
-                </div>
+<!--                <div class="login-signup">-->
+<!--                        <span class="text">Not a member?-->
+<!--                            <a href="#" class="text signup-link">Signup Now</a>-->
+<!--                        </span>-->
+<!--                </div>-->
             </div>
 
             <!-- Registration Form -->
@@ -124,51 +124,17 @@
     <script type="text/javascript" src="/assets/js/login.js"></script>
     <script type="text/javascript" src="/assets/iziToast/iziToast-1.4.0.js"></script>
     <script type="text/javascript" src="/assets/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="/assets/js/app.js"></script>
+    <script type="text/javascript" src="/assets/js/app.page.js"></script>
 
     <script>
-        let btnRegister = $('#btn_sign_up');
         let btnLogin = $('#btn_login');
-
-        btnRegister.on('click', () => {
-            let username = $('#usernameReg').val();
-            let password = $('#passwordReg').val();
-            let roleId = $('#role').val();
-
-            let user = {
-                username: username,
-                password: password,
-                role: {
-                    id: roleId
-                }
-            }
-
-            $.ajax({
-                "headers": {
-                    "accept": "application/json",
-                    "content-type": "application/json"
-                },
-                "type": "POST",
-                "url": "http://localhost:8080/api/auth/register",
-                "data": JSON.stringify(user)
-            })
-            .done((data) => {
-                App.IziToast.showSuccessAlert("Signup account successful!");
-                $('.container').removeClass('active');
-                $('#usernameLogin').val(username);
-                $('#passwordLogin').val(password);
-            })
-            .fail((jqXHR) => {
-                App.IziToast.showErrorAlert(jqXHR.responseJSON.message);
-            })
-        });
 
         btnLogin.on('click', () => {
             let username = $('#usernameLogin').val();
             let password = $('#passwordLogin').val();
 
             let user = {
-                username: username,
+                email: username,
                 password: password
             }
 
@@ -183,9 +149,13 @@
             })
             .done((data) => {
                 App.IziToast.showSuccessAlert("Login successful!");
-                window.location.href = "/customers";
+                window.location.href = "/";
             })
             .fail((jqXHR) => {
+                console.log(jqXHR);
+                if (jqXHR.statusText === "error"){
+                    App.IziToast.showErrorAlert("Email or email is not match");
+                }
                 App.IziToast.showErrorAlert(jqXHR.responseJSON.message);
             })
         });

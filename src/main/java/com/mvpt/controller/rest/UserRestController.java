@@ -73,6 +73,7 @@ public class UserRestController {
         userDTO.setId(String.valueOf(0L));
         userDTO.getUserInfo().setId(String.valueOf(0L));
         userDTO.getUserInfo().getLocationRegion().setId(String.valueOf(0L));
+        userDTO.setActivated(true);
 
         Boolean existEmail = userService.existsByEmail(email);
 

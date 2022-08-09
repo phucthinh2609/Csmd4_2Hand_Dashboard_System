@@ -286,6 +286,8 @@
         page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
         page.dialogs.alertDanger.mdChangePwd = $("#mdChangePwd .modal-alert-danger");
 
+        let userDTOId = $('.userDTO span').attr('id');
+
         let user = new User();
         let userInfo = new UserInfo();
         let locationRegion = new LocationRegion();
@@ -463,6 +465,7 @@
             user.password = page.elements.password.val();
             user.userInfo = userInfo;
             user.role = role;
+            user.createdBy = userDTOId;
 
             $.ajax({
                 "headers": {
@@ -538,6 +541,7 @@
 
             user.email = page.elements.emailUp.val();
             user.activated = page.elements.activeUp.val();
+            user.updatedBy = userDTOId;
 
             if (user.activated !== "true" && user.activated !== "false"){
                 // page.dialogs.alertDanger.modalUpdate.html("").removeClass("hide").addClass("show");
@@ -569,7 +573,7 @@
                 page.elements.modalUpdate.modal('hide');
                 App.SweetAleart.showSuccessAlert(App.SUCCESS_UPDATED);
 
-                page.commands.clickRowProduct();
+                page.commands.clickRowUser();
                 page.commands.unbindAll();
             })
             .fail((jqxHR) => {

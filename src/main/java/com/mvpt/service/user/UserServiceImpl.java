@@ -3,12 +3,15 @@ package com.mvpt.service.user;
 import com.mvpt.model.LocationRegion;
 import com.mvpt.model.User;
 import com.mvpt.model.UserInfo;
+import com.mvpt.model.UserPrinciple;
 import com.mvpt.model.dto.UserDTO;
 import com.mvpt.model.dto.UserInfoDTO;
 import com.mvpt.repository.LocationRegionRepository;
 import com.mvpt.repository.UserInfoRepository;
 import com.mvpt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,5 +95,25 @@ public class UserServiceImpl implements UserService{
     @Override
     public void remove(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<UserDTO> findUserDTOByEmail(String email) {
+        return userRepository.findUserDTOByEmail(email);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> userOptional = userRepository.findByEmail(username);
+        if (!userOptional.isPresent()) {
+            throw new UsernameNotFoundException(username);
+        }
+        return UserPrinciple.build(userOptional.get());
+//        return (UserDetails) userOptional.get();
     }
 }

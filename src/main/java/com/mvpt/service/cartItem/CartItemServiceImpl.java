@@ -48,6 +48,11 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
+    public Optional<CartItemDTO> getCartItemDTOByCartIdAndProductId(Long productId, Long carId) {
+        return cartItemRepository.getCartItemDTOByCartIdAndProductId(productId, carId);
+    }
+
+    @Override
     public CartItem getById(Long id) {
         return cartItemRepository.getById(id);
     }

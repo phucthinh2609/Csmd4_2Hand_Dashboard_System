@@ -59,14 +59,14 @@ public class CartRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/cart-items/import")
-    public ResponseEntity<?> getAllCartItemImport() {
+    @PostMapping("/cart-items/import")
+    public ResponseEntity<?> getAllCartItemImport(@RequestBody String userDTOId) {
 
         Map<String, Object> result = new HashMap<>();
 
         Long typeId = 1L;
 
-        Optional<CartDTO> cartDTO = cartService.getCartDTOByTypeId(typeId);
+        Optional<CartDTO> cartDTO = cartService.getCartDTOByTypeIdAndUserId(typeId, Long.valueOf(userDTOId));
         Long cartId = Long.parseLong(cartDTO.get().getId());
 
         List<CartItemDTO> cartItemDTO = cartItemService.getAllCartItemDTOByCartId(cartId);
@@ -77,14 +77,14 @@ public class CartRestController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/cart-items/purchase")
-    public ResponseEntity<?> getAllCartItemPurchase() {
+    @PostMapping("/cart-items/purchase")
+    public ResponseEntity<?> getAllCartItemPurchase(@RequestBody String userDTOId) {
 
         Map<String, Object> result = new HashMap<>();
 
         Long typeId = 2L;
 
-        Optional<CartDTO> cartDTO = cartService.getCartDTOByTypeId(typeId);
+        Optional<CartDTO> cartDTO = cartService.getCartDTOByTypeIdAndUserId(typeId, Long.valueOf(userDTOId));
         Long cartId = Long.parseLong(cartDTO.get().getId());
 
         List<CartItemDTO> cartItemDTO = cartItemService.getAllCartItemDTOByCartId(cartId);

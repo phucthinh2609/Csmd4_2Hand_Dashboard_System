@@ -92,6 +92,7 @@ public class ProductRestController {
         productDTO.setQuantity(String.valueOf(0));
         productDTO.setSold(String.valueOf(0));
         productDTO.setAvailable(String.valueOf(0));
+        productDTO.setImported(false);
 
         Boolean existBySku = productService.existsBySku(productDTO.getSku());
 
