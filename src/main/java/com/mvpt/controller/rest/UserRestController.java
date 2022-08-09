@@ -77,10 +77,7 @@ public class UserRestController {
         Long roleId = Long.valueOf(userDTO.getRole().getId());
         String email = userDTO.getEmail();
 
-        userDTO.setId(String.valueOf(0L));
-        userDTO.getUserInfo().setId(String.valueOf(0L));
-        userDTO.getUserInfo().getLocationRegion().setId(String.valueOf(0L));
-        userDTO.setActivated(true);
+
 
         Boolean existEmail = userService.existsByEmail(email);
 
@@ -93,6 +90,12 @@ public class UserRestController {
         if (!role.isPresent()) {
             throw new DataInputException("Role ID invalid!!!");
         }
+
+        userDTO.setId(String.valueOf(0L));
+        userDTO.getUserInfo().setId(String.valueOf(0L));
+        userDTO.getUserInfo().getLocationRegion().setId(String.valueOf(0L));
+        userDTO.setRole(role.get().toRoleDTO());
+        userDTO.setActivated(true);
 
         try {
             UserDTO newUserDTO = userService.saveDTO(userDTO);
@@ -117,6 +120,7 @@ public class UserRestController {
 
         userDTO.getUserInfo().setId(currentUserInfoId);
         userDTO.getUserInfo().getLocationRegion().setId(currentLocationRegionId);
+        userDTO.setPassword(currentUserDTO.get().getPassword().trim());
 
         Optional<UserDTO> currentEmailUserDTO = userService.findProductDTOByEmailAndIdIsNot(userDTO.getEmail(), Long.valueOf(userDTO.getId()));
 
@@ -131,7 +135,7 @@ public class UserRestController {
         }
 
         try {
-            UserDTO newUserDTO = userService.saveDTO(userDTO);
+            UserDTO newUserDTO = userService.save(userDTO.toUser()).toUserDTO();
             return new ResponseEntity<>(newUserDTO, HttpStatus.OK);
 
         } catch (Exception ex) {

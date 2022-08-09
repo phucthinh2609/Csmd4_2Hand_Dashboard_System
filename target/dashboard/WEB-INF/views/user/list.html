@@ -627,6 +627,10 @@
                 return App.IziToast.showErrorAlert("newPassword & preNewPassword don't match!")
             }
 
+            if (newPassword === "" || preNewPassword === "") {
+                return App.IziToast.showErrorAlert("newPassword & preNewPassword should be not empty!")
+            }
+
             let user = {
                 id: userId,
                 password: password,

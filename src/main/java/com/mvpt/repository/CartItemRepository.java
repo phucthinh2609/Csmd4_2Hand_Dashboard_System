@@ -42,8 +42,8 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "ci.cart, " +
             "ci.product) " +
             "FROM CartItem ci " +
-            "WHERE ci.cart.id = ?1 " +
-            "AND ci.product.id = ?2")
+            "WHERE ci.cart.id = ?2 " +
+            "AND ci.product.id = ?1")
     Optional<CartItemDTO> getCartItemDTOByCartIdAndProductId(Long productId, Long carId);
 
     @Query("SELECT NEW com.mvpt.model.dto.CartItemDTO (" +

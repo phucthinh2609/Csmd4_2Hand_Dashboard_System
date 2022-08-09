@@ -188,15 +188,9 @@ public class CartServiceImpl implements CartService {
 
         Optional<CartDTO> currentCartDTO = cartRepository.getCartDTOByTypeIdAndUserId(typeId, userId);
 
-
         BigDecimal price = new BigDecimal(productDTO.getPrice());
         int quantity = Integer.parseInt(cartItemDTO.getQuantity());
         String totalPrice = String.valueOf(price.multiply(BigDecimal.valueOf(quantity)));
-
-        //Bat Quantity
-        if (quantity > Long.parseLong(productDTO.getQuantity())) {
-            throw new DataInputException("The number of items has been exceeded");
-        }
 
         CartDTO newCartDTO;
         CartItemDTO newCartItemDTO;

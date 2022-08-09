@@ -184,6 +184,14 @@ public class CartRestController {
             throw new DataInputException("Product ID is not define");
         }
 
+        Long inputQuantity = Long.parseLong(cartPurchaseDTO.getQuantity());
+        Long productQuantity = Long.parseLong(String.valueOf(productOptional.get().getAvailable()));
+
+        //Bat Quantity
+        if (inputQuantity > productQuantity) {
+            throw new DataInputException("The number of items has been exceeded");
+        }
+
         cartItemDTO.setProduct(productOptional.get().toProductDTO());
 
         Optional<User> userOptional = userService.findById(Long.valueOf(cartPurchaseDTO.getUserId()));

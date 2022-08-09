@@ -102,13 +102,13 @@ public class CartImportDTO implements Validator {
         BigDecimal min = new BigDecimal(1L);
         BigDecimal max = new BigDecimal(1000L);
 
-        if (price.compareTo(min) < 0) {
-            errors.rejectValue("price", "price.min", "The price min is 1$");
+        if (price.compareTo(min) > 0) {
+            errors.rejectValue("price", "price.min", "The price max is 1.000$");
             return;
         }
 
-        if (price.compareTo(max) > 0) {
-            errors.rejectValue("price", "price.max", "The price max is 1.000$");
+        if (price.compareTo(max) < 0) {
+            errors.rejectValue("price", "price.max", "The price min is 1$");
             return;
         }
 
