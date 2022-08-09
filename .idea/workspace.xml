@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e1ccf6-3caa-42d2-b901-597ddec21528" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/AuthRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/JwtResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/UserPrinciple.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/jwt/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/jquery-3.6.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/ChangePwDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Final-exam/demo-country/src/main/java/com/mvpt/controller/HomeController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Final-exam/demo-country/src/main/java/com/mvpt/controller/api/CityApiController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Final-exam/demo-country/src/main/java/com/mvpt/model/City.java" afterDir="false" />
@@ -58,98 +52,12 @@
       <change afterPath="$PROJECT_DIR$/../../homework/spring-maven-customer-banking/src/main/webapp/assets/js/jquery.validate-1.19.3.min.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../homework/spring-maven-customer-banking/src/main/webapp/assets/js/sweetalert2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/ImportOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/ImportOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/PurchaseOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/PurchaseOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/CartRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/CartRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/OrderRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/OrderRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/ProductRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/controller/rest/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CartItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CartItemDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/CartItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/CustomAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/CustomAccessDeniedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/RestAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/RestAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/security/SecurityInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cart/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cart/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cartItem/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cartItem/CartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cartItem/CartItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/cartItem/CartItemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/service/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/create/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/create/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/list/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/import-order/list/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout/page-topbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout/page-topbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout/sidebar-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout/sidebar-menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/create/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/create/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/list/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/purchase-order/list/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mvpt/model/dto/CartDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/ImportOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/ImportOrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/InventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/InventoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/PurchaseOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/PurchaseOrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/CartRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/CartRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/OrderRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/OrderRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/ProductRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/ProductRestController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/UserRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/controller/rest/UserRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/CartItemDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/CartItemDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/ProductDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/model/dto/ProductDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/repository/CartItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/repository/CartItemRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/security/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/cart/CartServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/cart/CartServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/cartItem/CartItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/cartItem/CartItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/cartItem/CartItemServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/cartItem/CartItemServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mvpt/service/user/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/ImportOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/ImportOrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/InventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/InventoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/PurchaseOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/PurchaseOrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/CartRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/CartRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/OrderRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/OrderRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/ProductRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/ProductRestController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/UserRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/controller/rest/UserRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/CartItemDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/CartItemDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/ProductDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/model/dto/ProductDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/CartItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/CartItemRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/security/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cart/CartServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cart/CartServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cartItem/CartItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cartItem/CartItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cartItem/CartItemServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/cartItem/CartItemServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/classes/com/mvpt/service/user/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/create/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/create/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/list/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/import-order/list/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/layout/page-topbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/layout/page-topbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/layout/sidebar-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/layout/sidebar-menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/product/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/create/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/create/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/list/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/purchase-order/list/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/user/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/dashboard/WEB-INF/views/user/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/controller/rest/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/controller/rest/AuthRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/model/dto/TransferHistoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ajax/demo-login-cookie/src/main/java/com/mvpt/model/dto/TransferHistoryDTO.java" afterDir="false" />
@@ -391,7 +299,7 @@
       <workItem from="1659879235917" duration="8024000" />
       <workItem from="1659925428160" duration="5586000" />
       <workItem from="1659948265623" duration="20066000" />
-      <workItem from="1660027345975" duration="4100000" />
+      <workItem from="1660027345975" duration="10368000" />
     </task>
     <servers />
   </component>

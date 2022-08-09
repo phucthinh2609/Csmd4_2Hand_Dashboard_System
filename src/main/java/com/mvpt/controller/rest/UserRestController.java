@@ -6,6 +6,7 @@ import com.mvpt.model.LocationRegion;
 import com.mvpt.model.Role;
 import com.mvpt.model.User;
 import com.mvpt.model.UserInfo;
+import com.mvpt.model.dto.ChangePwDTO;
 import com.mvpt.model.dto.UserDTO;
 import com.mvpt.service.locationRegion.LocationRegionService;
 import com.mvpt.service.product.ProductService;
@@ -17,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +46,9 @@ public class UserRestController {
 
     @Autowired
     AppUtils appUtils;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @GetMapping()
     public ResponseEntity<?> getAll() {
@@ -151,4 +158,25 @@ public class UserRestController {
         }
 
     }
+
+    @PostMapping("/password")
+    public ResponseEntity<?> doChangePassword(@RequestBody ChangePwDTO user) {
+
+        Optional<UserDTO> userDTO = userService.getUserDTOById(Long.valueOf(user.getId()));
+
+        if (!userDTO.isPresent()) {
+            throw new DataInputException("User is not define");
+        }
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userDTO.get().getEmail(), user.getPassword()));
+
+
+        userDTO.get().setPassword(user.getNewPassword());
+
+        userService.save(userDTO.get().toUser());
+
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
+
  }

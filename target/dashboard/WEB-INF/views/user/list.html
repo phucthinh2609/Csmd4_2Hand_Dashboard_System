@@ -199,7 +199,8 @@
 
                 saveNew: App.BASER_URL + "/users/create",
                 saveUpdate: App.BASER_URL + "/users/update",
-                suspended: App.BASER_URL + "/users/suspended/"
+                suspended: App.BASER_URL + "/users/suspended/",
+                changePw: App.BASER_URL + "/users/password"
 
             },
             elements: {
@@ -281,6 +282,11 @@
         page.elements.updatedByDet = $('#updatedByDet');
         page.elements.activeDet = $('#activeDet');
         page.elements.urlImageDet = $('#urlImageDet');
+
+        page.elements.emailChangePwd = $('#emailChangePwd');
+        page.elements.recentChangePwd = $('#recentChangePwd');
+        page.elements.newChangePwd = $('#newChangePwd');
+        page.elements.newPreChangePwd = $('#newPreChangePwd');
 
         page.dialogs.alertDanger.modalCreate = $("#mdCreate .modal-alert-danger");
         page.dialogs.alertDanger.modalUpdate = $("#mdUpdate .modal-alert-danger");
@@ -612,6 +618,74 @@
             })
         }
 
+        page.commands.doChangePw = () => {
+            let password = page.elements.recentChangePwd = $('#recentChangePwd').val();
+            let newPassword = page.elements.newChangePwd = $('#newChangePwd').val();
+            let preNewPassword = page.elements.newPreChangePwd = $('#newPreChangePwd').val();
+
+            if (newPassword !== preNewPassword) {
+                return App.IziToast.showErrorAlert("newPassword & preNewPassword don't match!")
+            }
+
+            let user = {
+                id: userId,
+                password: password,
+                newPassword: newPassword
+            }
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.changePw,
+                "data": JSON.stringify(user)
+            })
+            .done((item) => {
+                App.SweetAleart.showSuccessAlert(App.SUCCESS_CREATED);
+                page.elements.modalChangePwd.modal('hide');
+
+            })
+            .fail((jqxHR) => {
+                if (jqxHR.statusText === "error"){
+                    App.IziToast.showErrorAlert("Pre password is not match");
+                }
+
+                if (jqxHR.status === 401) {
+                    let msg = App.ERROR_401;
+                    str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                    page.dialogs.alertDanger.modalCreate.append(str);
+                } else {
+                    if (jqxHR.status === 403) {
+                        let msg = App.ERROR_403;
+                        str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                        page.dialogs.alertDanger.modalCreate.append(str);
+                    } else {
+                        let str = "";
+
+                        if (jqxHR.responseJSON.message) {
+                            let msg = jqxHR.responseJSON.message;
+
+                            str = `<label id="message-error" class="error" for="message">${msg}</label>`
+
+                            page.dialogs.alertDanger.modalCreate.append(str);
+                        } else if (jqxHR.responseJSON) {
+                            $.each(jqxHR.responseJSON, (key, item) => {
+                                str = `<label id="message-error" class="error" for="${key}">${item}</label>`
+                                page.dialogs.alertDanger.modalCreate.append(str);
+                            })
+                        }
+                    }
+                }
+            });
+
+
+        };
+
+
         page.commands.drawRoles = () => {
             return $.ajax({
                 "headers": {
@@ -800,6 +874,10 @@
             page.elements.btnUpdate.on('click', () => {
                 // page.elements.frmUpdate.submit();
                 page.commands.doUpdate();
+            })
+
+            page.elements.btnChangePwd.on('click', () => {
+                page.commands.doChangePw();
             })
 
 
