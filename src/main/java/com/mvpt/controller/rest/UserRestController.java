@@ -178,7 +178,7 @@ public class UserRestController {
 
         userDTO.get().setPassword(user.getNewPassword());
 
-        userService.save(userDTO.get().toUser());
+        userService.saveDTO(userDTO.get());
 
         return  new ResponseEntity<>(HttpStatus.OK);
     }
