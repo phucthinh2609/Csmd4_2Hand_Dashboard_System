@@ -18,7 +18,7 @@
 ### Summary:
 *This is a second hand clothing dashboard management system. The dashboard page for admin users, who can use all system functions, and staff user, restricted users who only use some functions. The system allows you to manage employee information, create products, and manage purchase orders and orders efficiently and quickly.*
 
-Review by images:
+## Review by images:
 *Login*
 <img width="1440" alt="Login" src="https://user-images.githubusercontent.com/100894457/195280539-d558b301-a6e5-463e-acce-865d1bd879f1.png">
 *User list*
