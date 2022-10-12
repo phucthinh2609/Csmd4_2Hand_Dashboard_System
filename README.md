@@ -1,8 +1,8 @@
 #2HANDSHOP DASHBOARD INVENTORY SYSTEM
 
 Import data in: src>data>Dump20221012_csmd4.zip
-Admin account: admin@gmail.com / 123123
-Staff account: user@gmail.com / 123123
+>Admin account: admin@gmail.com / 123123
+>Staff account: user@gmail.com / 123123
 Localhost: http://localhost:8080
 
  Personal (1 week)
