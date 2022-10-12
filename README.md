@@ -1,18 +1,21 @@
-#2HANDSHOP DASHBOARD INVENTORY SYSTEM
+# 2HANDSHOP DASHBOARD INVENTORY SYSTEM
 
-Import data in: src>data>Dump20221012_csmd4.zip.
->Admin account: admin@gmail.com / 123123.
+>Import data in: src>data>Dump20221012_csmd4.zip.
+>
+>Admin account: admin@gmail.com / 123123. 
+>
 >Staff account: user@gmail.com / 123123.
-Localhost: http://localhost:8080
-
- Personal (1 week)
+>
+>Localhost: http://localhost:8080
+>
+ 
 ### Project builds on: 
-    - MySQL
-    - Spring
-    - Jquery
-    - Bootstrap
-### Position: author
-### Summary
+- MySQL
+- Spring
+- Jquery
+- Bootstrap
+
+### Summary:
 *This is a second hand clothing dashboard management system. The dashboard page for admin users, who can use all system functions, and staff user, restricted users who only use some functions. The system allows you to manage employee information, create products, and manage purchase orders and orders efficiently and quickly.*
 
 Review by images:
